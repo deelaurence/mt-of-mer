@@ -12,11 +12,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        darkShade: "#C3B091",
+        darkShade: "#e9e4d4",
+        // darkShade: "#C3B091",
         lightShade: "#212121",
+        faded: "#959492",
+        button: "#1f456e",
         playground: "#E0E0E0",
         transluscent: "#2c2c2c",
         opaque: "#B8B8B8",
+        yellowBg: "#ffdd8b"
       },
     },
   },

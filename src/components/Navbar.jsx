@@ -15,7 +15,7 @@ const Navbar = ({ locationProps }) => {
   const [refreshBlendBar, setRefreshBlendBar] = useState(false)
   const [currentLocation, setCurrentLocation] = useState("")
   useEffect(() => {
-    console.log("location changed o");
+    //console.log("location changed o");
     setCurrentLocation(location)
     if (locationProps.href.includes('about')) {
       //('about');

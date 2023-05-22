@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 const Menu = ({ hideMenu, menu, locationProps,location }) => {
-
+    
+    
     const [activeWork, setActiveWork] = useState(true);
     const [activePlayground, setActivePlayground] = useState(false);
     const [activeAbout, setActiveAbout] = useState(false);
     const [activeResume, setActiveResume] = useState(false);
 
     useEffect(() => {
-    console.log("location changed o");
+    //console.log("location changed o");
     if (locationProps.href.includes('about')) {
       //('about');
       setActiveAbout(true)

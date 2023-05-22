@@ -17,67 +17,67 @@ const Footer = ({ locationProps }) => {
   const [currentLocation, useCurrentLocation] = useState('')
 
 
-  useEffect(() => {
-    useCurrentLocation(locationProps)
-    //("footer use effect");
-    gsap.fromTo(footerLine, {
-      width: 0,
-    }, {
-      width: "100%",
-      duration: 1.5,
-      scrollTrigger: {
-        trigger: footerLine
-      }
+  // useEffect(() => {
+  //   useCurrentLocation(locationProps)
+  //   //("footer use effect");
+  //   gsap.fromTo(footerLine, {
+  //     width: 0,
+  //   }, {
+  //     width: "100%",
+  //     duration: 1.5,
+  //     scrollTrigger: {
+  //       trigger: footerLine
+  //     }
 
 
-    })
-    gsap.fromTo(gotProject, {
-      yPercent: -100,
-      opacity: 0
-    }, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 1.5,
-      delay: 1,
-      ease: "Bounce.easeOut",
-      scrollTrigger: {
-        trigger: footerLine
-      }
+  //   })
+  //   gsap.fromTo(gotProject, {
+  //     yPercent: -100,
+  //     opacity: 0
+  //   }, {
+  //     yPercent: 0,
+  //     opacity: 1,
+  //     duration: 1.5,
+  //     delay: 1,
+  //     ease: "Bounce.easeOut",
+  //     scrollTrigger: {
+  //       trigger: footerLine
+  //     }
 
 
-    })
-    gsap.fromTo(contact, {
-      yPercent: -100,
-      opacity: 0
-    }, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 1.5,
-      delay: 1.2,
-      // ease: "Bounce.easeOut",
-      scrollTrigger: {
-        trigger: footerLine
-      }
+  //   })
+  //   gsap.fromTo(contact, {
+  //     yPercent: -100,
+  //     opacity: 0
+  //   }, {
+  //     yPercent: 0,
+  //     opacity: 1,
+  //     duration: 1.5,
+  //     delay: 1.2,
+  //     // ease: "Bounce.easeOut",
+  //     scrollTrigger: {
+  //       trigger: footerLine
+  //     }
 
 
-    })
-    gsap.fromTo(connect, {
-      yPercent: -100,
-      opacity: 0
-    }, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 1.5,
-      delay: 1.5,
-      // ease: "Bounce.easeOut",
-      scrollTrigger: {
-        trigger: footerLine
-      }
+  //   })
+  //   gsap.fromTo(connect, {
+  //     yPercent: -100,
+  //     opacity: 0
+  //   }, {
+  //     yPercent: 0,
+  //     opacity: 1,
+  //     duration: 1.5,
+  //     delay: 1.5,
+  //     // ease: "Bounce.easeOut",
+  //     scrollTrigger: {
+  //       trigger: footerLine
+  //     }
 
 
-    })
+  //   })
 
-  }, [currentLocation, location])
+  // }, [currentLocation, location])
   return (
     <footer
       className="tracking-[0.5px]  pt-24 pb-24 px-6 sm:px-16 bg-lightShade text-white dark:bg-lightShade dark:text-darkShade"
