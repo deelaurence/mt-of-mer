@@ -1,13 +1,48 @@
 import React from 'react'
+import baseUrl from '../data/baseUrl';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-const Menu = ({ hideMenu, menu, locationProps,location }) => {
+const Menu = ({ hideMenu, menu, locationProps,location,setIsLoggedIn }) => {
     
     
     const [activeWork, setActiveWork] = useState(true);
     const [activePlayground, setActivePlayground] = useState(false);
     const [activeAbout, setActiveAbout] = useState(false);
     const [activeResume, setActiveResume] = useState(false);
+    const handleLogout =async () => {
+    const requestOptions = {
+      method: 'POST',
+      credentials:'include',
+      headers: {
+        'Content-Type': 'application/json',
+
+        // Add any other required headers here
+      },
+      body: JSON.stringify(
+        {
+            email:"email",
+            password:"password",
+        }
+      ),
+    };
+         try {
+  const response = await fetch(`${baseUrl}/auth/logout`, requestOptions);
+  const data = await response.json();
+  console.log('Post request successful:', data);
+  
+if(response.status<202){
+      console.log("redirecting")
+      setIsLoggedIn(false)
+      setTimeout(() => {
+            hideMenu()
+        }, 1000);
+  }
+  // Handle response data as needed
+} catch (error) {
+  console.error('Error making post request:', error);
+  // Handle error as needed
+}
+  }
 
     useEffect(() => {
     //console.log("location changed o");
@@ -86,9 +121,8 @@ const Menu = ({ hideMenu, menu, locationProps,location }) => {
                      <div className={activeAbout?'bg-white h-[2px] w-full transition-[1.5s] absolute top-[55%]':'bg-white h-[2px] w-full translate-x-full transition-[1.5s] absolute top-[55%]'}></div>
                     <p onClick={handleActiveAbout} className={activeAbout ? '' : 'text-opaque'} >About</p>
                 </Link>
-                <Link className='relative' to="/resume">
-                     <div className={activeResume?'bg-white h-[2px] w-full transition-[1.5s] absolute top-[55%]':'bg-white h-[2px] w-full translate-x-full transition-[1.5s] absolute top-[55%]'}></div>
-                    <p onClick={handleActiveResume} className={activeResume ? '' : 'text-opaque'}>Résumé</p>
+                <Link className='relative' to="/">
+                    <p onClick={handleLogout} className={activeResume ? '' : 'text-opaque'}>Logout</p>
                 </Link>
             </div>
         </>

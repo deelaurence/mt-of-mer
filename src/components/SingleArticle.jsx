@@ -15,6 +15,7 @@ import screen2 from '../assets/guild-screen2.webp'
 import screen3 from '../assets/guild-screen3.webp'
 import screen4 from '../assets/guild-screen4.webp'
 import Waiting from './Waiting'
+import baseUrl from '../data/baseUrl';
 // import userPersona from './images/userpersona.webp'
 
 
@@ -74,12 +75,13 @@ const Guild = ({ locationProps }) => {
             })
     }, [location]);
     useEffect( ()=>{
+
   const fetchData =async ()=>{
-    // const response = await fetch(`http://localhost:3000/Articles/${params.id}`);
-    const response = await fetch(`https://easy-erin-eel-sock.cyclic.app/Articles/${params.id}`);
+    const response = await fetch(`${baseUrl}/Articles/${params.id}`);
+    // const response = await fetch(`https://easy-erin-eel-sock.cyclic.app/Articles/${params.id}`);
     const jsonData = await response.json();
     //console.log(jsonData.allArticles);
-    console.log(jsonData)
+    console.log("single article "+jsonData)
     jsonData.paragraphOne=jsonData.paragraphOne.split("<br/>");
     
     if(jsonData.paragraphTwo){

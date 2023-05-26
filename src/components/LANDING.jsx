@@ -14,6 +14,8 @@ import Posts from './Posts';
 import Ministries from './Ministries';
 import Articles from './Articles';
 import Paystack from './Paystack';
+import Give from './Give';
+import RoundButton from './RoundButton';
 const LANDING = ({allMessages,allArticles}) => {
   const location = useLocation()
   const [currentLocation, setCurrentLocation] = useState("")
@@ -226,6 +228,7 @@ const LANDING = ({allMessages,allArticles}) => {
         Grow together in faith, 
         and Go serve the world.</p>
       <Ministries/>
+      <Give/>
       {/* <div ref={h1Ref} className='w-[2500px]  bg-darkShade'>
       <h2 className='px-6 overflow-hidden  bg-darkShade font-bold h-[250px] text-[200px]  pb-2 text-center'>THE WORD <span className='middle text-[180px] '>AND</span> PRAYER.</h2>
       </div> */}

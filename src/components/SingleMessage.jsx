@@ -34,6 +34,7 @@ import { useParams } from 'react-router-dom'
 import {FaWhatsapp} from 'react-icons/fa'
 import {FaFacebookF} from 'react-icons/fa'
 import {RiShareForwardLine} from 'react-icons/ri'
+import baseUrl from '../data/baseUrl'
 
 const Guild = ({ locationProps }) => {
     const main = document.querySelector('main')
@@ -75,8 +76,8 @@ const Guild = ({ locationProps }) => {
     }, [location]);
     useEffect( ()=>{
   const fetchData =async ()=>{
-    // const response = await fetch(`http://localhost:3000/messages/${params.id}`);
-    const response = await fetch(`https://easy-erin-eel-sock.cyclic.app/messages/${params.id}`);
+    const response = await fetch(`${baseUrl}/messages/${params.id}`);
+    // const response = await fetch(`https://easy-erin-eel-sock.cyclic.app/messages/${params.id}`);
     const jsonData = await response.json();
     //console.log(jsonData.allMessages);
     console.log(jsonData)

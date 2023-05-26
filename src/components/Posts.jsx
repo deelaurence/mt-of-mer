@@ -14,10 +14,14 @@ import landingData from '../data/posts';
 //console.log(landingData)
 import { useLocation } from 'react-router-dom'
 import Next from "../assets/next.png"
+import RoundButton from './RoundButton';
 
 const Posts = ({allMessages}) => {
   console.log(allMessages)
-  const sliced = allMessages.slice(0,4)
+  let sliced;
+  if(allMessages){
+    sliced=allMessages.slice(0,4)
+  }
   const location = useLocation()
   console.log(sliced)
   const [currentLocation, setCurrentLocation] = useState("")
@@ -224,7 +228,7 @@ const Posts = ({allMessages}) => {
           )
         })}
         </div>
-         <Link  className='flex justify-center' to='/messages'>
+         {/* <Link  className='flex justify-center' to='/messages'>
           <div 
           onMouseEnter={()=>{setAnimateMore(true)}} onMouseLeave={()=>{setAnimateMore(false)}}
           className='relative mb-4 mx-6 w-[160px] h-[160px] cursor-pointer rounded-full border-2 border-lightShade sm:mx-16 p-3 items-center justify-center opacity-80 flex gap-2 '>
@@ -237,7 +241,8 @@ const Posts = ({allMessages}) => {
             <MdOutlineArrowOutward/>
             </div>
           </div>
-          </Link>
+          </Link> */}
+          <RoundButton text="MORE" link="/messages"/>
       </section>
     </main>
 }

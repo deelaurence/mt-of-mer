@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
-
+import baseUrl from '../data/baseUrl'
 import React from 'react'
 import Menu from './Menu'
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
-const Navbar = ({ locationProps }) => {
+const Navbar = ({ locationProps, setIsLoggedIn }) => {
   const location = useLocation()
   let html = document.querySelector("html")
   let toggle = document.querySelector('.toggle')
@@ -52,6 +52,40 @@ const Navbar = ({ locationProps }) => {
     setActiveAbout(false)
     setActiveWork(true)
     setActivePlayground(false)
+  }
+   const handleLogout =async () => {
+    const requestOptions = {
+      method: 'POST',
+      credentials:'include',
+      headers: {
+        'Content-Type': 'application/json',
+
+        // Add any other required headers here
+      },
+      body: JSON.stringify(
+        {
+            email:"email",
+            password:"password",
+        }
+      ),
+    };
+         try {
+  const response = await fetch(`${baseUrl}/auth/logout`, requestOptions);
+  const data = await response.json();
+  console.log('Post request successful:', data);
+  
+if(response.status<202){
+      console.log("redirecting")
+      setIsLoggedIn(false)
+      setTimeout(() => {
+            hideMenu()
+        }, 1000);
+  }
+  // Handle response data as needed
+} catch (error) {
+  console.error('Error making post request:', error);
+  // Handle error as needed
+}
   }
 
   useEffect(() => {
@@ -123,7 +157,7 @@ const Navbar = ({ locationProps }) => {
       </Link>
       <div className={menu ? 'nav-menu fixed z-[99999] left-0 -top-20  bg-darkShade dark:bg-lightShade dark:text-darkShade sm:hidden' :
         'nav-menu fixed left-0 -top-[1000px]  bg-darkShade dark:bg-lightShade dark:text-darkShade  sm:hidden'}>
-        <Menu locationProps={locationProps} location={location} menu={menu} hideMenu={hideMenu} />
+        <Menu locationProps={locationProps} setIsLoggedIn={setIsLoggedIn} location={location} menu={menu} hideMenu={hideMenu} />
       </div>
       <div className="md:hidden flex  gap-1 self-start ">
         <p onClick={showMenu} className='text-base text-darkShade font-regular show-menu  dark:bg-lightShade dark:text-darkShade' >MENU</p>
@@ -140,6 +174,9 @@ const Navbar = ({ locationProps }) => {
         <div className='relative'>
         <div className={activeAbout?'bg-white h-[1px] w-full transition-[1.5s] absolute top-[50%]':'bg-white h-[1px] w-full translate-x-full transition-[1.5s] absolute top-[50%]'}></div>
         <p onClick={handleActiveAbout} className={activeAbout ? 'text-sm font-regular text-lightShade ' : ' text-sm font-regular text-opaque'} ><Link to='/about'>About</Link></p>
+        </div>
+        <div className='relative'>
+        <p onClick={handleLogout} className={activeAbout ? 'text-sm font-regular text-lightShade ' : ' text-sm font-regular text-opaque'} ><Link to='/'>Logout</Link></p>
         </div>
         <p className={activeResume ? 'text-sm font-regular text-lightShade ' : ' text-sm font-regular text-opaque'} ><Link to='/resume'>Résumé</Link></p>
       </div>
