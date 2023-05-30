@@ -67,7 +67,7 @@ const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
 
 return  (
   <>{isLoggedIn?
-    <div className="max-w-md  min-h-[60vh]  flex flex-col items-center justify-center mt-16 mx-auto p-4 text-lightShade bg-darkShade shadow rounded">
+    <div className="max-w-md  min-h-[60vh] bg-white flex flex-col items-center justify-center mt-16 mx-auto p-4 text-lightShade  shadow rounded">
       <div className={pageOne?'flex  mt-28 gap-2 mb-10 text-xs':'flex mt-28 gap-2 mb-10 text-xs'}>
       <FaCircle className={pageOne?"text-blue-400 page-one transition-[1s]":"transition-[1s] page-one text-[8px] text-blue-300"}/>
       <FaCircle className={pageTwo?"text-blue-400 page-one transition-[1s]":"text-[8px] page-one transition-[1s] text-blue-300"}/>

@@ -8,6 +8,7 @@ import LANDING from './components/LANDING';
 import Paystack from './components/Paystack';
 import baseUrl from './data/baseUrl';
 import KODETECH from './components/KODETECH';
+import PaymentReceipt from './components/PaymentReceipt'
 import Alertz from './components/Alertz';
 import MixedR from './components/MixedR';
 import SingleMessage from './components/SingleMessage'
@@ -111,6 +112,7 @@ return (
             <Route path="/give" key={document.location.href} element={<Paystack setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
             <Route path="/articles" key={document.location.href} element={<ArticlesAll allArticles={allArticles}/>} />
             <Route path="/paystack" key={document.location.href} element={<Paystack/>}/>
+            <Route path="/receipt" key={document.location.href} element={<PaymentReceipt/>}/>
             <Route path="/messages/:id" key={document.location.href} element={<SingleMessage />} />
             <Route path="/articles/:id" key={document.location.href} element={<SingleArticle />} />
             <Route path="/messages/all/:id" key={document.location.href} element={<SingleMessage/>} />
