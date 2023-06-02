@@ -107,7 +107,7 @@ return (
             <Route path="/login" key={document.location.href} element={<LoginComponent baseUrl={baseUrl} setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/verified" key={document.location.href} element={<EmailVerifiedPage />} />
             <Route path="/goverify" key={document.location.href} element={<GoAndVerify emailOnRegister={emailOnRegister}/>} />
-            <Route path="/register" key={document.location.href} element={<RegistrationComponent baseUrl={baseUrl} emailOnRegister={emailOnRegister} setEmailOnRegister={setEmailOnRegister}/>} />
+            <Route path="/register" key={document.location.href} element={<RegistrationComponent baseUrl={baseUrl} emailOnRegister={emailOnRegister} setEmailOnRegister={setEmailOnRegister} setIsLoggedIn={setIsLoggedIn}/>} />
             
             <Route path="/give" key={document.location.href} element={<Paystack setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
             <Route path="/articles" key={document.location.href} element={<ArticlesAll allArticles={allArticles}/>} />

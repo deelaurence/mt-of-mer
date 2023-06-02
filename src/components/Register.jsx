@@ -1,9 +1,13 @@
 import React, { useState, useRef } from 'react';
 import LoadingButton from './LoadingButton';
+import { GoogleLogin } from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc';
+
+import axios from 'axios';
 import {Link,redirect,useNavigate} from 'react-router-dom'
 import baseUrl from '../data/baseUrl';
 import Popup from './Popup';
-const RegistrationComponent = ({emailOnRegister, setEmailOnRegister}) => {
+const RegistrationComponent = ({emailOnRegister, setEmailOnRegister,setIsLoggedIn}) => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [surname, setSurname] = useState('');
@@ -16,7 +20,50 @@ const RegistrationComponent = ({emailOnRegister, setEmailOnRegister}) => {
     const [isLoading, setIsLoading]=useState(false)
 
 const passwordDom=document.getElementById("password")
+ const responseGoogle = async (response) => {
+    try {
+      const { tokenId } = response;
+      // Send the tokenId to your server for verification
+      console.log(response)
+      const res = await axios.post('/auth/google', { tokenId });
+      console.log(res.data);
+      // Handle the response from the server
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  const handleGoogleAuth= async ()=>{
+    try {
+      const requestOptions = {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json',
+        // Add any other required headers here
+      }}
+  const response = await fetch(`${baseUrl}/login/federated/google`);
+  const data = await response.json();
+  console.log('Post request successful:', data);
+  if(response.status>201){
+    setPopupMsg(data.message)
+    setIsLoading(false)
+  }
+  if(response.status<202){
+    console.log("redirecting")
+    setIsLoading(false)
+    // setIsLoggedIn(true)
+    window.location.replace(data.message)
+  }
+  // Handle response data as needed
+} catch (error) {
+  console.error('Error making post request:', error);
+  // Handle error as needed
+}
+    // Perform Login logic here
+    console.log('Login form submitted');
+  
+
+  }
 const handleSubmit =async (e) => {
   e.preventDefault();
   setEmailOnRegister(email)
@@ -71,7 +118,7 @@ const handleSubmit =async (e) => {
   };
 
   return (
-    <div className="mt-32  flex justify-center items-center min-h-screen  bg-darkShade">
+    <div className="mt-32  flex flex-col justify-center items-center min-h-screen  bg-darkShade">
       <form
         className="bg-white relative overflow-visible shadow-md w-[85%]  sm:max-w-[40%] rounded px-8  pb-8 mb-4"
         onSubmit={handleSubmit}
@@ -182,8 +229,15 @@ const handleSubmit =async (e) => {
           >
             Already registered? &nbsp; Login
           </Link>
+          
         </div>
+        <div className='my-8'>
+      <button onClick={handleGoogleAuth} className="bg-white self-center shadow-lg justify-self-center mx-auto flex border items-center justify-center gap-4 mb-16 text-gray-500 font-semibold py-2 px-4 rounded">
+      <FcGoogle /> Sign in with Google
+    </button>
+    </div>
       </form>
+      
     </div>
   );
 };

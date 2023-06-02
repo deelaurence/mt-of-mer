@@ -3,6 +3,11 @@ import { useState } from 'react'
 import {MdOutlineKeyboardBackspace} from 'react-icons/md'
 import {BsCreditCard2Back} from 'react-icons/bs'
 import {IoMdArrowRoundBack} from 'react-icons/io'
+import {SiMastercard} from 'react-icons/si'
+import {RiVisaLine} from 'react-icons/ri'
+import {MdPayments} from 'react-icons/md'
+import {GiCheckMark} from 'react-icons/gi'
+import {RiSecurePaymentFill} from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
 import RegistrationComponent from './Register'
 import baseUrl from '../data/baseUrl';
@@ -12,12 +17,16 @@ import LoadingButtonBlue from './LoadingButtonBlue'
 const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
  const [amount, setAmount] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
+  const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [pageOne, setPageOne]=useState(true)
   const [pageTwo, setPageTwo]=useState(false)
   const navigate = useNavigate()
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
+  };
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
   };
 
   const handlePaymentModeChange = (event) => {
@@ -42,7 +51,7 @@ const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount:amount }),
+        body: JSON.stringify({ amount, description }),
       });
 
       if (!response.ok) {
@@ -67,7 +76,7 @@ const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
 
 return  (
   <>{isLoggedIn?
-    <div className="max-w-md  min-h-[60vh] bg-white flex flex-col items-center justify-center mt-16 mx-auto p-4 text-lightShade  shadow rounded">
+    <div className="max-w-md   min-h-[60vh] bg-white mx-6 sm:mx-auto flex flex-col items-center justify-center my-16  p-4 text-lightShade  shadow rounded">
       <div className={pageOne?'flex  mt-28 gap-2 mb-10 text-xs':'flex mt-28 gap-2 mb-10 text-xs'}>
       <FaCircle className={pageOne?"text-blue-400 page-one transition-[1s]":"transition-[1s] page-one text-[8px] text-blue-300"}/>
       <FaCircle className={pageTwo?"text-blue-400 page-one transition-[1s]":"text-[8px] page-one transition-[1s] text-blue-300"}/>
@@ -80,18 +89,36 @@ return  (
       </h3>
       {pageOne?
       <form onSubmit={handleSubmitOne}>
-        <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center  justify-center gap-4 mb-4">
           <BsCreditCard2Back/>
           <select
             id="paymentMode"
             onChange={handlePaymentModeChange}
             value={paymentMode}
             required
-            className=" border flex [&>*]:w-1/2 border-gray-300 px-6 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex [&>*]:w-1/2  px-6 py-2 rounded focus:outline-none "
             >
-            <option value="Credit Card">Debit Card</option>
+            
+            <option className='bg-transparent' value="Debit Card">Debit Card</option>
           </select>
         </div>
+        <div className="mb-4">
+          <h3 className=" mb-4">
+        What are you paying for
+      </h3>
+          <label htmlFor="description" className="text-lg text-neutral-500 pb-6 font-semibold">
+          Description:
+          </label>
+          <input
+          type="text"
+          id="description"
+            value={description}
+            placeholder='e.g June tithe...'
+            onChange={handleDescriptionChange}
+            required
+            className="my-2 w-full border-transparent border-b-2 border-b-neutral-300 focus:border-b-neutral-400  outline-none shadow-none px-3 py-2  h-10 focus:outline-none bg-neutral-200"
+            />
+        </div>  
         {
         isLoading?<LoadingButtonBlue/> :
         <button
@@ -102,10 +129,11 @@ return  (
           {isLoading ? 'Processing...' : 'Next'}
         </button>
         }
+          
       </form>:
       <form className='flex flex-col' onSubmit={handleSubmitTwo}>
         <div className="mb-4">
-          <label htmlFor="amount" className="text-lg text-lightShade pb-6 font-medium">
+          <label htmlFor="amount" className="text-lg text-neutral-500 pb-6 font-semibold">
           Amount:
           </label>
           <input
@@ -115,27 +143,36 @@ return  (
             placeholder='Enter Amount'
             onChange={handleAmountChange}
             required
-            className="my-2 w-full border-transparent border-b-2 border-b-neutral-400 focus:border-none outline-none shadow-none px-3 py-2 rounded h-10 focus:outline-none bg-darkShade"
+            className="my-2 w-full border-transparent border-b-2 border-b-neutral-300 focus:border-b-neutral-400  outline-none shadow-none px-3 py-2  h-10 focus:outline-none bg-neutral-200"
             />
         </div>  
+        <div className='flex gap-3 justify-between flex-row-reverse items-center'>
+
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-blue-500 text-white font-medium py-2 rounded hover:bg-blue-600 focus:outline-none"
-        >
+          className="w-1/2 bg-blue-500 flex justify-center gap-4 items-center text-white font-medium py-2 rounded hover:bg-blue-600 focus:outline-none"
+          >
           {isLoading ? 'Processing...' : 'Submit'}
+          <GiCheckMark/>
         </button>
           <button 
           onClick={()=>{
             setPageOne(true);
             setPageTwo(false)
           }}
-          className='flex items-center justify-center my-6 rounded-sm   border-2  gap-2'>
-          <IoMdArrowRoundBack className='text-3xl'/>
-             <p className='text-xl font-semibold'>Back</p> 
+          className='flex text-neutral-400  items-center justify-center my-6 rounded-sm   gap-2'>
+          <IoMdArrowRoundBack className='text-2xl ml-3'/>
+             <p className='text-[18px]  font-semibold'>Back</p> 
           </button>
-      
-  
+        </div>
+
+ <div className='flex text-3xl text-gray-500 my-4 justify-around'>
+<RiVisaLine/>  
+<MdPayments/>
+<SiMastercard/>
+<RiSecurePaymentFill className='text-2xl'/>
+  </div>     
       </form>}
     </div>:
     <LoginComponent setIsLoggedIn={setIsLoggedIn}/>

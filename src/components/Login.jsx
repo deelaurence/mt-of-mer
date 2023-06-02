@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
+import { FcGoogle } from 'react-icons/fc';
 import Popup from './Popup';
 import baseUrl from '../data/baseUrl';
 import LoadingButton from './LoadingButton';
@@ -11,6 +12,37 @@ const [popupMsg, setPopupMsg]= useState('')
 
 console.log(setIsLoggedIn)
 const navigate = useNavigate()
+const handleGoogleAuth= async ()=>{
+    try {
+      const requestOptions = {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json',
+        // Add any other required headers here
+      }}
+  const response = await fetch(`${baseUrl}/login/federated/google`);
+  const data = await response.json();
+  console.log('Post request successful:', data);
+  if(response.status>201){
+    setPopupMsg(data.message)
+    setIsLoading(false)
+  }
+  if(response.status<202){
+    console.log("redirecting")
+    setIsLoading(false)
+    // setIsLoggedIn(true)
+    window.location.replace(data.message)
+  }
+  // Handle response data as needed
+} catch (error) {
+  console.error('Error making post request:', error);
+  // Handle error as needed
+}
+    // Perform Login logic here
+    console.log('Login form submitted');
+  
+
+  }
 const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true)
@@ -104,6 +136,11 @@ const handleSubmit = async (e) => {
             New User? &nbsp; Register
           </Link>
         </div>
+          <div className='my-8'>
+      <button onClick={handleGoogleAuth} className="bg-white self-center shadow-lg justify-self-center mx-auto flex border items-center justify-center gap-4 mb-16 text-gray-500 font-semibold py-2 px-4 rounded">
+      <FcGoogle /> Log in with Google
+    </button>
+    </div>
       </form>
     </div>
   );

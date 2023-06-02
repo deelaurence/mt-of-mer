@@ -25,7 +25,7 @@ const formattedTime = `${hours}:${minutes}:${seconds}`;
 
 
   return (
-    <div className="bg-gray-900 py-32 text-white  shadow-xl px-6 sm:px-16">
+    <div className="bg-gray-900 py-32 mb-24 mx-4 mt-24 text-white  shadow-xl px-6 sm:px-16">
       <div className="flex flex-col gap-8  justify-between mb-8">
         <div className="flex  items-center">
           
@@ -35,26 +35,26 @@ const formattedTime = `${hours}:${minutes}:${seconds}`;
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-400">Reference: {reference}</p>
-          <p className="text-sm text-gray-400">Date: {formattedDate}</p>
-          <p className="text-sm text-gray-400">Time: {formattedTime}</p>
+          <p className="text-sm text-gray-500">Reference: <span className='text-gray-400 font-semibold'> {reference}</span> </p>
+          <p className="text-sm text-gray-500">Date:<span className='text-gray-400 font-semibold'>{formattedDate}</span> </p>
+          <p className="text-sm text-gray-500">Time: <span className='text-gray-400 font-semibold'>{formattedTime}</span> </p>
         </div>
       </div>
       <hr className="border border-gray-800 mb-8" />
       <div className="flex justify-between">
         <div>
-          <h3 className="text-lg font-bold mb-2">Payer Details</h3>
+          <h3 className="text-lg font-semibold mb-2">Payer Details</h3>
           <p className="text-gray-400 mb-4">{name}</p>
         </div>
-        <div>
-          <h3 className="text-lg font-bold mb-2">Payment Details</h3>
+        <div className='border border-gray-600 p-2'>
+          <h3 className="text-lg font-semibold border-gray-700 p-1 rounded  border-b mb-4">Payment Details</h3>
           
-          <p className="text-gray-400 mb-2">Amount Paid: <span className='text-xl font font-semibold'> ₦ {amount}</span></p>
-          <p className="text-gray-400">Payment Description: {description}</p>
+          <p className="text-gray-500 mb-2">Amount Paid: <span className='text-xl text-gray-400 font font-semibold'> ₦ {amount}</span></p>
+          <p className="text-gray-500">Description: <span className='font-semibold text-gray-400'> {description}</span></p>
         </div>
       </div>
       <hr className="border border-gray-800 mt-8 mb-6" />
-      <p className="text-gray-400 text-sm">
+      <p className="text-gray-500 text-sm">
         If you have any questions or need further assistance, please contact our support team at
         support@example.com.
       </p>
