@@ -4,7 +4,6 @@ import displayPicture from '../assets/display-picture.gif'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
-import { motion, useAnimation, useScroll } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import landingData from '../data/landing';
