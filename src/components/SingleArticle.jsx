@@ -1,4 +1,6 @@
 import React from 'react'
+
+import { Helmet } from 'react-helmet';
 import { useState, useRef } from 'react'
 import kodeTechCofee from '../assets/landing-guild.webp'
 import kodeTech1 from '../assets/kodetech1.webp'
@@ -129,6 +131,13 @@ const Guild = ({ locationProps }) => {
     }
     return (
         <>
+        <Helmet>
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={capitalizeFirst(singleArticle.title)} />
+        <meta property="og:description" content="Description of my webpage" />
+        <meta property="og:image" content={singleArticle.image[0]} />
+      </Helmet>
             <main ref={parentRef} className="opacity-0 px-6 tracking-[0.4px] md:px-16 pt-20   relative flex flex-col bg-darkShade text-lightShade dark:bg-lightShade dark:text-darkShade [&>*]:dark:text-darkShade md:min-h-[90vh] md:pb-10">
                 {/* popup */}
                 {/* popup */}
