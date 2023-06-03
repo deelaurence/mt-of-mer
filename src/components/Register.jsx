@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import LoadingButton from './LoadingButton';
-import { GoogleLogin } from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
 
 import axios from 'axios';

@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
 
-import { useAnimation, motion } from "framer-motion";
+//imation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
