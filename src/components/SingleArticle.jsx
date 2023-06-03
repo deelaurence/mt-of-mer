@@ -38,7 +38,6 @@ import {RiShareForwardLine} from 'react-icons/ri'
 
 const Guild = ({ locationProps }) => {
     const main = document.querySelector('main')
-    const controls = useAnimation();
     const [ref, inView] = useInView();
     const params = useParams()
 

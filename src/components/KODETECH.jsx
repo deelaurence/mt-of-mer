@@ -24,7 +24,6 @@ import { useEffect } from 'react'
 
 
 const KODETECH = ({ locationProps }) => {
-    const controls = useAnimation();
     const main = document.querySelector('main')
     const [ref, inView] = useInView();
     const parentRef = useRef(null)

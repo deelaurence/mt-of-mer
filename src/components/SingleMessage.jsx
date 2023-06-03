@@ -38,7 +38,6 @@ import baseUrl from '../data/baseUrl'
 
 const Guild = ({ locationProps }) => {
     const main = document.querySelector('main')
-    const controls = useAnimation();
     const [ref, inView] = useInView();
     const params = useParams()
 

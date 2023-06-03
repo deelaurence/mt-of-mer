@@ -22,7 +22,6 @@ import { useEffect } from 'react'
 
 
 const MixedR = ({ locationProps }) => {
-    const controls = useAnimation();
     const [ref, inView] = useInView();
     const parentRef = useRef(null)
     const findingsRef = useRef(null)

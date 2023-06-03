@@ -28,7 +28,6 @@ import { useEffect } from 'react'
 
 const Alertz = ({ locationProps }) => {
     const main = document.querySelector('main')
-    const controls = useAnimation();
     const [ref, inView] = useInView();
     const parentRef = useRef(null)
     const findingsRef = useRef(null)
