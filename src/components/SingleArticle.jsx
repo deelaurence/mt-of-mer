@@ -1,5 +1,5 @@
 import React from 'react'
-import { FacebookShareButton } from 'react-share';
+import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 
 import { Helmet } from 'react-helmet';
 import { useState, useRef } from 'react'
@@ -281,21 +281,21 @@ const Guild = ({ locationProps }) => {
                 className={socialIcon?
                     ' h-[500px] flex flex-col  social-icon justify-center gap-10 mb-8 transition-[5s] absolute -bottom-10 left-0 w-full'
                     :"-bottom-[1000px] flex flex-col h-[500px] social-icon  transition-[5s] justify-center absolute gap-10 mb-8 w-full left-0"}>
+               <WhatsappShareButton url={window.location.href}>
                 <a href={whatsappLink} className='bg-green-400 cursor-pointer sm:hidden text-white  rounded-[8px] mx-6 flex justify-center gap-2 font-semibold p-2 text-2xl items-center'	data-action="share/whatsapp/share"
 		            target="_blank">
                      <FaWhatsapp className={socialIcon?"icon-ws ":"translate-y-12 icon-ws "}/> 
                      <p className={socialIcon?"text-ws ":"translate-y-12 text-ws "}>Whatsapp</p> 
                 </a>
-                    <FacebookShareButton url={window.location.href}>
-                        Share on facebook
-                    </FacebookShareButton>
-
-                {/* <a href={facebookLink} 
-                    target="_blank"
-                    className='bg-blue-400 cursor-pointer text-white mx-6 flex rounded-[8px] justify-center gap-2 font-semibold p-2 text-2xl items-center'>
-                    <  FaFacebookF className={socialIcon?"icon-fb ":"translate-y-12 icon-fb "} />
-                    <p className={socialIcon?"text-fb ":"translate-y-12 text-fb "}>Facebook</p>
-                </a> */}
+                </WhatsappShareButton>
+                <FacebookShareButton url={window.location.href}>
+                    <a  
+                        target="_blank"
+                        className='bg-blue-400 cursor-pointer text-white mx-6 flex rounded-[8px] justify-center gap-2 font-semibold p-2 text-2xl items-center'>
+                        <  FaFacebookF className={socialIcon?"icon-fb ":"translate-y-12 icon-fb "} />
+                        <p className={socialIcon?"text-fb ":"translate-y-12 text-fb "}>Facebook</p>
+                    </a>
+                </FacebookShareButton>
                 </div>
             {/* </section> */}
             </main>

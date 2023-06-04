@@ -178,7 +178,7 @@ if(response.status<202){
       className={menu ? "px-6  blend-bar fixed nav z-[1] flex py-5 items-center justify-between w-screen text-lightShade  dark:bg-lightShade dark:text-darkShade sm:px-16 absolute-nav"
        : "px-6 blend-bar fixed nav z-[1000] flex py-5 items-center justify-between w-screen text-lightShade dark:bg-lightShade dark:text-darkShade sm:px-16  absolute-nav mix-blend-difference"}
     >
-      <div className={scrollDirection=="up"?"flex justify-between items-center w-full duration-[1s]":"duration-[1s] opacity-0 -translate-y-[50px] flex justify-between items-center w-full"}>
+      <div className={scrollDirection=="up"?"flex justify-between items-center w-full duration-[1s] opacity-100":"duration-[1s] opacity-0 -translate-y-[50px] flex justify-between items-center w-full"}>
 
       <Link to="/">
         <div
