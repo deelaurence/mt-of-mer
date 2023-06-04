@@ -134,7 +134,7 @@ const Guild = ({ locationProps }) => {
         <Helmet>
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={capitalizeFirst(singleArticle.title)} />
+        <meta property="og:title" content={singleArticle.title?capitalizeFirst(singleArticle.title):""} />
         <meta property="og:description" content="Description of my webpage" />
         <meta property="og:image" content={singleArticle.image[0]} />
       </Helmet>
