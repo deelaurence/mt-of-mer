@@ -1,4 +1,5 @@
 import React from 'react'
+import { FacebookShareButton } from 'react-share';
 
 import { Helmet } from 'react-helmet';
 import { useState, useRef } from 'react'
@@ -131,7 +132,7 @@ const Guild = ({ locationProps }) => {
     }
     return (
         <>
-        <Helmet>
+    <Helmet>
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={singleArticle.title?capitalizeFirst(singleArticle.title):""} />
@@ -285,12 +286,14 @@ const Guild = ({ locationProps }) => {
                      <FaWhatsapp className={socialIcon?"icon-ws ":"translate-y-12 icon-ws "}/> 
                      <p className={socialIcon?"text-ws ":"translate-y-12 text-ws "}>Whatsapp</p> 
                 </a>
-                <a href={facebookLink} 
+< FacebookShareButton/>
+
+                {/* <a href={facebookLink} 
                     target="_blank"
                     className='bg-blue-400 cursor-pointer text-white mx-6 flex rounded-[8px] justify-center gap-2 font-semibold p-2 text-2xl items-center'>
                     <  FaFacebookF className={socialIcon?"icon-fb ":"translate-y-12 icon-fb "} />
                     <p className={socialIcon?"text-fb ":"translate-y-12 text-fb "}>Facebook</p>
-                </a>
+                </a> */}
                 </div>
             {/* </section> */}
             </main>
