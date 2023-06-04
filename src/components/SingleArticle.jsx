@@ -281,7 +281,7 @@ const Guild = ({ locationProps }) => {
                 className={socialIcon?
                     ' h-[500px] flex flex-col  social-icon justify-center gap-10 mb-8 transition-[5s] absolute -bottom-10 left-0 w-full'
                     :"-bottom-[1000px] flex flex-col h-[500px] social-icon  transition-[5s] justify-center absolute gap-10 mb-8 w-full left-0"}>
-               <WhatsappShareButton url={window.location.href}>
+               <WhatsappShareButton  url={window.location.href}>
                 <a href={whatsappLink} className='bg-green-400 cursor-pointer sm:hidden text-white  rounded-[8px] mx-6 flex justify-center gap-2 font-semibold p-2 text-2xl items-center'	data-action="share/whatsapp/share"
 		            target="_blank">
                      <FaWhatsapp className={socialIcon?"icon-ws ":"translate-y-12 icon-ws "}/> 

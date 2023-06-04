@@ -17,7 +17,7 @@ const Navbar = ({ locationProps, setIsLoggedIn }) => {
   const [refreshBlendBar, setRefreshBlendBar] = useState(false)
   const [currentLocation, setCurrentLocation] = useState("")
 
-  const [scrollDirection, setScrollDirection] = useState(null);
+  const [scrollDirection, setScrollDirection] = useState("up");
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   
   useEffect(() => {

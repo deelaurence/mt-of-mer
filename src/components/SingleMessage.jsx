@@ -15,6 +15,8 @@ import screen2 from '../assets/guild-screen2.webp'
 import screen3 from '../assets/guild-screen3.webp'
 import screen4 from '../assets/guild-screen4.webp'
 import Waiting from './Waiting'
+import { WhatsappShareButton, FacebookShareButton } from 'react-share'
+import { Helmet } from 'react-helmet'
 // import userPersona from './images/userpersona.webp'
 
 
@@ -128,6 +130,13 @@ const Guild = ({ locationProps }) => {
     }
     return (
         <>
+    <Helmet>
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={singleMessage.title?capitalizeFirst(singleMessage.title):""} />
+        <meta property="og:description" content="Description of my webpage" />
+        <meta property="og:image" content={singleMessage.image?singleMessage.image[0]:''} />
+    </Helmet>
             <main ref={parentRef} className="opacity-0 px-6 tracking-[0.4px] md:px-16 pt-20   relative flex flex-col bg-darkShade text-lightShade dark:bg-lightShade dark:text-darkShade [&>*]:dark:text-darkShade md:min-h-[90vh] md:pb-10">
                 {/* popup */}
                 {/* popup */}
@@ -270,17 +279,21 @@ const Guild = ({ locationProps }) => {
                 className={socialIcon?
                     ' h-[500px] flex flex-col  social-icon justify-center gap-10 mb-8 transition-[5s] absolute -bottom-10 left-0 w-full'
                     :"-bottom-[1000px] flex flex-col h-[500px] social-icon  transition-[5s] justify-center absolute gap-10 mb-8 w-full left-0"}>
+                <WhatsappShareButton  url={window.location.href}>
                 <a href={whatsappLink} className='bg-green-400 cursor-pointer sm:hidden text-white  rounded-[8px] mx-6 flex justify-center gap-2 font-semibold p-2 text-2xl items-center'	data-action="share/whatsapp/share"
 		            target="_blank">
                      <FaWhatsapp className={socialIcon?"icon-ws ":"translate-y-12 icon-ws "}/> 
                      <p className={socialIcon?"text-ws ":"translate-y-12 text-ws "}>Whatsapp</p> 
                 </a>
-                <a href={facebookLink} 
-                    target="_blank"
-                    className='bg-blue-400 cursor-pointer text-white mx-6 flex rounded-[8px] justify-center gap-2 font-semibold p-2 text-2xl items-center'>
-                    <  FaFacebookF className={socialIcon?"icon-fb ":"translate-y-12 icon-fb "} />
-                    <p className={socialIcon?"text-fb ":"translate-y-12 text-fb "}>Facebook</p>
-                </a>
+                </WhatsappShareButton>
+                <FacebookShareButton url={window.location.href}>
+                    <a  
+                        target="_blank"
+                        className='bg-blue-400 cursor-pointer text-white mx-6 flex rounded-[8px] justify-center gap-2 font-semibold p-2 text-2xl items-center'>
+                        <  FaFacebookF className={socialIcon?"icon-fb ":"translate-y-12 icon-fb "} />
+                        <p className={socialIcon?"text-fb ":"translate-y-12 text-fb "}>Facebook</p>
+                    </a>
+                </FacebookShareButton>
                 </div>
             {/* </section> */}
             </main>
