@@ -286,7 +286,9 @@ const Guild = ({ locationProps }) => {
                      <FaWhatsapp className={socialIcon?"icon-ws ":"translate-y-12 icon-ws "}/> 
                      <p className={socialIcon?"text-ws ":"translate-y-12 text-ws "}>Whatsapp</p> 
                 </a>
-< FacebookShareButton/>
+                    <FacebookShareButton>
+                        Share on facebook
+                    </FacebookShareButton>
 
                 {/* <a href={facebookLink} 
                     target="_blank"
