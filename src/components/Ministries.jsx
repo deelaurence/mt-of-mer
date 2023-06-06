@@ -136,23 +136,25 @@ const refs= useRef([])
       })
 
 
-  }, [location])
+  }, [])
     return (
        <>
+       
     {/* display only if allMessages is an array */}
         <h1 className='px-6 sm:px-16 text-5xl -mb-1 font-semibold text-darkShade py-24 bg-lightShade '>GET CONNECTED.</h1>
          <p className='px-6 pt-16 pb-16 -mb-1 font-[aboreto] sm:px-16 text-5xl text-faded bg-lightShade'> Find your place at Mt. of Mercy. </p>
     <main className='pt-12 pb-24 sm:pb-0 px-6  sm:px-16 bg-lightShade text-darkShade flex flex-col sm:flex-row sm:flex-wrap items-center'>
         {data.map((datum, index) => {
-          return (
+          return (    
             <Link className={datum.style} key={index} to={`all/${datum._id}`}>
-             <div ref={(element) => refs.current[index] = element} className='w-full bg-neutral-700  sm:w-auto'>
+            {datum&&<div ref={(element) => refs.current[index] = element} className='w-full min-h-[150px] bg-neutral-700  sm:w-auto'>
                 <img ref={(element) => refs3.current[index] = element} className='h-full w-full  sm:w-auto object-cover' src={datum.image} alt="" />
              </div>
+              }
              <div className='p-6 [&>*]:my-4'>
                 <h3 className=''>{datum.name.toUpperCase()}</h3>
                 <p className='text-2xl font-bold text-neutral-900'>{datum.details}</p>
-                <p className=''>{datum.link.toUpperCase()} <span className='ml-2'>   ||</span></p>
+                {/* <p className=''>{datum.year} <span className='ml-2'>   ||</span></p> */}
              </div>
             
             </Link>

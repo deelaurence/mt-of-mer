@@ -196,10 +196,10 @@ const LANDING = ({allMessages,allArticles}) => {
       })
 
 
-  }, [currentLocation])
+  }, [location])
   return (
     <>
-      <section ref={heroRef} className='text-darkShade landing-section h-screen relative  overflow-hidden opacity-0 px-6 sm:px-16 '>
+      <section ref={heroRef} className='text-darkShade landing-section h-screen relative  overflow-hidden  px-6 sm:px-16 '>
         <div className='flex items-center flex-wrap  mt-[70vh]'>
           <h3 className=' product-designer text-[14px]  font-bold sm:min-w-[60%]  sm:text-4xl  overflow-visible text-white' >JOIN US FOR A PHYSICAL GATHERING</h3>
           <p className='mt-4 w-[90%] sm:w-full text-sm sm:text-base text-white'>

@@ -230,8 +230,13 @@ const handleSubmit =async (e) => {
           </Link>
           
         </div>
-        <div className='my-8'>
-      <button onClick={handleGoogleAuth} className="bg-white self-center shadow-lg justify-self-center mx-auto flex border items-center justify-center gap-4 mb-16 text-gray-500 font-semibold py-2 px-4 rounded">
+      <div className=''>
+          <div className='self-center justify-self-center py-2 my-4 relative text-center'>
+              <p className='bg-neutral-300 w-full h-[1px] absolute top-1/2'></p>
+              <p className='z-10 relative text-neutral-400 w-10 mx-auto bg-white'>OR</p>
+      </div>
+
+      <button onClick={handleGoogleAuth} className="bg-white self-center shadow-md mb-2 justify-self-center mx-auto flex border items-center justify-center gap-4  text-gray-500 font-semibold py-2 px-4 rounded">
       <FcGoogle /> Sign in with Google
     </button>
     </div>
