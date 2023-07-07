@@ -10,7 +10,8 @@ const LoginComponent = ({setIsLoggedIn}) => {
   const [isLoading, setIsLoading]=useState(false)
 const [popupMsg, setPopupMsg]= useState('')
   const [isIOS, setIsIOS] = useState(false);
-
+  console.log("Is device IOS?:" + isIOS)
+const navigate = useNavigate()
   useEffect(() => {
     setIsIOS(/iPhone|iPad|iPod/.test(navigator.userAgent));
   }, []);
