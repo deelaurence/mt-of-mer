@@ -36,6 +36,7 @@ const handleGoogleAuth= async ()=>{
   if(response.status<202){
     console.log("redirecting")
     setIsLoading(false)
+    console.log(data)
     window.location.replace(data.message)
   }
 } catch (error) {
@@ -74,13 +75,14 @@ const handleSubmit = async (e) => {
   if(response.status<202){
 
 
-    //Set session if CLIENT is IOS
+    //Set token to session if CLIENT is IOS
     const token = data.token
     if (isIOS) {
       sessionStorage.setItem('token', token);
     }
     else {
       sessionStorage.setItem('device', "Android/Windows Device");
+      sessionStorage.setItem('login_type', "Email");
     }
     console.log("redirecting")
     setIsLoading(false)
