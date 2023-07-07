@@ -78,6 +78,9 @@ const handleSubmit = async (e) => {
     if (isIOS) {
       sessionStorage.setItem('token', token);
     }
+    else {
+      sessionStorage.setItem('device', "Android/Windows Device");
+    }
     console.log("redirecting")
     setIsLoading(false)
     setIsLoggedIn(true)
