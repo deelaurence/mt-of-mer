@@ -9,9 +9,14 @@ const LoginComponent = ({setIsLoggedIn}) => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading]=useState(false)
 const [popupMsg, setPopupMsg]= useState('')
+  const [isIOS, setIsIOS] = useState(false);
 
-console.log(setIsLoggedIn)
-const navigate = useNavigate()
+  useEffect(() => {
+    setIsIOS(/iPhone|iPad|iPod/.test(navigator.userAgent));
+  }, []);
+
+
+//GOOGLE AUTH LOGIN
 const handleGoogleAuth= async ()=>{
     try {
       const requestOptions = {
@@ -30,19 +35,16 @@ const handleGoogleAuth= async ()=>{
   if(response.status<202){
     console.log("redirecting")
     setIsLoading(false)
-    // setIsLoggedIn(true)
     window.location.replace(data.message)
   }
-  // Handle response data as needed
 } catch (error) {
   console.error('Error making post request:', error);
-  // Handle error as needed
 }
-    // Perform Login logic here
     console.log('Login form submitted');
-  
-
   }
+
+
+//EMAIL LOGIN  
 const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true)
@@ -52,7 +54,6 @@ const handleSubmit = async (e) => {
       headers: {
         'Content-Type': 'application/json',
 
-        // Add any other required headers here
       },
       body: JSON.stringify(
         {
@@ -61,7 +62,7 @@ const handleSubmit = async (e) => {
         }
       ),
     };
-         try {
+  try {
   const response = await fetch(`${baseUrl}/auth/login`, requestOptions);
   const data = await response.json();
   console.log('Post request successful:', data);
@@ -70,6 +71,13 @@ const handleSubmit = async (e) => {
     setIsLoading(false)
   }
   if(response.status<202){
+
+
+    //Set session if CLIENT is IOS
+    const token = data.token
+    if (isIOS) {
+      sessionStorage.setItem('token', token);
+    }
     console.log("redirecting")
     setIsLoading(false)
     setIsLoggedIn(true)
