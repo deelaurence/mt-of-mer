@@ -30,6 +30,8 @@ import Posts from './components/Posts';
 import Give from './components/Give';
 import PostsAll from './components/PostsAll';
 import ArticlesAll from './components/ArticlesAll';
+import KidsMinistry from './components/KidsMinistry';
+import TeensMinistry from './components/TeensMinistry';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 function App() {
   // gsap.registerPlugin(S)
@@ -48,15 +50,20 @@ function App() {
 useEffect( ()=>{
   const fetchData= async ()=>{
     try {
+      const iosToken = sessionStorage.getItem('token');
       const response = await fetch(`${baseUrl}/paystack/initiate`, {
         method: 'POST',
         credentials:'include',
         headers: {
           'Content-Type': 'application/json',
+          'authorization': `Bearer ${iosToken||""}`
+
         },
         body: JSON.stringify({ amount:40000 }),
       });
 
+   
+      
       if (!response.ok) {
         setIsLoggedIn(false)
         throw new Error('User not logged in');
@@ -117,6 +124,8 @@ return (
             <Route path="/articles/:id" key={document.location.href} element={<SingleArticle />} />
             <Route path="/messages/all/:id" key={document.location.href} element={<SingleMessage/>} />
             <Route path="/articles/all/:id" key={document.location.href} element={<SingleArticle/>} />
+            <Route path="/kids" key={document.location.href} element={<KidsMinistry/>} />
+            <Route path="/teens" key={document.location.href} element={<TeensMinistry/>} />
             {/* <Route path="/about" key={document.location.href} element={<WhoIsFlo />} />
             <Route path="/menu" key={document.location.href} element={<Menu />} />
             <Route locationProps={location} path="/kodetech" key={document.location.href} element={<KODETECH />} />

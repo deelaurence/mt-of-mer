@@ -146,14 +146,14 @@ const refs= useRef([])
     <main className='pt-12 pb-24 sm:pb-0 px-6  sm:px-16 bg-lightShade text-darkShade flex flex-col sm:flex-row sm:flex-wrap items-center'>
         {data.map((datum, index) => {
           return (    
-            <Link className={datum.style} key={index} to={`all/${datum._id}`}>
-            {datum&&<div ref={(element) => refs.current[index] = element} className='w-full min-h-[150px] bg-neutral-700  sm:w-auto'>
+            <Link className={datum.style} key={index} to={datum.link}>
+            {datum&&<div ref={(element) => refs.current[index] = element} className='w-full min-h-[150px] -mt-2 bg-neutral-700  sm:w-auto'>
                 <img ref={(element) => refs3.current[index] = element} className='h-full w-full  sm:w-auto object-cover' src={datum.image} alt="" />
              </div>
               }
              <div className='p-6 [&>*]:my-4'>
                 <h3 className=''>{datum.name.toUpperCase()}</h3>
-                <p className='text-2xl font-bold text-neutral-900'>{datum.details}</p>
+                <p className='text-2xl font-bold '>{datum.details}</p>
                 {/* <p className=''>{datum.year} <span className='ml-2'>   ||</span></p> */}
              </div>
             

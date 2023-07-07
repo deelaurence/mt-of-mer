@@ -5,6 +5,7 @@ import landingKodetech from '../assets/landing-kodetech.webp'
 import landingFemmina from '../assets/landing-femmina.webp'
 import landingDexchange from '../assets/landing-dexchange.webp'
 import kiti from '../assets/kiti.webp'
+import teen from '../assets/teen2.webp'
 
 let data = [
     {
@@ -12,7 +13,7 @@ let data = [
         image: `${kiti}`,
         details: 'Nurturing faith in young hearts.',
         year: "Teaching Christ's love and acceptance but, like a 2 years old would understand.",
-        link: '/alertz',
+        link: '/kids',
         style: "bg-red-200 flex flex-col w-full md:flex-row text-lightShade  md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
     },
     {
@@ -21,16 +22,16 @@ let data = [
         details: 'We raise our hearts to God',
         year: 'Fridays',
         link: '/mr',
-        style: "bg-blue-200 flex  text-lightShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
+        style: "bg-darkShade flex  text-lightShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
 
     },
     {
         name: 'Teenage ministry',
-        image: `${landingGuild}`,
+        image: `${teen}`,
         details: 'Called to be difference makers.',
         year: '2022',
-        link: '/guild',
-        style: "bg-orange-200 flex  text-lightShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
+        link: '/teens',
+        style: "bg-emerald-700 flex [&>*]:grayscale-[50%] text-darkShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
 
     }
     ,
