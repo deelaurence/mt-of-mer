@@ -84,12 +84,13 @@ const Navbar = ({ locationProps, setIsLoggedIn }) => {
     setActivePlayground(false)
   }
    const handleLogout =async () => {
+    sessionStorage.removeItem('token')
     const requestOptions = {
       method: 'POST',
       credentials:'include',
       headers: {
         'Content-Type': 'application/json',
-
+        
         // Add any other required headers here
       },
       body: JSON.stringify(
@@ -104,6 +105,7 @@ const Navbar = ({ locationProps, setIsLoggedIn }) => {
   const data = await response.json();
   console.log('Post request successful:', data);
   
+
 if(response.status<202){
       console.log("redirecting")
       setIsLoggedIn(false)
@@ -190,7 +192,7 @@ if(response.status<202){
       </Link>
       <div className={menu ? 'nav-menu fixed z-[99999] left-0 -top-20  bg-darkShade dark:bg-lightShade dark:text-darkShade sm:hidden' :
         'nav-menu fixed left-0 -top-[1000px]  bg-darkShade dark:bg-lightShade dark:text-darkShade  sm:hidden'}>
-          <Menu locationProps={locationProps} setIsLoggedIn={setIsLoggedIn} location={location} menu={menu} hideMenu={hideMenu} />
+          <Menu locationProps={locationProps} handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn} location={location} menu={menu} hideMenu={hideMenu} />
       </div>
       <div className="md:hidden flex  gap-1 self-start ">
         <p onClick={showMenu} className='text-base text-darkShade font-regular show-menu  dark:bg-lightShade dark:text-darkShade' >MENU</p>

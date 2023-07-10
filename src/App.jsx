@@ -42,15 +42,40 @@ function App() {
   const [allArticles, setAllArticles] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [localStorageMessages, setLocalStorageMessages] = useState([])
+  const [isIOS, setIsIOS] = useState(false);
+  // const [iosToken, setIosToken]= useState("")
+  
+  const iosToken = sessionStorage.getItem('token');
+  useEffect(() => {
+    // console.log("Checking Device OS......" )
+    // console.log("Is it IOS?...."+isIOS)
+  }, []);
+  
   const pullData = ((data) => {
     //(data);
     setImageLoaded(data)
   })
+  
+  useEffect(()=>{
+  setIsIOS(/iPhone|iPad|iPod/.test(navigator.userAgent));
+  console.log("Checking Device OS......" )
+  console.log("Is it IOS?...."+isIOS)
  
-useEffect( ()=>{
+  if(isIOS || iosToken){
+    console.log("Device is ios? " +isIOS)
+    if (iosToken) {
+          console.log("Device has token? " +iosToken)
+          setIsLoggedIn(true)
+        }
+        else{
+          setIsLoggedIn(false)
+        }
+        return
+  }
+  else if(!isIOS && !iosToken){
   const fetchData= async ()=>{
-    try {
-      const iosToken = sessionStorage.getItem('token');
+  try {
+    console.log("Fetching data")
       const response = await fetch(`${baseUrl}/paystack/initiate`, {
         method: 'POST',
         credentials:'include',
@@ -60,10 +85,7 @@ useEffect( ()=>{
 
         },
         body: JSON.stringify({ amount:40000 }),
-      });
-
-   
-      
+      });   
       if (!response.ok) {
         setIsLoggedIn(false)
         throw new Error('User not logged in');
@@ -75,12 +97,15 @@ useEffect( ()=>{
       console.log('User logged In');
     } catch (error) {
       // Handle error
-      setIsLoggedIn(false)
+        setIsLoggedIn(false)
       console.error('User not logged In');
     }
+    
   }
   fetchData()
-},[location,currentLocation])
+  }
+  
+},[isIOS])
  //  const baseUrl = 'https://easy-erin-eel-sock.cyclic.app'
   useEffect( ()=>{
   const fetchData =async ()=>{
@@ -108,17 +133,18 @@ return (
       {imgLoaded ?
         <div className='dark:bg-lightShade  absolute-parent'>
           <Navbar locationProps={location} setIsLoggedIn={setIsLoggedIn}/>
+          <h1>{isIOS?"Iphone":"Not iphone"}</h1>
           <Routes>
             <Route path="/" key={document.location.href} element={<  LANDING allMessages={allMessages} allArticles={allArticles} />} />
             <Route path="/messages" key={document.location.href} element={<PostsAll allMessages={localStorageMessages}/>} />
-            <Route path="/login" key={document.location.href} element={<LoginComponent baseUrl={baseUrl} setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/login" key={document.location.href} element={<LoginComponent baseUrl={baseUrl} setIsLoggedIn={setIsLoggedIn} isIOS={isIOS} />}  />
             <Route path="/verified" key={document.location.href} element={<EmailVerifiedPage />} />
             <Route path="/goverify" key={document.location.href} element={<GoAndVerify emailOnRegister={emailOnRegister}/>} />
             <Route path="/register" key={document.location.href} element={<RegistrationComponent baseUrl={baseUrl} emailOnRegister={emailOnRegister} setEmailOnRegister={setEmailOnRegister} setIsLoggedIn={setIsLoggedIn}/>} />
             
-            <Route path="/give" key={document.location.href} element={<Paystack setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
+            <Route path="/give" key={document.location.href} element={<Paystack setIsLoggedIn={setIsLoggedIn} iosToken={iosToken} isLoggedIn={isLoggedIn} isIOS={isIOS}/>} />
             <Route path="/articles" key={document.location.href} element={<ArticlesAll allArticles={allArticles}/>} />
-            <Route path="/paystack" key={document.location.href} element={<Paystack/>}/>
+            <Route path="/paystack" key={document.location.href} element={<Paystack isIOS={isIOS} iosToken={iosToken}/>}/>
             <Route path="/receipt" key={document.location.href} element={<PaymentReceipt/>}/>
             <Route path="/messages/:id" key={document.location.href} element={<SingleMessage />} />
             <Route path="/articles/:id" key={document.location.href} element={<SingleArticle />} />

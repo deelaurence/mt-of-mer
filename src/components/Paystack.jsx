@@ -14,8 +14,11 @@ import baseUrl from '../data/baseUrl';
 import LoginComponent from "./Login"
 import {FaCircle} from "react-icons/fa"
 import LoadingButtonBlue from './LoadingButtonBlue'
-const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
- const [amount, setAmount] = useState('');
+const Paystack = ({isLoggedIn, setIsLoggedIn, isIOS, iosToken}) => {
+ 
+ console.log(iosToken)
+ console.log(isIOS)
+  const [amount, setAmount] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -43,13 +46,13 @@ const Paystack = ({isLoggedIn, setIsLoggedIn}) => {
     event.preventDefault();
 
     setIsLoading(true);
-
     try {
       const response = await fetch(`${baseUrl}/paystack/initiate`, {
         method: 'POST',
         credentials:'include',
         headers: {
           'Content-Type': 'application/json',
+          'authorization': `Bearer ${iosToken||""}`
         },
         body: JSON.stringify({ amount, description }),
       });
@@ -175,7 +178,7 @@ return  (
   </div>     
       </form>}
     </div>:
-    <LoginComponent setIsLoggedIn={setIsLoggedIn}/>
+    <LoginComponent setIsLoggedIn={setIsLoggedIn} isIOS={isIOS}/>
   }
     </>
 )}

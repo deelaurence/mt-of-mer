@@ -2,47 +2,47 @@ import React from 'react'
 import baseUrl from '../data/baseUrl';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-const Menu = ({ hideMenu, menu, locationProps,location,setIsLoggedIn }) => {
+const Menu = ({ hideMenu, menu, handleLogout, locationProps,location,setIsLoggedIn }) => {
     
     
     const [activeWork, setActiveWork] = useState(true);
     const [activePlayground, setActivePlayground] = useState(false);
     const [activeAbout, setActiveAbout] = useState(false);
     const [activeResume, setActiveResume] = useState(false);
-    const handleLogout =async () => {
-    const requestOptions = {
-      method: 'POST',
-      credentials:'include',
-      headers: {
-        'Content-Type': 'application/json',
+//     const handleLogout =async () => {
+//     const requestOptions = {
+//       method: 'POST',
+//       credentials:'include',
+//       headers: {
+//         'Content-Type': 'application/json',
 
-        // Add any other required headers here
-      },
-      body: JSON.stringify(
-        {
-            email:"email",
-            password:"password",
-        }
-      ),
-    };
-         try {
-  const response = await fetch(`${baseUrl}/auth/logout`, requestOptions);
-  const data = await response.json();
-  console.log('Post request successful:', data);
+//         // Add any other required headers here
+//       },
+//       body: JSON.stringify(
+//         {
+//             email:"email",
+//             password:"password",
+//         }
+//       ),
+//     };
+//          try {
+//   const response = await fetch(`${baseUrl}/auth/logout`, requestOptions);
+//   const data = await response.json();
+//   console.log('Post request successful:', data);
   
-if(response.status<202){
-      console.log("redirecting")
-      setIsLoggedIn(false)
-      setTimeout(() => {
-            hideMenu()
-        }, 1000);
-  }
-  // Handle response data as needed
-} catch (error) {
-  console.error('Error making post request:', error);
-  // Handle error as needed
-}
-  }
+// if(response.status<202){
+//       console.log("redirecting")
+//       setIsLoggedIn(false)
+//       setTimeout(() => {
+//             hideMenu()
+//         }, 1000);
+//   }
+//   // Handle response data as needed
+// } catch (error) {
+//   console.error('Error making post request:', error);
+//   // Handle error as needed
+// }
+//   }
 
     useEffect(() => {
     //console.log("location changed o");

@@ -4,17 +4,15 @@ import { FcGoogle } from 'react-icons/fc';
 import Popup from './Popup';
 import baseUrl from '../data/baseUrl';
 import LoadingButton from './LoadingButton';
-const LoginComponent = ({setIsLoggedIn}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading]=useState(false)
+const LoginComponent = ({setIsLoggedIn, isIOS}) => {
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [isLoading, setIsLoading]=useState(false)
 const [popupMsg, setPopupMsg]= useState('')
-  const [isIOS, setIsIOS] = useState(false);
-  console.log("Is device IOS?:" + isIOS)
+
 const navigate = useNavigate()
-  useEffect(() => {
-    setIsIOS(/iPhone|iPad|iPod/.test(navigator.userAgent));
-  }, []);
+
+console.log(isIOS)
 
 
 //GOOGLE AUTH LOGIN
@@ -33,6 +31,8 @@ const handleGoogleAuth= async ()=>{
     setPopupMsg(data.message)
     setIsLoading(false)
   }
+
+
   if(response.status<202){
     console.log("redirecting")
     setIsLoading(false)
@@ -43,7 +43,7 @@ const handleGoogleAuth= async ()=>{
   console.error('Error making post request:', error);
 }
     console.log('Login form submitted');
-  }
+}
 
 
 //EMAIL LOGIN  
@@ -72,20 +72,27 @@ const handleSubmit = async (e) => {
     setPopupMsg(data.message)
     setIsLoading(false)
   }
-  if(response.status<202){
-
-
+  
+  if(response.status<202 ){
     //Set token to session if CLIENT is IOS
+
     const token = data.token
+    console.log(token)
+    console.log("Device ios: " + isIOS)
     if (isIOS) {
       sessionStorage.setItem('token', token);
+      sessionStorage.setItem('device', "IOS");
+      sessionStorage.setItem('login_type', "Email");
+      
     }
     else {
-      sessionStorage.setItem('device', "Android/Windows Device");
+      sessionStorage.setItem('device', "Android/Windows/linux Device");
       sessionStorage.setItem('login_type', "Email");
     }
     console.log("redirecting")
     setIsLoading(false)
+    
+    //If user is ios
     setIsLoggedIn(true)
     navigate("/give")
   }
