@@ -14,6 +14,7 @@ import baseUrl from '../data/baseUrl';
 import LoginComponent from "./Login"
 import {FaCircle} from "react-icons/fa"
 import LoadingButtonBlue from './LoadingButtonBlue'
+import { useLocation } from 'react-router-dom'
 const Paystack = ({isLoggedIn, setIsLoggedIn, isIOS, iosToken}) => {
  
  console.log(iosToken)
@@ -25,6 +26,19 @@ const Paystack = ({isLoggedIn, setIsLoggedIn, isIOS, iosToken}) => {
   const [pageOne, setPageOne]=useState(true)
   const [pageTwo, setPageTwo]=useState(false)
   const navigate = useNavigate()
+
+//WHEN IOS DEVICE REDIRECTS TO RENDER LOGIN BECAUSE COOKIES IS NOT SET
+const location = useLocation()
+const queryParams = new URLSearchParams(location.search);
+const paramValue = queryParams.get('token');
+
+    console.log(paramValue)
+
+    // const params = new URLSearchParams(location.search);
+    // const amount = params.get('amount');
+    // const description = params.get('description');
+    
+
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };

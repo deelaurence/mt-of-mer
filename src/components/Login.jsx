@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import Popup from './Popup';
 import baseUrl from '../data/baseUrl';
 import LoadingButton from './LoadingButton';
+import { useLocation } from 'react-router-dom';
 const LoginComponent = ({setIsLoggedIn, isIOS}) => {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
@@ -31,8 +32,6 @@ const handleGoogleAuth= async ()=>{
     setPopupMsg(data.message)
     setIsLoading(false)
   }
-
-
   if(response.status<202){
     console.log("redirecting")
     setIsLoading(false)
@@ -44,6 +43,27 @@ const handleGoogleAuth= async ()=>{
 }
     console.log('Login form submitted');
 }
+
+
+const location = useLocation()
+const queryParams = new URLSearchParams(location.search);
+const token = queryParams.get('token');
+
+console.log(token)
+
+if(token){
+
+  sessionStorage.setItem('token', token)
+  sessionStorage.setItem('device', "IOS");
+  sessionStorage.setItem('login_type', "Google Auth");
+  window.history.replaceState({}, document.title, window.location.pathname);
+  console.log(window.location.pathname)
+  setIsLoggedIn(true)
+}
+
+    
+
+
 
 
 //EMAIL LOGIN  

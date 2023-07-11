@@ -46,10 +46,6 @@ function App() {
   // const [iosToken, setIosToken]= useState("")
   
   const iosToken = sessionStorage.getItem('token');
-  useEffect(() => {
-    // console.log("Checking Device OS......" )
-    // console.log("Is it IOS?...."+isIOS)
-  }, []);
   
   const pullData = ((data) => {
     //(data);
@@ -73,6 +69,7 @@ function App() {
         return
   }
   else if(!isIOS && !iosToken){
+  //Confirm if user is logged in/ Has cookies for non-ios  
   const fetchData= async ()=>{
   try {
     console.log("Fetching data")
@@ -106,7 +103,7 @@ function App() {
   }
   
 },[isIOS])
- //  const baseUrl = 'https://easy-erin-eel-sock.cyclic.app'
+
   useEffect( ()=>{
   const fetchData =async ()=>{
     const response = await fetch(`${baseUrl}/messages/all`);
