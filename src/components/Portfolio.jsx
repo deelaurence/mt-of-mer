@@ -8,10 +8,10 @@ import liquidityPoolLogo from "./images/Left Content.png"
 const Portfolio = () => {
   return (
     <section
-      className="bg-darkShade py-20 gap-12 items-center px-6 flex flex-col text-lightShade lg:flex-row"
+      className="bg-lightShade py-20 gap-12 items-center px-6 flex flex-col text-darkShade lg:flex-row"
     >
       <h3 className="font-semibold text-center text-3xl">Flo's Portfolio</h3>
-      <div className="bg-darkshade gap-5 mb-10 flex items-center flex-col">
+      <div className="bg-lightShade gap-5 mb-10 flex items-center flex-col">
         <div className="w-[300px]">
           <img className="" src={ecommerce} alt="ecommerce" />
         </div>
@@ -22,7 +22,7 @@ const Portfolio = () => {
           <figcaption className="font-semibold text-[18px]">An E-Commerce website</figcaption>
         </div>
       </div>
-      <div className="bg-darkshade gap-5 mb-10 flex items-center flex-col">
+      <div className="bg-lightShade gap-5 mb-10 flex items-center flex-col">
         <div className="w-[300px]">
           <img className="" src={liquidityPool} alt="liquidity Pool" />
         </div>
@@ -33,7 +33,7 @@ const Portfolio = () => {
           <figcaption className="font-semibold text-[18px] ">A Liquidity Pool design</figcaption>
         </div>
       </div>
-      <div className="bg-darkshade gap-5 mb-10 flex  items-center flex-col">
+      <div className="bg-lightShade gap-5 mb-10 flex  items-center flex-col">
         <div className="w-[300px]">
           <img className="" src={femmima} alt="" />
         </div>
@@ -47,7 +47,7 @@ const Portfolio = () => {
         </div>
       </div>
       <button
-        className="border-[1px] h-14 w-56 -mt-6 font-semibold  border-lightShade py-3 px-12 rounded-[8px]"
+        className="border-[1px] h-14 w-56 -mt-6 font-semibold  border-darkShade py-3 px-12 rounded-[8px]"
       >
         Explore More
       </button>

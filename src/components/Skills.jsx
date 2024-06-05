@@ -6,7 +6,7 @@ import quill from "./images/ri_quill-pen-line.png"
 import arrowGuide from "./images/tabler_arrow-guide.png"
 const Skills = () => {
   return (
-     <section className="text-darkShade py-20 bg-lightShade">
+     <section className="text-lightShade py-20 bg-darkShade">
       <div>
         <h3 className="text-3xl font-semibold text-center">Flo's Special Skills</h3>
       </div>
@@ -19,7 +19,7 @@ const Skills = () => {
       </div>
       <div className="flex justify-center  mt-3 flex-wrap gap-4">
         <div
-          className="bg-darkShade overflow-hidden rounded-[4px] pt-7 pl-6 text-lightShade h-[160px] w-[160px]"
+          className="bg-lightShade overflow-hidden rounded-[4px] pt-7 pl-6 text-darkShade h-[160px] w-[160px]"
         >
           <img className="mt-3 w-[30px]" src={mobile} alt="" />
           <p className="pt-4 text-xs font-semibold overflow-visible">
@@ -27,7 +27,7 @@ const Skills = () => {
           </p>
         </div>
         <div
-          className="bg-darkShade overflow-hidden rounded-[4px] py-7 pl-6 text-lightShade h-[160px] w-[160px]"
+          className="bg-lightShade overflow-hidden rounded-[4px] py-7 pl-6 text-darkShade h-[160px] w-[160px]"
         >
           <img
             className="w-[30px] mt-3"
@@ -39,7 +39,7 @@ const Skills = () => {
           </p>
         </div>
         <div
-          className="bg-darkShade overflow-hidden rounded-[4px] pt-11 pl-6 text-lightShade h-[160px] w-[160px]"
+          className="bg-lightShade overflow-hidden rounded-[4px] pt-11 pl-6 text-darkShade h-[160px] w-[160px]"
         >
           <img
             className="w-[30px] mt-3"
@@ -51,7 +51,7 @@ const Skills = () => {
           </p>
         </div>
         <div
-          className="bg-darkShade overflow-hidden rounded-[4px] pt-11 pl-6 text-lightShade h-[160px] w-[160px]"
+          className="bg-lightShade overflow-hidden rounded-[4px] pt-11 pl-6 text-darkShade h-[160px] w-[160px]"
         >
           <img className="w-[30px] mt-3 " src={quill} alt="" />
           <p className="pt-4 text-xs font-semibold leading-none overflow-visible">
@@ -59,7 +59,7 @@ const Skills = () => {
           </p>
         </div>
         <div
-          className="bg-darkShade rounded-[4px] pt-11 pl-6 text-lightShade h-[160px] w-[160px]"
+          className="bg-lightShade rounded-[4px] pt-11 pl-6 text-darkShade h-[160px] w-[160px]"
         >
           <img className="w-[30px] mt-3" src={arrowGuide} alt="" />
           <p className="pt-4 text-xs font-semibold leading-none overflow-visible">

@@ -1,9 +1,10 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom'
-const PaymentReceipt = ({ name, amountPaid, paymentDescription }) => {
+const PaymentReceipt = () => {
     const location = useLocation()
     const params = new URLSearchParams(location.search);
     const amount = params.get('amount');
+    const name = params.get('name');
     const description = params.get('description');
     const reference = params.get('reference');
     console.log(amount)

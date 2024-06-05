@@ -12,15 +12,24 @@ module.exports = {
     },
     extend: {
       colors: {
-        darkShade: "#e9e4d4",
-        // darkShade: "#C3B091",
-        lightShade: "#212121",
+        lightShade: "#e9e4d4",
+        // lightShade: "#C3B091",
+        darkShade: "#212121",
         faded: "#959492",
         button: "#1f456e",
         playground: "#E0E0E0",
         transluscent: "#2c2c2c",
         opaque: "#B8B8B8",
         yellowBg: "#ffdd8b"
+      },
+      backgroundImage: {
+        'landing-image': "url('https://images.unsplash.com/photo-1606069679102-05868069fe6d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      },
+      backgroundPosition: {
+        'center-10vh': 'center -10vh',
+        'center-20vh': 'center -20vh',
+        'center-30vh': 'center -30vh',
+        'center-40vh': 'center -40vh',
       },
     },
   },

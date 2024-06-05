@@ -139,7 +139,7 @@ const Guild = ({ locationProps }) => {
         <meta property="og:description" content="Description of my webpage" />
         <meta property="og:image" content={singleArticle.image?singleArticle.image[0]:''} />
       </Helmet>
-            <main ref={parentRef} className="opacity-0 px-6 tracking-[0.4px] md:px-16 pt-20   relative flex flex-col bg-darkShade text-lightShade dark:bg-lightShade dark:text-darkShade [&>*]:dark:text-darkShade md:min-h-[90vh] md:pb-10">
+            <main ref={parentRef} className="opacity-0 px-6 tracking-[0.4px] sm:px-16 pt-20   relative flex flex-col bg-lightShade text-darkShade dark:bg-darkShade dark:text-lightShade [&>*]:dark:text-lightShade md:min-h-[90vh] md:pb-10">
                 {/* popup */}
                 {/* popup */}
                 {/* popup */}
@@ -160,19 +160,19 @@ const Guild = ({ locationProps }) => {
                         </h1>
                     </div>
                     <div
-                        className=' text-[1.1rem] font-[500]  text-lightShade  dark:text-da1hade leading-8 mt-16'>
+                        className=' text-[1.1rem] font-[500]  text-darkShade  dark:text-da1hade leading-8 mt-16'>
                         <p className='mb-2'>Edited By:</p>
-                        <p className='font-[600] text-[1.1rem] capitalize text-lightShade '>{singleArticle.author?singleArticle.author:<Waiting/>}</p>
+                        <p className='font-[600] text-[1.1rem] capitalize text-darkShade '>{singleArticle.author?singleArticle.author:<Waiting/>}</p>
                     </div>
-                    <div className='text-[1.1rem] font-[500]  text-lightShade  dark:text-da1hade leading-8 mt-10'>
+                    <div className='text-[1.1rem] font-[500]  text-darkShade  dark:text-da1hade leading-8 mt-10'>
                         <p className='mb-2'>Length:</p>
-                        <p className='font-[600] text-lightShade  dark:text-darkShade italic text-[1.1rem]'>{singleArticle.readMinutes?singleArticle.readMinutes:<Waiting/>}</p>
+                        <p className='font-[600] text-darkShade  dark:text-lightShade italic text-[1.1rem]'>{singleArticle.readMinutes?singleArticle.readMinutes:<Waiting/>}</p>
                     </div>
                     <div className='text-[1.5rem] font-[600] mt-16'>
                         <h3 className='mb-5'>
                             {singleArticle.headingOne&& capitalizeFirst(singleArticle.headingOne)}
                         </h3>
-                        <article className='text-[1rem] leading-8 font-[400]  dark:text-darkShade  text-lightShade'>
+                        <article className='text-[1rem] leading-8 font-[400]  dark:text-lightShade  text-darkShade'>
 
                                 {
                                 ArticleIsArray?singleArticle.paragraphOne.map((paragraph,index)=>{
@@ -186,7 +186,7 @@ const Guild = ({ locationProps }) => {
                         </article>
                     </div>
                      {singleArticle.quoteOne&&<div className='my-16  text-[1.5rem] font-[600]  mt-6'>
-                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-darkShade'>
+                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
                         <span className='quotes  opacity-50 '></span>{singleArticle.quoteOne}
                         </article>
                     </div>}
@@ -201,7 +201,7 @@ const Guild = ({ locationProps }) => {
                         <h3 className='mb-5'>
                             {singleArticle.headingTwo&& capitalizeFirst(singleArticle.headingTwo)}
                         </h3>
-                        <article className='text-[1rem] leading-8 font-[400]  dark:text-darkShade  text-lightShade'>
+                        <article className='text-[1rem] leading-8 font-[400]  dark:text-lightShade  text-darkShade'>
 
                                 {
                                 ArticleIsArray?singleArticle.paragraphTwo.map((paragraph,index)=>{
@@ -216,7 +216,7 @@ const Guild = ({ locationProps }) => {
                     </div>}
                    
                      {singleArticle.quoteTwo&&<div className='my-16  text-[1.5rem] font-[600]  mt-6'>
-                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-darkShade'>
+                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
                         <span className='quotes  opacity-50 '></span>{singleArticle.quoteTwo}
                         </article>
                     </div>}
@@ -232,7 +232,7 @@ const Guild = ({ locationProps }) => {
                        <h3 className='mb-5'>
                             {singleArticle.headingThree&&capitalizeFirst(singleArticle.headingThree||"null")}
                         </h3>
-                        <article className='text-[1rem] leading-8 font-[400]  dark:text-darkShade  text-lightShade'>
+                        <article className='text-[1rem] leading-8 font-[400]  dark:text-lightShade  text-darkShade'>
 
                                 {
                                 ArticleIsArray?singleArticle.paragraphThree.map((paragraph,index)=>{
@@ -245,7 +245,7 @@ const Guild = ({ locationProps }) => {
                             <Waiting/>}
                         </article>
                     {singleArticle.quoteThree&&<div className='  text-[1.5rem] font-[600]  mt-6'>
-                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-darkShade'>
+                        <article className='pl-2  text-[1.1rem]  text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
                         <span className='quotes  opacity-50 '></span>{singleArticle.quoteThree}
                         </article>
                     </div>}
@@ -255,17 +255,17 @@ const Guild = ({ locationProps }) => {
                             {singleArticle.pointTwo?'Key Points':'Key Point'}
                         </h3>}
 
-                            <ol className='[&>*]:overflow-visible overflow-visible ml-4  dark:text-darkShade text-base'>
-                                {singleArticle.pointOne&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointOne}</li>}
-                                {singleArticle.pointTwo&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointTwo}</li>}
-                                {singleArticle.pointThree&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointThree}</li>}
-                                {singleArticle.pointFour&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointFour}</li>}
-                                {singleArticle.pointFive&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointFive}</li>}
-                                {singleArticle.pointSix&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointSix}</li>}
-                                {singleArticle.pointSeven&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointSeven}</li>}
-                                {singleArticle.pointEight&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointEight}</li>}
-                                {singleArticle.pointNine&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointNine}</li>}
-                                {singleArticle.pointTen&&<li className='font-medium text-lightShade  dark:text-darkShade'>{singleArticle.pointTen}</li>}
+                            <ol className='[&>*]:overflow-visible overflow-visible ml-4  dark:text-lightShade text-base'>
+                                {singleArticle.pointOne&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointOne}</li>}
+                                {singleArticle.pointTwo&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointTwo}</li>}
+                                {singleArticle.pointThree&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointThree}</li>}
+                                {singleArticle.pointFour&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointFour}</li>}
+                                {singleArticle.pointFive&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointFive}</li>}
+                                {singleArticle.pointSix&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointSix}</li>}
+                                {singleArticle.pointSeven&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointSeven}</li>}
+                                {singleArticle.pointEight&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointEight}</li>}
+                                {singleArticle.pointNine&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointNine}</li>}
+                                {singleArticle.pointTen&&<li className='font-medium text-darkShade  dark:text-lightShade'>{singleArticle.pointTen}</li>}
                             </ol>
                     </div>
                    

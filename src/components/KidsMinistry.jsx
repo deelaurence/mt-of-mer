@@ -6,10 +6,10 @@ import kiti from '../assets/kiti.webp'
 const KidsMinistry = () => {
   return (
     <>
-      <main className='px-6 sm:px-16  -mb-1  text-darkShade py-24 bg-lightShade'>
-        <h1 className=' text-5xl -mb-1 font-semibold text-darkShade py-24 bg-lightShade '>YOUNGSTERS.</h1>
+      <main className='px-6 sm:px-16  -mb-1  text-lightShade py-24 bg-darkShade'>
+        <h1 className=' text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>YOUNGSTERS.</h1>
         <img src={kiti} alt="" />
-        <p className=' pt-16 pb-16 -mb-1 font-[aboreto]  text-5xl text-faded bg-lightShade'>Teaching Christ's love and acceptance but, like a 2 years old would understand </p>
+        <p className=' pt-16 pb-16 -mb-1 font-[aboreto]  text-5xl text-faded bg-darkShade'>Teaching Christ's love and acceptance but, like a 2 years old would understand </p>
 
 <p className='text-opaque text-xl leading-8'>    
 Juvenile Ministry is a dynamic and purposeful community where 

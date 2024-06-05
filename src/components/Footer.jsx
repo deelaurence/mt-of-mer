@@ -80,18 +80,23 @@ const Footer = ({ locationProps }) => {
   // }, [currentLocation, location])
   return (
     <footer
-      className="tracking-[0.5px]  pt-24 pb-24 px-6 sm:px-16 bg-lightShade text-white dark:bg-lightShade dark:text-darkShade"
+      className=" tracking-[0.5px]  pt-24 pb-24 px-6 sm:px-16 bg-darkShade text-white dark:bg-darkShade dark:text-lightShade"
     >
-      <div className='mt-14 overflow-visible'>
+      <div className='mt-14  overflow-visible'>
         <h3 ref={gotProjectRef} className='text-2xl font-[aboreto] text-opaque overflow-visible '>
           UNITED APOSTOLIC CHURCH OF CHRIST.
         </h3>
-        <section className='md:flex md:justify-between'>
+        <section className='md:flex  md:justify-between'>
+          <div className='text-opaque font-semibold w-64 text-2xl mt-12 md:mt-24 mb-3'>
+            We can do all this through <span className='italic mr-1'> Christ. </span> who gives us strength. 
+            <p className='text-sm'>Phil &mdash; 4:13</p>
+          </div>
+          
           <div ref={contactRef}>
             <p className='text-opaque mt-12 md:mt-24 mb-3'>
               MT. OF MERCY
             </p>
-            <div className='flex flex-col'>
+            <div className='flex flex-col '>
 
             <a className='font-medium' href="mailto:">Us</a>
             <a className='font-medium' href="mailto:">Church Leadership</a>
@@ -110,7 +115,15 @@ const Footer = ({ locationProps }) => {
             <a className='font-medium' href="mailto:">Ijare</a>
             </div>
           </div>
-          <div ref={footerLineRef} className='bg-opaque my-14 dark:bg-darkShade h-[1px] w-full'>
+      
+      <div>
+
+     
+      </div>
+        </section>
+
+      </div>
+      <div ref={footerLineRef} className='bg-opaque my-14 dark:bg-lightShade h-[1px] w-full'>
       </div>
       <div className='text-opaque' >
             
@@ -123,10 +136,6 @@ const Footer = ({ locationProps }) => {
             <a className='font-medium' >Send us a mail</a>
             </div>
           </div>
-        </section>
-
-      </div>
-
     </footer>
 
   )

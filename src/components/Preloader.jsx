@@ -297,7 +297,7 @@ const Preloader = ({ pullData }) => {
     // //(time);
 
     return (
-        <div className=' px-2 text-neutral-700 text-8xl font-bold h-screen w-screen bg-darkShade'>
+        <div className=' px-2 text-neutral-700 text-8xl font-bold h-screen w-screen bg-lightShade'>
             <div ref={bar2Ref} className='opacity-0 h-[1px] w-[98%] absolute -translate-y-[50px] bottom-4 bar bg-neutral-700 rounded-full'></div>
             <div ref={barRef} className='opacity-0 h-[1px] absolute bottom-4 -translate-y-[50px] bar bg-neutral-200 rounded-full'></div>
             <p className='location -translate-y-[50px] absolute opacity-0 text-base text-neutral-500 bottom-[144px]'>\Lagos &mdash; NG</p>

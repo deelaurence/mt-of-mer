@@ -204,7 +204,7 @@ const Playground = () => {
         <>
             <main className=' playground-main mt-20'>
 
-                <section className=' px-6 mt-12 sm:px-16 dark:bg-lightShade dark:text-darkShade overflow-visible text-lightShade'>
+                <section className=' px-6 mt-12 sm:px-16 dark:bg-darkShade dark:text-lightShade overflow-visible text-darkShade'>
                     <h3 ref={playgroundInfoRef} className='opacity-0 text-2xl  font-medium sm:text-4xl  overflow-visible' >
                         Welcome to my playground.
                     </h3>
@@ -241,7 +241,7 @@ const Playground = () => {
                     </h3>
                 </section>
 
-                <section ref={playgroundRef} onTouchStart={playgroundStart} onTouchEnd={playgroundEnd} className='opacity-0 overflow-scroll  dark:bg-lightShade dark:text-darkShade py-32  px-6 gap-4  grid-cont  playground-cont  md:overflow-visible [&>*]:overflow-visible mt-10  text-[10px] sm:px-16 justify-between text-lightShade'>
+                <section ref={playgroundRef} onTouchStart={playgroundStart} onTouchEnd={playgroundEnd} className='opacity-0 overflow-scroll  dark:bg-darkShade dark:text-lightShade py-32  px-6 gap-4  grid-cont  playground-cont  md:overflow-visible [&>*]:overflow-visible mt-10  text-[10px] sm:px-16 justify-between text-darkShade'>
                     <div className='h-72 w-72  grids grid-1 rounded-xl bg-transluscent p-4'>
                         <div className='bg-playground rounded-lg p-2 [&>*]:h-[75%] flex justify-around h-56 w-64'>
                             <img className='self-start' src={bud1} onClick={handleEnlarge} alt="" />
@@ -252,7 +252,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium '>
                                 Bud &mdash; An Online Diary Platform with Interactive AI.
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Design
                             </p>
                         </div>
@@ -267,7 +267,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Flo &mdash; An app that gives users praise.
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Design
                             </p>
                         </div>
@@ -282,7 +282,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Craiglist &mdash; An online advertisement website.
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Redesign
                             </p>
                         </div>
@@ -295,7 +295,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Winamp &mdash; A desktop media app.
                             </p>
-                            <p className='leading-[14px] self-center text-lightShade font-normal border-opaque  border-[1px]  h-5 px-3 rounded-3xl '>
+                            <p className='leading-[14px] self-center text-darkShade font-normal border-opaque  border-[1px]  h-5 px-3 rounded-3xl '>
                                 Redesign
                             </p>
                         </div>
@@ -312,7 +312,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Shoptacle &mdash; A luxury clothing webshop.
                             </p>
-                            <p className='leading-[14px] self-center text-lightShade font-normal border-opaque  border-[1px]  h-5 px-3 rounded-3xl '>
+                            <p className='leading-[14px] self-center text-darkShade font-normal border-opaque  border-[1px]  h-5 px-3 rounded-3xl '>
                                 Design
                             </p>
                         </div>
@@ -327,7 +327,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Dribbble &mdash; An event exploring app.
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Design
                             </p>
                         </div>
@@ -342,7 +342,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Buonissimo &mdash; A food recipe app.
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Design
                             </p>
                         </div>
@@ -355,7 +355,7 @@ const Playground = () => {
                             <p className='w-[80%] font-medium'>
                                 Inspiration from dribbble
                             </p>
-                            <p className='self-center text-lightShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
+                            <p className='self-center text-darkShade font-normal border-opaque  border-[1px] leading-3 h-5 px-3 rounded-3xl '>
                                 Redesign
                             </p>
                         </div>

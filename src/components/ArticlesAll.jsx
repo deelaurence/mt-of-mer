@@ -9,8 +9,11 @@ import { Link } from 'react-router-dom';
 //console.log(landingData)
 import { useLocation } from 'react-router-dom'
 import Next from "../assets/next.png"
+import { useGlobalState } from '../GlobalState';
 
-const ArticlesAll = ({allArticles}) => {
+const ArticlesAll = () => {
+  const {state}=useGlobalState()
+  const allArticles=state.allArticles
   const location = useLocation()
   const [currentLocation, setCurrentLocation] = useState("")
   const [data, setData] =useState([])
@@ -61,141 +64,15 @@ const formatDate = (day)=>{
       return `${dayStr}.${monthStr}.${yearStr}`
     }
   }
-//   useEffect(() => {
-//     setCurrentLocation(location)
-//      gsap.fromTo(h1, {
-//           xPercent:-10,
-//       },
-//           {
-//               xPercent:-75,
-//               duration:20,
-//               scrollTrigger: {
-//               trigger: h1,
-//               // markers:true,
-//               toggleActions:"play none reverse none",
-//               start: "top center",
-//               end:"top 30%"
-//         }
 
-//           })
-    
-//     gsap.fromTo(refs3.current[0], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-//     },
-//       {
-//         yPercent: 0,
-//         skewX: "0deg",
-//         opacity: 1,
-//         duration: 1,
-//         delay: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[0],
-//         }
-//       })
-
-
-
-
-//     gsap.fromTo(refs3.current[1], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-
-//     },
-//       {
-//         yPercent: 0,
-//         skewX: "0deg",
-//         opacity: 1,
-//         duration: 1,
-//         delay: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[0],
-//         }
-//       })
-
-//     gsap.fromTo(refs3.current[2], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-
-//     },
-//       {
-//         yPercent: 0,
-//         skewX: "0deg",
-//         opacity: 1,
-//         delay: .8,
-//         duration: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[2],
-//         }
-//       })
-
-
-//     gsap.fromTo(refs3.current[3], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-
-//     },
-//       {
-//         yPercent: 0,
-//         skewX: "0deg",
-//         delay: 1,
-//         opacity: 1,
-//         duration: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[3],
-//         }
-//       })
-
-
-//     gsap.fromTo(refs3.current[4], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-
-//     },
-//       {
-//         yPercent: 0,
-
-//         skewX: "0deg",
-//         opacity: 1,
-//         delay: 1.2,
-//         duration: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[4],
-//         }
-//       })
-
-
-//     gsap.fromTo(refs3.current[5], {
-//       yPercent: 20,
-//       opacity: 0,
-//       skewX: "4deg"
-
-//     },
-//       {
-//         yPercent: 0,
-//         skewX: "0deg",
-//         delay: 1.5,
-//         opacity: 1,
-//         duration: 1,
-//         scrollTrigger: {
-//           trigger: refs.current[5],
-//         }
-//       })
-
-
-//   }, [currentLocation, location])
   return (
     <>
     {/* display only if allArticles is an array */}
     {allArticles[0]&&
-    <main className='pt-12 bg-darkShade flex flex-col items-center'>
-    <section className='bg-darkShade'>
+    <main className='pt-32 bg-lightShade flex flex-col items-center'>
+    <section className='bg-lightShade'>
       <h1 className=' py-14 font-bold text-center  text-neutral-700 text-5xl'> ARTICLES. </h1>
+      
       <div className=' flex flex-col md:flex-row md:flex-wrap'>
         {sliced.map((datum, index) => {
           return (

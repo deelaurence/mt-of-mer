@@ -5,18 +5,21 @@ import Popup from './Popup';
 import baseUrl from '../data/baseUrl';
 import LoadingButton from './LoadingButton';
 import { useLocation } from 'react-router-dom';
+import { useGlobalState } from '../GlobalState';
+import { LuEye, LuEyeOff } from "react-icons/lu";
 const LoginComponent = ({setIsLoggedIn, isIOS}) => {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [isLoading, setIsLoading]=useState(false)
 const [popupMsg, setPopupMsg]= useState('')
+const [showPassword, setShowPassword]=useState(false)
+const [keepLoggedIn, setKeepLoggedIn]=useState(false)
+
 
 const navigate = useNavigate()
 
-console.log(isIOS)
-
-
 //GOOGLE AUTH LOGIN
+const {state,dispatch,bindClientToBrowser,loginGlobally} = useGlobalState()
 const handleGoogleAuth= async ()=>{
     try {
       const requestOptions = {
@@ -48,17 +51,24 @@ const handleGoogleAuth= async ()=>{
 const location = useLocation()
 const queryParams = new URLSearchParams(location.search);
 const token = queryParams.get('token');
+const emailFromGoogle = queryParams.get('email');
+const nameFromGoogle = queryParams.get('name');
 
-console.log(token)
+
 
 if(token){
 
-  sessionStorage.setItem('token', token)
-  sessionStorage.setItem('device', "IOS");
-  sessionStorage.setItem('login_type', "Google Auth");
-  window.history.replaceState({}, document.title, window.location.pathname);
-  console.log(window.location.pathname)
-  setIsLoggedIn(true)
+  bindClientToBrowser({
+    type:'local',
+    token,
+    name:nameFromGoogle,
+    email:emailFromGoogle,
+    loginType:'Google'
+  }) 
+
+  loginGlobally()
+  // window.history.replaceState({}, document.title, window.location.pathname);
+  
 }
 
     
@@ -69,13 +79,16 @@ if(token){
 //EMAIL LOGIN  
 const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    console.log(keepLoggedIn)
     setIsLoading(true)
+
+
     const requestOptions = {
       method: 'POST',
       credentials:'include',
       headers: {
         'Content-Type': 'application/json',
-
       },
       body: JSON.stringify(
         {
@@ -87,34 +100,32 @@ const handleSubmit = async (e) => {
   try {
   const response = await fetch(`${baseUrl}/auth/login`, requestOptions);
   const data = await response.json();
-  console.log('Post request successful:', data);
   if(response.status>201){
     setPopupMsg(data.message)
+    if(data.message=='Your password is incorrect'){
+      dispatch({type:'SET_UNAUTHENTICATED_USER_EMAIL',payload:email})
+    }
+    console.log(state)
     setIsLoading(false)
   }
-  
   if(response.status<202 ){
-    //Set token to session if CLIENT is IOS
+    const {token,name,email} = data
 
-    const token = data.token
-    console.log(token)
-    console.log("Device ios: " + isIOS)
-    if (isIOS) {
-      sessionStorage.setItem('token', token);
-      sessionStorage.setItem('device', "IOS");
-      sessionStorage.setItem('login_type', "Email");
-      
-    }
-    else {
-      sessionStorage.setItem('device', "Android/Windows/linux Device");
-      sessionStorage.setItem('login_type', "Email");
-    }
-    console.log("redirecting")
-    setIsLoading(false)
+
+      bindClientToBrowser({
+        type:'session',token,name,email,loginType:'Email'
+      })
+
+      if(keepLoggedIn){
+        bindClientToBrowser({
+          type:'local',token,name,email,loginType:'Email'
+        }) 
+      }
+      loginGlobally()
+      setIsLoading(false)
     
-    //If user is ios
-    setIsLoggedIn(true)
-    navigate("/give")
+      
+      navigate("/give")
   }
   // Handle response data as needed
 } catch (error) {
@@ -125,14 +136,59 @@ const handleSubmit = async (e) => {
     console.log('Login form submitted');
   };
 
+
+
+
+  const handleForgotPassword = async () => {
+    
+    setIsLoading(true) 
+    const requestOptions = {
+      method: 'POST',
+      credentials:'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        {
+            email:state.unauthenticatedUserEmail,
+        }
+      ),
+    };
+  try {
+  const response = await fetch(`${baseUrl}/auth/forgot-password`, requestOptions);
+  const data = await response.json();
+  if(response.status>201){
+    setPopupMsg(data.message)
+    setIsLoading(false)
+  }
+  else{
+    sessionStorage.clear('popupMsg')
+    navigate("/forgot-password")
+  }
+  // Handle response data as needed
+} catch (error) {
+  console.error('Error making post request:', error);
+  // Handle error as needed
+}
+    // Perform Login logic here
+    console.log('Login form submitted');
+};
+
+
+//Retain popup message accross rerenders
+if(popupMsg){
+  sessionStorage.setItem('popupMsg',popupMsg)
+}    
+const retainedPopupMsg=sessionStorage.getItem('popupMsg')  
+
   return (
-    <div className="flex justify-center items-center min-h-screen  bg-darkShade">
+    <div className="flex justify-center py-32 items-center min-h-screen  bg-lightShade">
       <form
         className="bg-white relative overflow-visible shadow-md w-[85%] sm:max-w-[40%] rounded px-8  pb-8 mb-4"
         onSubmit={handleSubmit}
       >
-        {popupMsg&&<Popup message={popupMsg} setPopupMsg={setPopupMsg}  link="/login"/>}
-        <div className='bg-lightShade shadow-sm absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-darkShade'>
+        {popupMsg&&<Popup message={popupMsg} setPopupMsg={setPopupMsg}  link={popupMsg=="Email not registered, Sign up"?"/register":"/login"}/>}
+        <div className='bg-darkShade shadow-sm absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-lightShade'>
             <h3 className='text-3xl font-semibold my-12 text-center'>Login.</h3>
         </div>
         <div className="mt-28 mb-4">
@@ -149,19 +205,36 @@ const handleSubmit = async (e) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mb-6">
+        <div className="  relative">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Password
+            Password 
+
           </label>
+          <div
+          onClick={()=>{setShowPassword(!showPassword)}}
+          className='absolute cursor-pointer h-2 w-2 right-4 bottom-[40%]'>
+
+            {!showPassword?<LuEye/>:<LuEyeOff/>}
+          </div>
           <input
             className="shadow border-b-1 border-b-neutral-200 bg-transparent appearance-none border rounded w-full py-2 px-1  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             required={true}
-            type="password"
+            type={showPassword?"text":"password"}
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+        </div>
+        <div className='mb-6 flex justify-item items-center text-darkShade'>
+          <input 
+          type='checkbox'
+          value={keepLoggedIn}
+          className="self-start p-0 w-auto justify-start  border"
+          name="" 
+          onChange={(e) => setKeepLoggedIn(!keepLoggedIn)}
+          id="keepLoggedIn" />  
+          <label className=' text-gray-600' htmlFor="keepLoggedIn">Keep me logged In</label>
         </div>
         <div className="flex items-center justify-between">
           {isLoading?<LoadingButton/>:<button
@@ -176,8 +249,26 @@ const handleSubmit = async (e) => {
           >
             New User? &nbsp; Register
           </Link>
+          
         </div>
-            <div className=''>
+        {retainedPopupMsg=='Your password is incorrect'&&<div
+          onClick={()=>{dispatch({
+            type:"SET_UNAUTHENTICATED_USER_EMAIL",
+            payload:email
+          })
+          
+          handleForgotPassword()
+        }} 
+          className='w-full  my-4 py-3 '>
+          <Link 
+            className="  w-full bg-gray-600 text-gray-200  text-center  text-sm font-semibold py-2  rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+            >
+            Forgot your password?
+          </Link>
+          </div>}
+          
+          <div className=''>
           <div className='self-center justify-self-center py-2 my-4 relative text-center'>
               <p className='bg-neutral-200 w-full h-[1px] absolute top-1/2'></p>
               <p className='z-10 relative text-neutral-400 w-10 mx-auto bg-white'>OR</p>

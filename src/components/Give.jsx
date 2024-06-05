@@ -4,8 +4,8 @@ const Give = () => {
   return (
 <>
 <div>
-      <p className=' bg-darkShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>GIVE.</p>
-      <p className='bg-darkShade px-6 pb-10 sm:px-16 pt-20 text-lg'>
+      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>GIVE.</p>
+      <p className='bg-lightShade px-6 pb-10 sm:px-16 pt-20 text-lg'>
         Partner with us in building God's 
         kingdom by faithfully giving your tithes. 
         Your generous contributions help support the ministry,

@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import LoadingButton from './LoadingButton';
 import { FcGoogle } from 'react-icons/fc';
-
+import { useGlobalState } from '../GlobalState';
 import axios from 'axios';
 import {Link,redirect,useNavigate} from 'react-router-dom'
 import baseUrl from '../data/baseUrl';
 import Popup from './Popup';
-const RegistrationComponent = ({emailOnRegister, setEmailOnRegister,setIsLoggedIn}) => {
+const RegistrationComponent = () => {
+  const {state,dispatch}=useGlobalState()
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [surname, setSurname] = useState('');
@@ -16,7 +17,7 @@ const RegistrationComponent = ({emailOnRegister, setEmailOnRegister,setIsLoggedI
   const [confirmPassword, setConfirmPassword] = useState('');
   const [validatePassword, setValidatePassword] = useState(false);
   const [popupMsg, setPopupMsg]= useState('')
-    const [isLoading, setIsLoading]=useState(false)
+  const [isLoading, setIsLoading]=useState(false)
 
 const passwordDom=document.getElementById("password")
  const responseGoogle = async (response) => {
@@ -63,9 +64,13 @@ const passwordDom=document.getElementById("password")
   
 
   }
+
+
+
+
 const handleSubmit =async (e) => {
   e.preventDefault();
-  setEmailOnRegister(email)
+    dispatch({type:'SET_UNAUTHENTICATED_USER_EMAIL',payload:email})
     console.log(password!==confirmPassword)
     if(!validatePassword){
       setPasswordPrompt("Password is too short")
@@ -116,14 +121,14 @@ const handleSubmit =async (e) => {
     console.log('Registration form submitted');
   };
 
-  return (
-    <div className="mt-32  flex flex-col justify-center items-center min-h-screen  bg-darkShade">
+return (
+    <div className="py-32  flex flex-col justify-center items-center min-h-screen  bg-lightShade">
       <form
         className="bg-white relative overflow-visible shadow-md w-[85%]  sm:max-w-[40%] rounded px-8  pb-8 mb-4"
         onSubmit={handleSubmit}
       >
         {popupMsg&&<Popup message={popupMsg} link="/login"/>}
-        <div className='bg-lightShade absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-darkShade'>
+        <div className='bg-darkShade absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-lightShade'>
             <h3 className='text-3xl font-semibold my-12 text-center'>Registration.</h3>
         </div>
         <div className="mt-28 mb-4">

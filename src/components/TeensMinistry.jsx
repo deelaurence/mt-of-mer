@@ -6,10 +6,10 @@ import teen from '../assets/teen2.webp'
 const TeensMinistry = () => {
   return (
     <>
-      <main className='px-6 sm:px-16  -mb-1  text-darkShade py-24 bg-lightShade'>
-        <h1 className=' text-5xl -mb-1 font-semibold text-darkShade py-24 bg-lightShade '>TEENAGE MINISTRY.</h1>
+      <main className='px-6 sm:px-16  -mb-1  text-lightShade py-24 bg-darkShade'>
+        <h1 className=' text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>TEENAGE MINISTRY.</h1>
         <img src={teen} alt="" />
-        <p className=' pt-16 pb-16 -mb-1 font-[aboreto]  text-5xl text-faded bg-lightShade'>CALLED TO BE DIFFERENCE MAKERS </p>
+        <p className=' pt-16 pb-16 -mb-1 font-[aboreto]  text-5xl text-faded bg-darkShade'>CALLED TO BE DIFFERENCE MAKERS </p>
 
 <p className='text-opaque text-xl leading-8'>    
 Teenagers are a vibrant and influential generation, full of passion, dreams, 
