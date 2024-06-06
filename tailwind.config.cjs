@@ -11,6 +11,9 @@ module.exports = {
       xl: "1440px",
     },
     extend: {
+      fontFamily: {
+        sharpGrotesk: ['"Sharp Grotesk"', 'sans-serif'],
+      },
       colors: {
         lightShade: "#e9e4d4",
         // lightShade: "#C3B091",

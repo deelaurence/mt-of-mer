@@ -8,8 +8,8 @@ const HandDrawnUnderline = () => (
 <svg className='h-12 w-12 absolute -bottom-2 -left-4 -z-20' id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
-        <stop id="stop1" stopColor="rgba(200, 10, 99, 1)" offset="0%" />
-        <stop id="stop2" stopColor="rgba(210, 20, 55, 1)" offset="100%" />
+        {/* <stop id="stop1" stopColor="#3a7ca5" offset="0%" />
+        <stop id="stop2" stopColor="#3a7285" offset="100%" /> */}
       </linearGradient>
     </defs>
     <path

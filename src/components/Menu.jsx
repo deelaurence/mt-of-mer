@@ -12,8 +12,8 @@ const Menu = ({ hideMenu, menu}) => {
 
     return (
         <>
-            <p onClick={hideMenu} className='text-lg tracking-[0.5px] text-darkShade dark:bg-darkShade dark:text-lightShade absolute top-32 right-6 ' >close</p>
-            <div onClick={hideMenu} className={menu ? ' nav-animate dark:bg-darkShade dark:text-lightShade flex text-darkShade transition-[2s] justify-center w-screen h-[100vh]  mt-20 gap-12 items-center flex-col font-medium text-2xl' :
+            <p onClick={hideMenu} className='text-lg tracking-[0.5px] text-lightShade dark:bg-darkShade dark:text-lightShade absolute top-32 right-6 ' >close</p>
+            <div onClick={hideMenu} className={menu ? ' nav-animate dark:bg-darkShade dark:text-lightShade flex text-lightShade transition-[2s] justify-center w-screen h-[100vh]  mt-20 gap-12 items-center flex-col font-medium text-2xl' :
                 'nav1-animate  dark:bg-darkShade dark:text-lightShade  transition-[2s]  flex text-darkShade justify-center w-screen h-[100vh]  mt-20 gap-12 items-center flex-col font-medium text-2xl'}>
               
               {
