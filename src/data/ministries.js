@@ -6,7 +6,7 @@ import landingFemmina from '../assets/landing-femmina.webp'
 import landingDexchange from '../assets/landing-dexchange.webp'
 import kiti from '../assets/kiti.webp'
 import teen from '../assets/teen2.webp'
-import prayingLady from '../assets/pray-lady.JPG'
+import prayingLady from '../assets/pray-lady.jpg'
 
 let data = [
     {
