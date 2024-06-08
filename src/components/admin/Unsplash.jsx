@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GiCheckMark } from "react-icons/gi";
 import { useGlobalState } from '../../GlobalState';
+import LoadingButtonUniversal from '../LoadingButtonUniversal';
 const UnsplashComponent = ({editing}) => {
   const {state, dispatch}=useGlobalState()
   const [images, setImages] = useState([]);
@@ -11,6 +12,7 @@ const UnsplashComponent = ({editing}) => {
   
   //fetch images from unsplash
   const fetchImages = async (searchQuery = 'preacher') => {
+    console.log(searchQuery,editing)
     try {
       const response = await axios.get('https://api.unsplash.com/search/photos', {
         params: {
@@ -94,6 +96,7 @@ return (
         <button type="submit" className="px-4 my-4 py-2 bg-darkShade text-lightShade rounded  transition duration-300">
           Search
         </button>
+        <LoadingButtonUniversal/>
       </form>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {images.map((image) => (

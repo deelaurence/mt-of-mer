@@ -19,7 +19,7 @@ const refs= useRef([])
        <>
        
     {/* display only if allMessages is an array */}
-        <h1 className='px-6 sm:px-16 text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>GET CONNECTED.</h1>
+        <h1 className='px-6 sm:px-16 text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>gET CONNECTED.</h1>
          <p className='px-6 pt-16 pb-16 -mb-1 font-[aboreto] sm:px-16 text-5xl text-faded bg-darkShade'> Find your place at Mt. of Mercy. </p>
     <main className='pt-12 pb-24 sm:pb-0 px-6  sm:px-16 bg-darkShade text-lightShade flex flex-col sm:flex-row sm:flex-wrap items-center'>
         {data.map((datum, index) => {

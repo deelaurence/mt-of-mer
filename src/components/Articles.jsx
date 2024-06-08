@@ -13,12 +13,19 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Next from "../assets/next.png"
 import { useGlobalState } from '../GlobalState';
-const Articles = () => {
+const Articles = ({inFooter}) => {
   const {state} =useGlobalState()
   const allArticles=state.allArticles
   let sliced;
+  let i;
+  if(inFooter){
+    i=4
+  }else{
+    i=0
+  }
   if(allArticles){
-    sliced=allArticles.slice(0,4)
+    sliced=allArticles.slice(i,i+4)
+    
   }
   const location = useLocation()
   const [currentLocation, setCurrentLocation] = useState("")
@@ -48,11 +55,11 @@ const Articles = () => {
     <>
     {/* display only if allArticles is an array */}
     {allArticles[0]&&
-    <main className='bg-lightShade flex flex-col items-center'>
-    <section className='w-full  bg-lightShade'>
-      <h1 className='px-6 pt-24 pb-2  font-semibold sm:px-16 text-xl text-neutral-600'> ARTICLES. </h1>
-      <p className='px-6 pt-8 pb-16 font-[aboreto] sm:px-16 text-5xl text-faded'> Lifestyle, Christainity, Health. </p>
-        <div className='flex px-6  sm:px-16 flex-col sm:flex-row border flex-wrap  sm:[&>*]:w-1/2 '>
+    <main className={`${inFooter?'':'bg-lightShade'} flex flex-col items-center`}>
+    <section className={`${inFooter?'':'bg-lightShade'} w-full`}>
+      <h1 className={`${inFooter?'':'px-6'}  pt-24 pb-2  font-semibold sm:px-16 text-xl text-neutral-600`}> ARTICLES. </h1>
+      <p className={`${inFooter?'text-2xl':'text-5xl px-6'} pt-8 pb-16 font-[aboreto] sm:px-16  text-faded`}> Lifestyle, Christainity, Health. </p>
+        <div className={ `${inFooter?'':'px-6'} flex sm:px-16 flex-col sm:flex-row  flex-wrap  sm:[&>*]:w-1/2 `}>
         {sliced.map((datum, index) => {
           return (
             <Link className='flex  post-shadow mb-2  flex-col' key={index} to={`articles/${datum._id}`}>
@@ -66,7 +73,7 @@ const Articles = () => {
                   alt={datum.name} />
                 <aside ref={(element) => refs2.current[index] = element} className=' flex flex-col mt-3'>
                   <div className='flex justify-between'>
-                    <h3 className='font-semibold  text-[17px] sm:text-base mt-2'>{datum.title.toUpperCase()}</h3>
+                    <h3 className='font-semibold  text-[17px] sm:text-base mt-2 pr-4'>{datum.title.toUpperCase()}</h3>
                     <p className='text-[14px] text-faded font-semibold mt-2 sm:text-sm'>{formatDate(datum.day)}</p>
                   </div>
                     <p className='text-[11px] text-faded font-medium mt-2 sm:text-sm'>{capitalizeAll(datum.writer)}</p>
@@ -77,7 +84,7 @@ const Articles = () => {
         })}
         </div>
           
-          <RoundButton text="MORE" link="/articles"/>
+          {!inFooter&&<RoundButton text="MORE" link="/articles"/>}
       </section>
     </main>
 }

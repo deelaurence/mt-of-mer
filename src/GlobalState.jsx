@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-
+import baseUrl from './data/baseUrl';
 // Create a context
 const GlobalStateContext = createContext();
 
@@ -8,7 +8,7 @@ const initialState = {
     isLoggedIn: false,
     clientData:{},
     isAdminLoggedIn:false,
-    baseUrl: 'https://uacc-api.onrender.com',
+    baseUrl,
     // baseUrl: 'http://localhost:4000',
     allMessages: [],
     allArticles: [],
@@ -20,9 +20,12 @@ const initialState = {
         { label: 'Home', link: "/" },
         { label: 'Giving', link: '/give' },
         { label: 'Gallery', link: '/playground' },
+        { label: 'Pictures,events,concerts',subMenu:true, link: '/playground' },
+        { label: 'Have a submission? Contact media',subMenu:true, link: '/playground' },
         { label: 'Articles', link: '/articles' },
         { label: 'Messages', link: '/messages' },
-        { label: 'Admin', link: '/dashboard' }
+        { label: 'Admin', link: '/dashboard' },
+        { label: 'Log in to your admin account',subMenu:true, link: '/admin-login' },
     ]
 };
 

@@ -2,7 +2,9 @@ import { useLocation } from 'react-router-dom'
 import React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
+import Articles from './Articles'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Logo from './Logo'
 const Footer = ({ locationProps }) => {
   gsap.registerPlugin(ScrollTrigger)
   const footerLineRef = useRef(null)
@@ -16,68 +18,6 @@ const Footer = ({ locationProps }) => {
   const location = useLocation()
   const [currentLocation, useCurrentLocation] = useState('')
 
-
-  // useEffect(() => {
-  //   useCurrentLocation(locationProps)
-  //   //("footer use effect");
-  //   gsap.fromTo(footerLine, {
-  //     width: 0,
-  //   }, {
-  //     width: "100%",
-  //     duration: 1.5,
-  //     scrollTrigger: {
-  //       trigger: footerLine
-  //     }
-
-
-  //   })
-  //   gsap.fromTo(gotProject, {
-  //     yPercent: -100,
-  //     opacity: 0
-  //   }, {
-  //     yPercent: 0,
-  //     opacity: 1,
-  //     duration: 1.5,
-  //     delay: 1,
-  //     ease: "Bounce.easeOut",
-  //     scrollTrigger: {
-  //       trigger: footerLine
-  //     }
-
-
-  //   })
-  //   gsap.fromTo(contact, {
-  //     yPercent: -100,
-  //     opacity: 0
-  //   }, {
-  //     yPercent: 0,
-  //     opacity: 1,
-  //     duration: 1.5,
-  //     delay: 1.2,
-  //     // ease: "Bounce.easeOut",
-  //     scrollTrigger: {
-  //       trigger: footerLine
-  //     }
-
-
-  //   })
-  //   gsap.fromTo(connect, {
-  //     yPercent: -100,
-  //     opacity: 0
-  //   }, {
-  //     yPercent: 0,
-  //     opacity: 1,
-  //     duration: 1.5,
-  //     delay: 1.5,
-  //     // ease: "Bounce.easeOut",
-  //     scrollTrigger: {
-  //       trigger: footerLine
-  //     }
-
-
-  //   })
-
-  // }, [currentLocation, location])
   return (
     <footer
       className=" tracking-[0.5px]  pt-24 pb-24 px-6 sm:px-16 bg-darkShade text-white dark:bg-darkShade dark:text-lightShade"
@@ -86,10 +26,14 @@ const Footer = ({ locationProps }) => {
         <h3 ref={gotProjectRef} className='text-2xl font-[aboreto] text-opaque overflow-visible '>
           UNITED APOSTOLIC CHURCH OF CHRIST.
         </h3>
+        <div className='pt-2 opacity-60'>
+          <Logo/>
+        </div>
+        <Articles inFooter={true}/>
         <section className='md:flex  md:justify-between'>
           <div className='text-opaque font-semibold w-64 text-2xl mt-12 md:mt-24 mb-3'>
             We can do all this through <span className='italic mr-1'> Christ. </span> who gives us strength. 
-            <p className='text-sm'>Phil &mdash; 4:13</p>
+            <p className='text-sm opacity-80'>Phil &mdash; 4:13</p>
           </div>
           
           <div ref={contactRef}>

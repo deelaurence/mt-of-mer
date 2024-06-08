@@ -4,14 +4,14 @@ import './App.css';
 import { useGlobalState } from './GlobalState';
 
 // Import components
-import ArticleForm from './components/admin/AddArticle';
 import AdminLoginComponent from './components/admin/AdminLogin';
-import MessageForm from './components/admin/AddMessage';
 import LANDING from './components/LANDING';
+import PostAll from './components/PostsAll';
+import PostFormComponent from './components/admin/AddPosts';
+import SinglePost from './components/SinglePost';
 import Paystack from './components/Paystack';
 import PaymentReceipt from './components/PaymentReceipt';
-import SingleMessage from './components/SingleMessage';
-import SingleArticle from './components/SingleArticle';
+
 import Navbar from './components/Navbar';
 import Preloader from './components/Preloader';
 import Footer from './components/Footer';
@@ -24,8 +24,7 @@ import LoginComponent from './components/Login';
 import RegistrationComponent from './components/Register';
 import Messages from './components/Messages';
 import Give from './components/Give';
-import MessagesAll from './components/MessagesAll';
-import ArticlesAll from './components/ArticlesAll';
+
 import KidsMinistry from './components/KidsMinistry';
 import TeensMinistry from './components/TeensMinistry';
 import Dashboard from './components/admin/Dashboard';
@@ -53,16 +52,30 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
+      //set from local if available storage while awaiting backend
+      const tempArticlesData= JSON.parse(localStorage.getItem('articlesData'))
+      const tempMessagesData= JSON.parse(localStorage.getItem('messagesData'))
+      if(Array.isArray(tempMessagesData)){
+        dispatch({ type: 'SET_ALL_MESSAGES', payload: tempMessagesData });
+      }
+      if(Array.isArray(tempArticlesData)){
+        dispatch({ type: 'SET_ALL_ARTICLES', payload: tempArticlesData });
+      }
+      
       const response = await fetch(`${baseUrl}/messages/all`);
       const messagesData = await response.json();
       const response2 = await fetch(`${baseUrl}/articles/all`);
       const articlesData = await response2.json();
       
+
+      //set first 30 to localstorage
       //Check if data fetched is an array which signifies being successfull
       if(Array.isArray(messagesData)){
+        localStorage.setItem('messagesData',JSON.stringify(messagesData.slice(0,29)))
         dispatch({ type: 'SET_ALL_MESSAGES', payload: messagesData });
       }
       if(Array.isArray(articlesData)){
+        localStorage.setItem('articlesData', JSON.stringify(articlesData.slice(0,29)))
         dispatch({ type: 'SET_ALL_ARTICLES', payload: articlesData });
       }
     };
@@ -76,9 +89,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<LANDING />} />
-            <Route path="/messages" element={<MessagesAll />} />
-            <Route path="/add-article" element={<ArticleForm />} />
-            <Route path="/add-message" element={<MessageForm />} />
+            <Route path="/messages" element={<PostAll postType='message' />} />
+           
+            <Route path="/add-article" element={<PostFormComponent formType='article' />} />
+            <Route path="/add-message" element={<PostFormComponent formType='message' />} />
             <Route path="/admin-login" element={<AdminLoginComponent isIOS={state.isIOS} />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<LoginComponent baseUrl={baseUrl} />} />
@@ -88,13 +102,12 @@ function App() {
             <Route path="/register" element={<RegistrationComponent baseUrl={baseUrl} />} />
             <Route path="/give" element={<Paystack />} />
             <Route path="/reset-password" element={<UpdatePasswordComponent />} />
-            <Route path="/articles" element={<ArticlesAll />} />
+            <Route path="/articles" element={<PostAll postType='article' />} />
             <Route path="/paystack" element={<Paystack />} />
             <Route path="/receipt" element={<PaymentReceipt />} />
-            <Route path="/messages/:id" element={<SingleMessage />} />
-            <Route path="/messages/all/:id" element={<SingleMessage />} />
-            <Route path="/articles/:id" element={<SingleArticle />} />
-            <Route path="/articles/all/:id" element={<SingleArticle />} />
+            <Route path="/messages/:id" element={<SinglePost postType='message' />} />
+            <Route path="/articles/:id" element={<SinglePost postType='article' />} />
+            
             <Route path="/kids" element={<KidsMinistry />} />
             <Route path="/teens" element={<TeensMinistry />} />
           </Routes>

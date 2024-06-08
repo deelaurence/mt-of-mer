@@ -10,6 +10,8 @@ import { useGlobalState } from '../../GlobalState';
 import AdminLoginComponent from './AdminLogin';
 import { RiLogoutCircleFill } from 'react-icons/ri';
 import { MdOutlineLightbulb } from 'react-icons/md';
+import paperBg from '../../assets/paper-bg.jpg'
+
 const Dashboard = () => {
     const adminName = sessionStorage.getItem('admin_name');  // Example admin name, you can replace this with dynamic data if available
     const navigate = useNavigate()
@@ -18,21 +20,25 @@ const Dashboard = () => {
     return (
         <>
         {adminName?
-            <div className="min-h-screen  p-6 pt-32  md:p-16 md:pt-44">
+            <div 
             
-            <div className=' justify-between flex-col md:flex-row flex '>
-                <img className='' src={oldTypewriter} alt="" />
-                <h1 className="text-[10vw] leading-[.6] font-semibold text-gray-600 md:max-w-[50vw]">Hi, &nbsp; Again &mdash; {adminName}</h1>
+            className="min-h-screen  p-6 pt-32  md:p-16 md:pt-44">
+            
+            <div className=' justify-between flex-col-reverse   md:flex-row flex '>
+                <img className='relative z-20' src={oldTypewriter} alt="" />
+                <h1 className="text-[20vw] text-center leading-[17vw] -mb-8 font-semibold text-gray-600 md:max-w-[50vw]">Hello {adminName.split(' ')[0]}.</h1>
             </div>
-            <div className="bg-neutral-100 mb-64 shadow-md rounded-lg p-6 md:p-16">
+            <div 
+            style={{backgroundImage:`url(${paperBg})`}}
+            className=" mb-64 mt-14 shadow-md rounded-lg p-6 md:p-16">
                 <div className="flex justify-between items-center mb-6">
                     <button onClick={adminLogout} className="flex items-center gap-2 p-2  text-red-500 shadow-md rounded-full hover:text-white hover:bg-red-600">
                         <RiLogoutCircleFill className="text-xl" />
                         <span>Logout</span>
                     </button>
-                    <div>
-                        <p className='text-gray-600 font-semibold text-2xl'>What do you wanna do today?</p>
-                        <p className='text-gray-500 text-right font-semibold text-sm'>Write something &mdash; nice!</p>
+                    <div className='flex flex-col items-end'>
+                        <p className='text-gray-600 text-right font-semibold md:text-2xl relative z-10'>What do you wanna do today?</p>
+                        {/* <p className='text-gray-500 text-right font-semibold text-sm'>Write something &mdash; nice!</p> */}
                     </div>
                 </div>
                 <div className="flex mt-16 flex-col gap-6  flex-wrap  items-center justify-center md:flex-row  [&>*]:h-64 [&>*]:w-full md:[&>*]:w-64">

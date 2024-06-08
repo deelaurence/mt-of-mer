@@ -36,14 +36,15 @@ const LANDING = () => {
           </a>
         </div>
       </section>
-      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>WELCOME.</p>
-      <p className='bg-lightShade px-6 pb-32 sm:px-16 pt-20 text-lg'>
+      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>welCOME.</p>
+      <p className='bg-lightShade px-6 pb-32 sm:px-16 pt-20  text-[1.rem]'>
         We are a community of unlikely
         friends following Jesus together. 
         In a divided world filled with tension, 
-        we feel called to create a rare place 
+        <span className='font-medium '> we feel called to create a rare place 
         where relationships are formed that 
-        don't make sense according to the world. 
+        don't make sense according to the world.
+        </span> 
         No matter your age or stage in life, 
         we are united in Jesus. 
         It is our hope and prayer that 

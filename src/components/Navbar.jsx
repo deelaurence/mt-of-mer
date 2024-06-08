@@ -6,6 +6,8 @@ import Menu from './Menu'
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGlobalState } from '../GlobalState'
+import { FaCross } from 'react-icons/fa'
+import Logo from './Logo'
 
 const Navbar = () => {
   const location = useLocation()
@@ -90,9 +92,9 @@ useEffect(()=>{
       className={
         menu ? 
         
-          "px-6  bg-darkShade fixed nav z-[1] flex py-5 items-center justify-between w-screen text-darkShade  sm:px-16  absolute-nav "
+          "px-6  bg-darkShade shadow-sm fixed nav z-[1] flex py-5 items-center  justify-between w-screen text-darkShade  sm:px-16  absolute-nav "
         
-          : "px-6  bg-darkShade fixed nav z-[1000] flex py-5 items-center justify-between w-screen text-darkShade sm:px-16 absolute-nav"
+          : "px-6  bg-darkShade shadow-sm fixed nav z-[1000] flex py-5 items-center justify-between w-screen text-darkShade sm:px-16 absolute-nav"
           }>
       <div className={scrollDirection=="up"?"flex justify-between items-center w-full duration-[1s] opacity-100":" duration-[1s] opacity-0 -translate-y-[50px] flex justify-between items-center w-full"}>
       
@@ -103,7 +105,7 @@ useEffect(()=>{
         {/* logged in user greeting */}
         
         <div className={showGreeting?'flex items-center relative flex-col opacity-100 duration-[6s]':'opacity-0 flex items-center relative flex-col'}>
-          <p className='text-lightShade font-semibold relative opacity-100 duration-[1s] -z-10'>Hello &mdash; {greetName ?? (state.isAdminLoggedIn ? 'Admin' : 'Guest')}</p>
+          <p className='text-lightShade text-sm font-semibold  relative opacity-90 duration-[1s] -z-10'>Hi &mdash; {greetName ?? (state.isAdminLoggedIn ? 'Admin' : 'Guest')}</p>
           <HandDrawnUnderline />
         </div>
 
@@ -116,25 +118,17 @@ useEffect(()=>{
 
           
       {/* Logo*/}
-
-      <Link to="/">
-        <div
-          className="flex gap-1 blend-bar-child overflow-hidden">
-          <h3
-            className="self-end flourish text-lightShade   -mb-1  font-semibold text-xl md:text-4xl md:w-[150px]">Mt. of Mercy.</h3>
-        </div>
-      </Link>
-
+      <Logo/>
 
         {/* menu: link */}
         <div className="md:hidden flex  gap-1 ">
-          <p onClick={showMenu} className='text-base text-lightShade font-bold show-menu ' >MENU</p>
+          <p onClick={showMenu} className='text-base text-lightShade font-semibold show-menu ' >MENU</p>
         </div>
 
 
         {/* navbar links */}
 
-        <div className="hidden md:flex  gap-4 [&>*]:dark:bg-darkShade [&>*]:dark:text-lightShade  ">
+        <div className="hidden md:flex   gap-4 [&>*]:dark:bg-darkShade [&>*]:dark:text-lightShade  ">
               {
                 state.navbarData.map((data,index)=>{
                   return(
