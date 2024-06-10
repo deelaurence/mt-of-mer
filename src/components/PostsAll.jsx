@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useInView } from 'react-intersection-observer';
 import { Link, useLocation } from 'react-router-dom';
 import { useGlobalState } from '../GlobalState';
-
+import { randomImgUrls } from '../data/randomUnsplash';
 gsap.registerPlugin(ScrollTrigger);
 
 const PostAll = ({ postType }) => {
@@ -68,7 +68,7 @@ const PostAll = ({ postType }) => {
                         className="h-full w-full object-cover"
                         src={
                           datum.image[0] ||
-                          'https://images.unsplash.com/photo-1553729784-e91953dec042?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJpYmxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60'
+                          randomImgUrls()
                         }
                         alt={datum.name}
                       />
