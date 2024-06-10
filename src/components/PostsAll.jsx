@@ -53,12 +53,12 @@ const PostAll = ({ postType }) => {
     <>
       {allPosts.length > 0 && (
         <main className="pt-32 bg-lightShade flex flex-col items-center">
-          <section className="bg-lightShade">
+          <section className="max-w-[calc(100vw-1rem)] bg-lightShade">
             <h1 className="py-14 font-bold text-center text-neutral-700 uppercase text-5xl">{postType}s.</h1>
-            <div className="flex flex-col md:flex-row md:flex-wrap">
+            <div className="flex flex-col md:flex-row md:flex-wrap my-32">
               {sliced.map((datum, index) => (
                 <Link
-                  className="flex md:w-[50%] md:h-[350px] px-6 justify-center items-center sm:my-8"
+                  className="flex md:w-[50%] md:h-[400px] px-6 justify-center items-center sm:my-8"
                   key={index}
                   to={`${datum._id}`}
                 >
@@ -73,23 +73,15 @@ const PostAll = ({ postType }) => {
                         alt={datum.name}
                       />
                     </div>
-                    <aside className="flex flex-col mt-3">
-                      <div className="flex justify-between">
-                        <h3 className="font-semibold text-[17px] md:text-base mt-2">{datum.title.toUpperCase()}</h3>
-                        <p className="text-[11px] font-medium mt-2 md:text-sm">{datum.writer}</p>
+                    <aside className="flex flex-col max-w-full mt-3">
+                      <div className="flex max-w-full justify-between">
+                        <h3 className="font-semibold max-w-[70%] text-[17px] md:text-base mt-2">{datum.title.toUpperCase()}</h3>
+                        <p className="text-[11px] max-w-[25%] font-medium mt-2 md:text-sm">{datum.writer}</p>
                       </div>
-                      <p className="text-[14px] text-faded font-semibold mt-4 md:mb-8 md:text-sm">
+                      <p className="text-[14px] max-w-full text-faded font-semibold mt-4 md:mb-8 md:text-sm">
                         {formatDate(datum.day)}
                       </p>
                     </aside>
-                    {datum.selected && (
-                      <div
-                        onClick={() => handleSelectImage(datum)}
-                        className="absolute inset-0 flex items-center h-full justify-center bg-black bg-opacity-50 text-white font-bold text-xl"
-                      >
-                        Selected
-                      </div>
-                    )}
                   </div>
                 </Link>
               ))}

@@ -33,6 +33,10 @@
   font-weight: 700;
   font-style: normal;
 }
+*{
+  word-wrap: break-word !important;
+}
+
 
 .percentage {
   opacity: 0;

@@ -20,19 +20,16 @@ const Dashboard = () => {
     return (
         <>
         {adminName?
-            <div 
-            
-            className="min-h-screen  p-6 pt-32  md:p-16 md:pt-44">
-            
-            <div className=' justify-between flex-col-reverse   md:flex-row flex '>
-                <img className='relative z-20' src={oldTypewriter} alt="" />
-                <h1 className="text-[20vw] text-center leading-[17vw] -mb-8 font-semibold text-gray-600 md:max-w-[50vw]">Hello {adminName.split(' ')[0]}.</h1>
+            <div className="min-h-screen  p-6 pt-32  md:p-16 md:pt-44">            
+            <div className=' justify-between flex-col-reverse items-center md:flex-row flex'>
+                <img className='relative z-20 md:max-w-[50vw]' src={oldTypewriter} alt="" />
+                <h1 className="text-[20vw] md:text-[10vw] text-center leading-[17vw] md:leading-[7vw] -mb-8 font-semibold text-gray-600 md:max-w-[50vw]">Hello {adminName.split(' ')[0]}.</h1>
             </div>
             <div 
             style={{backgroundImage:`url(${paperBg})`}}
-            className=" mb-64 mt-14 shadow-md rounded-lg p-6 md:p-16">
+            className="mb-64 mt-14 shadow-md rounded-lg p-6 md:p-16">
                 <div className="flex justify-between items-center mb-6">
-                    <button onClick={adminLogout} className="flex items-center gap-2 p-2  text-red-500 shadow-md rounded-full hover:text-white hover:bg-red-600">
+                    <button onClick={adminLogout} className="flex items-center gap-2 p-2  text-red-500 shadow-md rounded-full hover: hover:bg-red-600">
                         <RiLogoutCircleFill className="text-xl" />
                         <span>Logout</span>
                     </button>
@@ -41,33 +38,43 @@ const Dashboard = () => {
                         {/* <p className='text-gray-500 text-right font-semibold text-sm'>Write something &mdash; nice!</p> */}
                     </div>
                 </div>
-                <div className="flex mt-16 flex-col gap-6  flex-wrap  items-center justify-center md:flex-row  [&>*]:h-64 [&>*]:w-full md:[&>*]:w-64">
-                    <Link to="/users" className="w-full md:w-64">
-                        <button className="flex flex-col items-center justify-center md:w-full md:h-full w-[70vw] h-[70vw] p-4 bg-[#007ea7] text-white shadow-xl rounded-full">
+                <div className="text-gray-700 flex mt-16 flex-col gap-6  flex-wrap  items-center justify-center md:flex-row [&>*]:w-full md:[&>*]:w-64">
+                    <Link to="/users" className="w-full flex justify-center md:w-64">
+                        <button 
+                        
+                        className="flex flex-col items-center justify-center shadow-md text-white   md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 bg-[#007ea7]   rounded-full">
                             <FiUsers className="text-4xl mb-2" />
                             <span>View All Users</span>
                         </button>
                     </Link>
-                    <Link to="/add-article" className="w-full md:w-64">
-                        <button className="flex flex-col items-center justify-center md:w-full md:h-full w-[70vw] h-[70vw] p-4 bg-[#586288] text-white shadow-xl rounded-full ">
+                    <Link to="/add-article" className="w-full md:w-64 flex justify-center">
+                        <button
+                        
+                        className="flex flex-col items-center justify-center shadow-md text-white   md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 bg-[#586288]   rounded-full ">
                             <TfiWrite className="text-4xl mb-2" />
                             <span>Create Article</span>
                         </button>
                     </Link>
-                    <Link to="/add-message" className="w-full md:w-64">
-                        <button className="flex flex-col items-center justify-center md:w-full md:h-full w-[70vw] h-[70vw] p-4 bg-[#92b1b6] text-white shadow-xl rounded-full ">
+                    <Link to="/add-message" className="w-full md:w-64 flex justify-center">
+                        <button
+                        
+                        className="flex flex-col items-center justify-center shadow-md text-white   md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 bg-[#92b1b6]   rounded-full ">
                             <MdOutlineLightbulb className="text-4xl mb-2" />
                             <span>Create Message</span>
                         </button>
                     </Link>
-                    <Link to="/payments" className="w-full md:w-64">
-                        <button className="flex flex-col items-center justify-center md:w-full md:h-full w-[70vw] h-[70vw] p-4 bg-[#990f02] text-white shadow-xl rounded-full ">
+                    <Link to="/payments" className="w-full md:w-64 flex justify-center">
+                        <button 
+                        
+                        className="flex flex-col items-center justify-center shadow-md text-white   md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 bg-[#990f02]   rounded-full ">
                             <FaMoneyCheck className="text-4xl mb-2" />
                             <span>Get All Payments</span>
                         </button>
                     </Link>
-                    <Link to="/payments" className="w-full md:w-64">
-                        <button className="flex flex-col items-center justify-center md:w-full md:h-full w-[70vw] h-[70vw] p-4 bg-[#7a4988] text-white shadow-xl rounded-full">
+                    <Link to="/payments" className="w-full md:w-64 flex justify-center">
+                        <button 
+                        
+                        className="flex flex-col items-center justify-center shadow-md text-white   md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 bg-[#7a4988]   rounded-full">
                             <RiLogoutCircleFill className="text-4xl mb-2" />
                             <span>Go back home</span>
                         </button>

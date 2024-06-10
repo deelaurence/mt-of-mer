@@ -132,9 +132,9 @@ useEffect(()=>{
               {
                 state.navbarData.map((data,index)=>{
                   return(
-                    <div key={index} className='relative'>  
-                      <p className={true ? 'text-sm font-[400] text-lightShade '
-                      :' text-sm font-[400] text-opaque'} ><Link to={data.link}>{data.label}.</Link></p>
+                    // <p className={`${data.subMenu?'hidden':'text-red-200'}`}>hi</p>
+                    <div key={index} className={`${data.subMenu?'hidden':'text-sm font-[400] text-lightShade'}`}>  
+                      <p ><Link to={data.link}>{data.label}.</Link></p>
                     </div>
                   )
                 })

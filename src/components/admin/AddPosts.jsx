@@ -20,10 +20,10 @@ const PostFormComponent = ({ formType }) => {
     const [isLoading, setIsLoading]=useState(false)
     const [buttonMessage,setButtonMessage]=useState(`Submit ${formType.charAt(0).toUpperCase() + formType.slice(1)}`)
     const [formData, setFormData] = useState({
-        title: 'abc',
-        writerOrMinister: 'abc',
-        headingOne: 'abc',
-        paragraphOne: 'abcs',
+        title: '',
+        writerOrMinister: '',
+        headingOne: '',
+        paragraphOne: '',
         quoteOne: '',
         headingTwo: '',
         paragraphTwo: '',
@@ -102,7 +102,19 @@ const PostFormComponent = ({ formType }) => {
             }
             const endpoint = formType === 'article' ? `${baseUrl}/article` : `${baseUrl}/message`;
             const unsplashPictures = formType === 'article' ? state.unsplashArticleImages : state.unsplashMessageImages;
-
+            let noPictures;
+            console.log(unsplashPictures)
+            console.log(uploadPictures)
+            if(!unsplashPictures[0]&&!uploadPictures[0]&&noPictures!==false){
+                noPictures=true
+            } 
+            if(noPictures){
+                alert("Are you sure you want to submit without pictures?")
+                noPictures=false
+                setButtonMessage('Try and use pictures na!')
+                setIsLoading(false)
+                return
+            }
             const response = await axios.post(
                 endpoint,
                 {
