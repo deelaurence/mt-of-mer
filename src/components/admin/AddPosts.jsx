@@ -10,6 +10,7 @@ import { IoIosImages } from "react-icons/io";
 import { MdOutlineAddCircle, MdOutlineUploadFile } from "react-icons/md";
 import { convertToBase64, adjustHeight } from '../../utils/snippets';
 import paperBg from '../../assets/paper-bg.jpg'
+import paperBg2 from '../../assets/paper-bg1.jpg'
 
 
 const PostFormComponent = ({ formType }) => {
@@ -147,11 +148,15 @@ const PostFormComponent = ({ formType }) => {
             {/* <img src={tornPaper} alt="" /> */}
             <div
             style={{ backgroundImage: `url(${paperBg})` }}
-            className="mx-auto   p-6 bg-white border shadow-md rounded-lg">
+            className="mx-auto relative  p-6 bg-white border shadow-md rounded-lg">
+                <div
+                className='absolute h-full z-[0] opacity-40 w-full top-0 left-0' 
+                style={{ backgroundImage: `url(${paperBg2})` }}>
+                </div>
                 
-                <h2 className="mb-12 mt-6 text-2xl itaic font-semibold text-gray-600">Add {formType.charAt(0).toUpperCase() + formType.slice(1)}.</h2>
+                <h2 className="relative z-[0] mb-12 mt-6 text-2xl itaic font-semibold text-gray-600">Add {formType.charAt(0).toUpperCase() + formType.slice(1)}.</h2>
                 {popupMsg && <Popup message={popupMsg} setPopupMsg={setPopupMsg} link={`/add-${formType}`} />}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4 relative z-[0]">
                     <div>
                         <label className="block text-gray-700 text-xl font-semibold">Title</label>
                         <input

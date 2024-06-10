@@ -256,12 +256,11 @@ const retainedPopupMsg=sessionStorage.getItem('popupMsg')
             type:"SET_UNAUTHENTICATED_USER_EMAIL",
             payload:email
           })
-          
           handleForgotPassword()
         }} 
           className='w-full  my-4 py-3 '>
           <Link 
-            className="  w-full bg-gray-600 text-gray-200  text-center  text-sm font-semibold py-2  rounded focus:outline-none focus:shadow-outline"
+            className=" px-6 w-full bg-gray-600 text-gray-200  text-center  text-sm font-semibold py-2  rounded focus:outline-none focus:shadow-outline"
             type="submit"
             >
             Forgot your password?
@@ -271,7 +270,7 @@ const retainedPopupMsg=sessionStorage.getItem('popupMsg')
           <div className=''>
           <div className='self-center justify-self-center py-2 my-4 relative text-center'>
               <p className='bg-neutral-200 w-full h-[1px] absolute top-1/2'></p>
-              <p className='z-10 relative text-neutral-400 w-10 mx-auto bg-white'>OR</p>
+              <p className='z-[0] relative text-neutral-400 w-10 mx-auto bg-white'>OR</p>
       </div>
       <button onClick={handleGoogleAuth} className="bg-white self-center shadow-md justify-self-center mx-auto flex border items-center justify-center gap-4 mb-2 text-gray-500 font-semibold py-2 px-4 rounded">
       <FcGoogle /> Log in with Google

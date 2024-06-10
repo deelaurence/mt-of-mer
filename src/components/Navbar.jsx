@@ -112,7 +112,7 @@ useEffect(()=>{
         {/* menu: component */}
 
         <div className={menu ? 'nav-menu fixed z-[99999] left-0 -top-20  bg-darkShade sm:hidden' :
-        'nav-menu fixed left-0 -top-[1000px]  bg-darkShade  sm:hidden'}>
+        'nav-menu fixed left-0 -top-[1000px] z-[99999] bg-darkShade  sm:hidden'}>
           <Menu location={location} menu={menu} hideMenu={hideMenu} />
         </div>
 

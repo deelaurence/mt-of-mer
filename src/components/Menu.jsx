@@ -12,8 +12,8 @@ const Menu = ({ hideMenu, menu}) => {
 
     return (
         <>
-            <p onClick={hideMenu} className='text-lg tracking-[0.5px] text-lightShade dark:bg-darkShade dark:text-lightShade absolute top-32 right-6 ' >close</p>
-            <div onClick={hideMenu} className={`${menu?'nav1-animate':''} nav-animate dark:bg-darkShade dark:text-lightShade flex text-lightShade transition-[2s] justify-center w-screen h-[100vh]  mt-20 px-6   items-start flex-col  text-2xl`}>
+            <p onClick={hideMenu} className='text-lg tracking-[0.5px] text-lightShade absolute top-32 right-6 ' >close</p>
+            <div onClick={hideMenu} className={`${menu?'':''} relative z-[9999999] nav-animate flex text-lightShade transition-[2s] justify-center w-screen h-[100vh]  mt-20 px-6   items-start flex-col  text-2xl`}>
               {
                 // delete logout data from the array
                 state.navbarData.map((data,index)=>{
