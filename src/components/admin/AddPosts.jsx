@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Popup from '../Popup';
+import { Link } from 'react-router-dom';
 import LoadingButtonUniversal from '../LoadingButtonUniversal';
 import baseUrl from '../../data/baseUrl';
 import tornPaper from '../../assets/paper.png'
@@ -11,7 +12,8 @@ import { MdOutlineAddCircle, MdOutlineUploadFile } from "react-icons/md";
 import { convertToBase64, adjustHeight } from '../../utils/snippets';
 import paperBg from '../../assets/paper-bg.jpg'
 import paperBg2 from '../../assets/paper-bg1.jpg'
-
+import { RiLogoutCircleFill } from 'react-icons/ri';
+import BackButton from './BackButton';
 
 const PostFormComponent = ({ formType }) => {
     const { state } = useGlobalState();
@@ -19,6 +21,7 @@ const PostFormComponent = ({ formType }) => {
     const [imagesSource, setImagesSource] = useState('');
     const [selectedImagesInfo, setSelectedImagesInfo] = useState([]);
     const [isLoading, setIsLoading]=useState(false)
+    const [pictureAvailable,setPictureAvailable]=useState(false)
     const [buttonMessage,setButtonMessage]=useState(`Submit ${formType.charAt(0).toUpperCase() + formType.slice(1)}`)
     const [formData, setFormData] = useState({
         title: '',
@@ -103,15 +106,13 @@ const PostFormComponent = ({ formType }) => {
             }
             const endpoint = formType === 'article' ? `${baseUrl}/article` : `${baseUrl}/message`;
             const unsplashPictures = formType === 'article' ? state.unsplashArticleImages : state.unsplashMessageImages;
-            let noPictures;
-            console.log(unsplashPictures)
-            console.log(uploadPictures)
-            if(!unsplashPictures[0]&&!uploadPictures[0]&&noPictures!==false){
-                noPictures=true
+        
+            if(unsplashPictures[0]&&uploadPictures[0]){
+                setPictureAvailable(true)
             } 
-            if(noPictures){
+            if(!pictureAvailable){
                 alert("Are you sure you want to submit without pictures?")
-                noPictures=false
+                setPictureAvailable(true)
                 setButtonMessage('Try and use pictures na!')
                 setIsLoading(false)
                 return
@@ -132,7 +133,7 @@ const PostFormComponent = ({ formType }) => {
                 }
             );
 
-                        
+            setPictureAvailable(false)            
             setButtonMessage('Bravo!, awaiting review')
             setIsLoading(false)
         } catch (error) {
@@ -146,11 +147,12 @@ const PostFormComponent = ({ formType }) => {
     return (
         <div className="px-6 md:px-16 pt-44 pb-12">
             {/* <img src={tornPaper} alt="" /> */}
+            <BackButton/>
             <div
             style={{ backgroundImage: `url(${paperBg})` }}
-            className="mx-auto relative  p-6 bg-white border shadow-md rounded-lg">
+            className="mx-auto relative mt-8 p-6 bg-white border shadow-md rounded-lg">
                 <div
-                className='absolute h-full z-[0] opacity-40 w-full top-0 left-0' 
+                className='absolute h-full z-[0] opacity-60 w-full top-0 left-0' 
                 style={{ backgroundImage: `url(${paperBg2})` }}>
                 </div>
                 
@@ -165,7 +167,7 @@ const PostFormComponent = ({ formType }) => {
                             value={formData.title}
                             onChange={handleInputChange}
                             placeholder={`Enter the ${formType} title`}
-                            className="w-full p-2 bg-[#FAFAFA20] border-gray-300 text-gray-700 rounded-md"
+                            className="w-full p-2 bg-[#FAFAFA20] border-gray-300 font-medium text-gray-700 rounded-md"
                             required
                         />
                     </div>
@@ -177,7 +179,7 @@ const PostFormComponent = ({ formType }) => {
                             value={formData.writerOrMinister}
                             onChange={handleInputChange}
                             placeholder={`Enter the name of the ${formType === 'article' ? 'author' : 'minister'}`}
-                            className="w-full p-2 bg-[#FAFAFA20] border-gray-300 text-gray-700 rounded-md"
+                            className="w-full p-2 bg-[#FAFAFA20] border-gray-300 font-medium text-gray-700 rounded-md"
                             required
                         />
                     </div>
@@ -190,7 +192,7 @@ const PostFormComponent = ({ formType }) => {
                                 value={formData[`heading${field}`]}
                                 onChange={handleInputChange}
                                 placeholder={`Enter heading ${field}`}
-                                className="w-full p-2 bg-[#FAFAFA20] border-gray-300 text-gray-700 rounded-md"
+                                className="w-full p-2 bg-[#FAFAFA20] border-gray-300 font-medium text-gray-700 rounded-md"
                             />
                             <label className="block text-xs mt-2 mb-1 font-semibold text-gray-500">{`Paragraph ${field}`}</label>
                             <textarea
@@ -198,7 +200,7 @@ const PostFormComponent = ({ formType }) => {
                                 value={formData[`paragraph${field}`]}
                                 onChange={handleInputChange}
                                 placeholder={`Enter paragraph ${field}`}
-                                className="w-full p-2 border text-sm text-gray-600 italic border-gray-300 rounded-md"
+                                className="w-full p-2 border text-sm text-gray-600 italic font-medium border-gray-300 rounded-md"
                                 rows="1"
                                 ref={el => (textAreaRefs.current[`paragraph${field}`] = el)}
                                 required={index === 0}
@@ -209,7 +211,7 @@ const PostFormComponent = ({ formType }) => {
                                 value={formData[`quote${field}`]}
                                 onChange={handleInputChange}
                                 placeholder={`Enter quote ${field}`}
-                                className="w-full p-2 border text-sm text-gray-600 italic border-gray-300 rounded-md"
+                                className="w-full p-2 border text-sm text-gray-600 italic font-medium border-gray-300 rounded-md"
                                 rows="1"
                                 ref={el => (textAreaRefs.current[`quote${field}`] = el)}
                             ></textarea>
@@ -224,7 +226,7 @@ const PostFormComponent = ({ formType }) => {
                                 value={formData[`point${field}`]}
                                 onChange={handleInputChange}
                                 placeholder={`Enter point ${i + 1}`}
-                                className="w-full bg-transparent p-2 border border-gray-300 rounded-md"
+                                className="w-full bg-transparent p-2 border  border-gray-300 rounded-md"
                             />
                         </div>
                     ))}

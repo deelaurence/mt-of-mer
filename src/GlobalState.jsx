@@ -19,9 +19,9 @@ const initialState = {
     navbarData: [
         { label: 'Home', link: "/" },
         { label: 'Giving', link: '/give' },
-        { label: 'Gallery', link: '/playground' },
-        { label: 'Pictures,events,concerts',subMenu:true, link: '/playground' },
-        { label: 'Have a submission? Contact media',subMenu:true, link: '/playground' },
+        { label: 'Us', link: '/us' },
+        { label: 'Church Leadership',subMenu:true, link: '/leadership' },
+        { label: 'Contact us/Send us a mail',subMenu:true, link: '/us' },
         { label: 'Articles', link: '/articles' },
         { label: 'Messages', link: '/messages' },
         { label: 'Admin', link: '/dashboard' },

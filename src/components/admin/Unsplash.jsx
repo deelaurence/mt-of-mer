@@ -12,7 +12,7 @@ const UnsplashComponent = ({editing}) => {
   
   //fetch images from unsplash
   const fetchImages = async (searchQuery = 'preacher') => {
-    console.log(searchQuery,editing)
+    
     try {
       const response = await axios.get('https://api.unsplash.com/search/photos', {
         params: {
@@ -34,7 +34,7 @@ const UnsplashComponent = ({editing}) => {
 
 //Set images urls into global state  
 const setImageForApi = () =>{
-  console.log(editing)
+  
     setStillChoosing(false)
     if(editing=='article'){
         dispatch({type:'SET_UNSPLASH_ARTICLES_IMAGES',payload:selectedImages})
@@ -42,14 +42,14 @@ const setImageForApi = () =>{
     if(editing=='message'){
         dispatch({type:'SET_UNSPLASH_MESSAGE_IMAGES',payload:selectedImages})
     }
-    console.log(state)
+ 
 }
   
 
 const handleSelectImage = (image)=>{
     setStillChoosing(true)
     const imageUrl = image.urls.regular
-    console.log(selectedImages)
+    
     
     //Unselect clicked image if it was already selected 
     if(selectedImages.includes(imageUrl)){
@@ -76,22 +76,22 @@ const handleSelectImage = (image)=>{
 return (
  <>
     {images[0]&&<div className="mt-16">
-      <h1 className="mt-6 text-2xl font-normal text-gray-600 mb-2">Search for images that matches your writeup</h1>
-      <p className='pb-4   text-gray-500'>You can only select up to 2 images</p>
+      <h1 className="mt-6 relative z-[0] text-2xl font-normal text-gray-600 mb-2">Search for images that matches your writeup</h1>
+      <p className='pb-4   text-gray-500 relative z-[0]'>You can only select up to 2 images</p>
         {selectedImages[0]&&<p 
         onClick={setImageForApi}
-        className='sticky  mb-4 flex-col text-white text-sm font-semibold top-32 z-10 left-0  flex justify-center items-center h-10 w-24 cursor-pointer bg-green-700'> 
+        className='sticky px-2 mb-4 flex-col text-white text-sm font-semibold top-32 z-[1] left-0  flex justify-center items-center h-10  cursor-pointer bg-green-700'> 
         {stillChoosing?<span>Use {selectedImages.length} {selectedImages.length>1?'images':'image'}</span>:    
         <span className='flex items-center gap-2'>Selected <GiCheckMark/></span>}
         </p>
         }
-      <form onSubmit={handleSearch} className="mb-4">
+      <form onSubmit={handleSearch} className="mb-4 relative z-[0]">
         <input
           type="text"
           placeholder="Search for images..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="px-4 py-2 border rounded-md mr-2"
+          className="px-4 py-6 border rounded-md mr-2"
         />
         <button type="submit" className="px-4 my-4 py-2 bg-darkShade text-lightShade rounded  transition duration-300">
           Search
@@ -100,7 +100,7 @@ return (
       </form>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {images.map((image) => (
-          <div key={image.id} className="relative ">
+          <div key={image.id} className="relative z-[0]">
         
             <img
               src={image.urls.small}

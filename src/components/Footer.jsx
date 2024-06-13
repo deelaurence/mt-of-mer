@@ -2,9 +2,11 @@ import { useLocation } from 'react-router-dom'
 import React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
+import { Link } from 'react-router-dom'
 import Articles from './Articles'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Logo from './Logo'
+import { footerLinks } from '../data/footer'
 const Footer = ({ locationProps }) => {
   gsap.registerPlugin(ScrollTrigger)
   const footerLineRef = useRef(null)
@@ -40,12 +42,21 @@ const Footer = ({ locationProps }) => {
             <p className='text-opaque mt-12 md:mt-24 mb-3'>
               MT. OF MERCY
             </p>
+            
             <div className='flex flex-col '>
+            {footerLinks.map((_link,index)=>{
+              return(                
+                  <Link to={_link.link} key={index} className='font-medium' >{_link.label}</Link>
+              )
 
-            <a className='font-medium' href="mailto:">Us</a>
-            <a className='font-medium' href="mailto:">Church Leadership</a>
-            <a className='font-medium' href="mailto:">Give</a>
-            <a className='font-medium' href="mailto:">Prayer Requests</a>
+            })
+
+
+            }
+
+            {/* <Link to='/leadership' className='font-medium'>Church Leadership</Link>
+            <Link to='/' className='font-medium' >Give</Link>
+            <Link className='font-medium'>Prayer Requests</Link> */}
             </div>
           </div>
           <div ref={connectRef}>
@@ -53,10 +64,9 @@ const Footer = ({ locationProps }) => {
               LOCATIONS.
             </p>
             <div className='flex flex-col'>
-
-            <a className='font-medium' href="mailto:">Ilula Quaters</a>
-            <a className='font-medium' href="mailto:">Oda Town</a>
-            <a className='font-medium' href="mailto:">Ijare</a>
+            <a className='font-medium' href="mailto:uaccmountofmercy@gmail.com">Ilula Quaters</a>
+            <a className='font-medium' href="mailto:uaccmountofmercy@gmail.com">Oda Town</a>
+            <a className='font-medium' href="mailto:uaccmountofmercy@gmail.com">Ijare</a>
             </div>
           </div>
       
@@ -74,10 +84,7 @@ const Footer = ({ locationProps }) => {
             <div className='flex flex-col items-center text-sm '>
 
             <p className='font-medium' >&copy; 2023 &mdash; UACC, Mountain Of Mercy</p>
-            <p className='font-medium' >Privacy Policy</p>
-            <p className='font-medium' >Terms and Condition</p>
-            <a className='font-medium' >Facebook</a>
-            <a className='font-medium' >Send us a mail</a>
+         
             </div>
           </div>
     </footer>

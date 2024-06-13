@@ -30,21 +30,17 @@ const handleGoogleAuth= async ()=>{
       }}
   const response = await fetch(`${baseUrl}/login/federated/google`);
   const data = await response.json();
-  console.log('Post request successful:', data);
   if(response.status>201){
     setPopupMsg(data.message)
     setIsLoading(false)
   }
   if(response.status<202){
-    console.log("redirecting")
     setIsLoading(false)
-    console.log(data)
     window.location.replace(data.message)
   }
 } catch (error) {
   console.error('Error making post request:', error);
 }
-    console.log('Login form submitted');
 }
 
 
@@ -80,7 +76,6 @@ if(token){
 const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log(keepLoggedIn)
     setIsLoading(true)
 
 
@@ -105,7 +100,7 @@ const handleSubmit = async (e) => {
     if(data.message=='Your password is incorrect'){
       dispatch({type:'SET_UNAUTHENTICATED_USER_EMAIL',payload:email})
     }
-    console.log(state)
+    
     setIsLoading(false)
   }
   if(response.status<202 ){
@@ -133,7 +128,6 @@ const handleSubmit = async (e) => {
   // Handle error as needed
 }
     // Perform Login logic here
-    console.log('Login form submitted');
   };
 
 
@@ -171,7 +165,6 @@ const handleSubmit = async (e) => {
   // Handle error as needed
 }
     // Perform Login logic here
-    console.log('Login form submitted');
 };
 
 

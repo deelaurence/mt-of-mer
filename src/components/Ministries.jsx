@@ -25,8 +25,8 @@ const refs= useRef([])
         {data.map((datum, index) => {
           return (    
             <Link className={datum.style} key={index} to={datum.link}>
-            {datum&&<div ref={(element) => refs.current[index] = element} className='w-full min-h-[150px] -mt-2 bg-neutral-700  sm:w-auto'>
-                <img ref={(element) => refs3.current[index] = element} className='h-full w-full  sm:w-auto object-cover' src={datum.image} alt="" />
+            {datum&&<div ref={(element) => refs.current[index] = element} className='w-full  sm:max-h-auto min-h-[150px] -mt-2 bg-neutral-700  sm:w-auto'>
+                <img ref={(element) => refs3.current[index] = element} className='h-full w-full  sm:max-h-auto sm:w-auto object-cover' src={datum.image} alt="" />
              </div>
               }
              <div className='p-6 [&>*]:my-4'>

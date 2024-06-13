@@ -47,7 +47,6 @@ const SinglePost = ({postType}) => {
 
 
             const jsonData = globalPostsArray.find(element => element._id === id);
-            console.log(jsonData)
             if (!jsonData) return;
             const {paragraphOne,paragraphTwo,paragraphThree}=jsonData
             if(typeof paragraphOne=='string'){
@@ -60,9 +59,17 @@ const SinglePost = ({postType}) => {
                 jsonData.paragraphThree = paragraphThree.split("<br/>");
             } 
             setPostIsArray(true);
+
+
+
+
+
             setImageOne(jsonData.image && jsonData.image[0] ? true : false);
             setImageTwo(jsonData.image && jsonData.image[1] ? true : false);
+            
             setSinglePost(jsonData);
+
+            
         };
 
         fetchData();
@@ -102,8 +109,13 @@ const SinglePost = ({postType}) => {
                             </div>
                             <div className='gap-1 lowercase text-[1.1rem] text-darkShade dark:text-da1hade leading-8 mt-10 flex items-center'>
                                 <p className=''><LuTimer/>  </p>
-                                <p className='font-[600] text-darkShade dark:text-lightShade italic text-[1.1rem]'>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
+                                <p className='font-[400] text-darkShade dark:text-lightShade italic text-[1.1rem]'>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
                             </div>
+                            {imageOne && (
+                                <div className='mt-12 overflow-hidden'>
+                                    <img className='mt-14' src={singlePost.image[0]} alt="" />
+                                </div>
+                            )}
                             <div className='text-[1.5rem] font-[600] mt-16'>
                                 <h3 className='mb-5'>
                                     {singlePost.headingOne && capitalizeFirst(singlePost.headingOne)}
@@ -121,11 +133,7 @@ const SinglePost = ({postType}) => {
                                     </article>
                                 </div>
                             )}
-                            {imageOne && (
-                                <div className='mt-12 overflow-hidden'>
-                                    <img className='mt-14' src={singlePost.image[0]} alt="" />
-                                </div>
-                            )}
+                            
                             {singlePost.paragraphTwo && (
                                 <div className='text-[1.5rem] font-[600] mt-[88px]'>
                                     <h3 className='mb-5'>

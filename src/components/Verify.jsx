@@ -4,7 +4,6 @@ import emailIcon from '../assets/mail-icon.png';
 import { useGlobalState } from '../GlobalState';
 const GoAndVerify = () => {
   const {state}=useGlobalState()
-  console.log(state)
   const email = state.unauthenticatedUserEmail
   return (
     <div className="py-44 flex flex-col items-center justify-center bg-lightShade ">

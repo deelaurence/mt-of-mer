@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger)
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import landingData from '../data/posts';
-//console.log(landingData)
 import { useLocation } from 'react-router-dom'
 import Next from "../assets/next.png"
 import RoundButton from './RoundButton';
@@ -65,7 +64,7 @@ const Messages = () => {
                 <img
                   className='h-[70%]  w-full  object-cover '
                   ref={(element) => refs.current[index] = element}
-                  src={datum.image[0]||"https://images.unsplash.com/photo-1553729784-e91953dec042?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJpYmxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"}
+                  src={datum.image[0]}
                   alt={datum.name} />
                 <aside ref={(element) => refs2.current[index] = element} className=' flex flex-col mt-3'>
                 </aside>

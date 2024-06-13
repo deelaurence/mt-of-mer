@@ -34,25 +34,6 @@ useEffect(()=>{
 
 
 
-// hide and show menu and navbar on scroll
-  useEffect(() => {
-   
-   
-    const handleScroll = () => {
-    //   const currentScrollPos = window.scrollY;
-    //   if (currentScrollPos > prevScrollPos) {
-    //     setScrollDirection('down');
-    //   } else {
-    //     setScrollDirection('up');
-    //   }
-    //   setPrevScrollPos(currentScrollPos);
-    // };
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPos,location]);
-
 
 
 
@@ -68,23 +49,14 @@ useEffect(()=>{
   const hideMenu = () => {
     setMenu(false)
     setShowGreeting(true)
-    // setTimeout(() => {
-    //   blendBar.style.mixBlendMode = "difference"
-    // }, 1100);
   }
 
 
   //show menu on mobile
   const showMenu = () => {
     setShowGreeting(false)
-    // setTimeout(() => {
-    //   if(blendBar){
-    //     blendBar.style.mixBlendMode = "normal"
-    //   }
-    // }, 100);
-    // if (blendBar) {
       setMenu(true)
-    // }
+    
   }
 
   return (
@@ -111,8 +83,7 @@ useEffect(()=>{
 
         {/* menu: component */}
 
-        <div className={menu ? 'nav-menu fixed z-[99999] left-0 -top-20  bg-darkShade sm:hidden' :
-        'nav-menu fixed left-0 -top-[1000px] z-[99999] bg-darkShade  sm:hidden'}>
+        <div className={`${menu?'-top-20 forceZindex':'-top-[1000px]'} ? duration-[1s] sm:hidden fixed left-0 bg-darkShade `}>
           <Menu location={location} menu={menu} hideMenu={hideMenu} />
         </div>
 
@@ -122,7 +93,7 @@ useEffect(()=>{
 
         {/* menu: link */}
         <div className="md:hidden flex  gap-1 ">
-          <p onClick={showMenu} className='text-base text-lightShade font-semibold show-menu ' >MENU</p>
+          <p onClick={showMenu} className='text-base text-lightShade font-semibold show-menu ' >menu</p>
         </div>
 
 

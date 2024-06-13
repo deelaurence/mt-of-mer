@@ -138,6 +138,10 @@ li {
   }
 }
 
+.forceZindex{
+  z-index: 9999 !important;
+}
+
 .nav-menu {
   transition: 1.5s;
 }

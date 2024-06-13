@@ -67,8 +67,7 @@ const handleSubmit = async (e) => {
   console.error('Error making post request:', error);
   // Handle error as needed
 }
-    // Perform UpdatePassword logic here
-    console.log('UpdatePassword form submitted');
+   
   };
 
 

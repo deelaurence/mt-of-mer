@@ -24,9 +24,9 @@ const passwordDom=document.getElementById("password")
     try {
       const { tokenId } = response;
       // Send the tokenId to your server for verification
-      console.log(response)
+      
       const res = await axios.post('/auth/google', { tokenId });
-      console.log(res.data);
+      
       // Handle the response from the server
     } catch (error) {
       console.error(error);
@@ -43,13 +43,11 @@ const passwordDom=document.getElementById("password")
       }}
   const response = await fetch(`${baseUrl}/login/federated/google`);
   const data = await response.json();
-  console.log('Post request successful:', data);
   if(response.status>201){
     setPopupMsg(data.message)
     setIsLoading(false)
   }
   if(response.status<202){
-    console.log("redirecting")
     setIsLoading(false)
     // setIsLoggedIn(true)
     window.location.replace(data.message)
@@ -60,7 +58,7 @@ const passwordDom=document.getElementById("password")
   // Handle error as needed
 }
     // Perform Login logic here
-    console.log('Login form submitted');
+
   
 
   }
@@ -71,15 +69,13 @@ const passwordDom=document.getElementById("password")
 const handleSubmit =async (e) => {
   e.preventDefault();
     dispatch({type:'SET_UNAUTHENTICATED_USER_EMAIL',payload:email})
-    console.log(password!==confirmPassword)
+    
     if(!validatePassword){
       setPasswordPrompt("Password is too short")
-      console.log("incorrect")
       return 
     }
     if(password!==confirmPassword){
       setPasswordPrompt("Passwords does not match")
-      console.log("incorrect")
       return 
     }
     
@@ -101,7 +97,6 @@ const handleSubmit =async (e) => {
      try {
   const response = await fetch(`${baseUrl}/auth/register`, requestOptions);
   const data = await response.json();
-  console.log('Post request successful:', data);
   if(response.status>201){
    
     setIsLoading(false)
@@ -109,7 +104,6 @@ const handleSubmit =async (e) => {
     
   }
   if(response.status==201){
-    console.log("redirecting")
     return navigate("/goverify")
   }
   // Handle response data as needed
@@ -118,7 +112,6 @@ const handleSubmit =async (e) => {
   // Handle error as needed
 }
     // Perform Registration logic here
-    console.log('Registration form submitted');
   };
 
 return (

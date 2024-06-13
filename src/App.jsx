@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { useGlobalState } from './GlobalState';
-
+import UserList from './components/admin/AllUsers';
+import PaymentList from './components/admin/AllPayments';
 // Import components
 import AdminLoginComponent from './components/admin/AdminLogin';
 import LANDING from './components/LANDING';
@@ -30,6 +31,12 @@ import TeensMinistry from './components/TeensMinistry';
 import Dashboard from './components/admin/Dashboard';
 import ForgotPassword from './components/ForgotPassword';
 import UpdatePasswordComponent from './components/UpdatePassword';
+import PrayerMinistry from './components/PrayerMinistry';
+import DoorHolders from './components/DoorHolders';
+import AboutUs from './components/Us';
+import ChurchLeadership from './components/Leadership';
+import { randomImgUrls } from './data/randomUnsplash';
+import CreatePaymentTag from './components/admin/PaymentTag';
 
 function App() {
   const { state,loginGlobally,dispatch } = useGlobalState();
@@ -37,16 +44,10 @@ function App() {
  
   useEffect(() => {
       if (sessionStorage.getItem('token')) {
-        console.log("User is logged in");
         loginGlobally()
       } 
       else if(localStorage.getItem('token')){
-        console.log("User permanently logged in");
         loginGlobally()
-      }
-      else {
-        console.log("User is logged out")
-        dispatch({ type: 'SET_IS_LOGGED_IN', payload: false });
       }
   }, [dispatch]);
 
@@ -68,6 +69,17 @@ function App() {
       const articlesData = await response2.json();
       
 
+      const replaceEmptyImages = (list)=>{
+        list.map((element)=>{
+          if(!element.image[0]){
+            element.image.push(randomImgUrls())
+          }
+        })
+      }
+
+      replaceEmptyImages(messagesData)
+      replaceEmptyImages(articlesData)
+      
       //set first 30 to localstorage
       //Check if data fetched is an array which signifies being successfull
       if(Array.isArray(messagesData)){
@@ -91,10 +103,14 @@ function App() {
             <Route path="/" element={<LANDING />} />
             <Route path="/messages" element={<PostAll postType='message' />} />
            
+            <Route path="/payment-tag" element={<CreatePaymentTag />} />
+          
             <Route path="/add-article" element={<PostFormComponent formType='article' />} />
             <Route path="/add-message" element={<PostFormComponent formType='message' />} />
             <Route path="/admin-login" element={<AdminLoginComponent isIOS={state.isIOS} />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<UserList/>} />
+            <Route path="/payments" element={<PaymentList/>} />
             <Route path="/login" element={<LoginComponent baseUrl={baseUrl} />} />
             <Route path="/forgot-password" element={<GoAndVerify email={state.unauthenticatedUserEmail} />} />
             <Route path="/verified" element={<EmailVerifiedPage />} />
@@ -109,7 +125,11 @@ function App() {
             <Route path="/articles/:id" element={<SinglePost postType='article' />} />
             
             <Route path="/kids" element={<KidsMinistry />} />
+            <Route path="/prayer" element={<PrayerMinistry />} />
+            <Route path="/us" element={<AboutUs />} />
+            <Route path="/leadership" element={<ChurchLeadership />} />
             <Route path="/teens" element={<TeensMinistry />} />
+            <Route path="/door-holders" element={<DoorHolders />} />
           </Routes>
           <Footer />
         </div>

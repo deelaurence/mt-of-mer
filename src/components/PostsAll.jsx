@@ -67,8 +67,7 @@ const PostAll = ({ postType }) => {
                       <img
                         className="h-full w-full object-cover"
                         src={
-                          datum.image[0] ||
-                          randomImgUrls()
+                          datum.image[0]
                         }
                         alt={datum.name}
                       />

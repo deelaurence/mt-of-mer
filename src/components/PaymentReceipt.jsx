@@ -7,7 +7,6 @@ const PaymentReceipt = () => {
     const name = params.get('name');
     const description = params.get('description');
     const reference = params.get('reference');
-    console.log(amount)
     const currentDate = new Date();
 
 const options = {

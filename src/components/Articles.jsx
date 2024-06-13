@@ -11,7 +11,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-//console.log(landingData)
 import { useLocation } from 'react-router-dom'
 import Next from "../assets/next.png"
 import { useGlobalState } from '../GlobalState';
@@ -71,7 +70,7 @@ const Articles = ({inFooter}) => {
                 <img
                   className='h-[70%]  w-full  object-cover '
                   ref={(element) => refs.current[index] = element}
-                  src={datum.image[0]||randomImgUrls()}
+                  src={datum.image[0]}
                   alt={datum.name} />
                 <aside ref={(element) => refs2.current[index] = element} className='max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-12rem)]  mb-12 flex flex-col mt-3'>
                   <div className='flex justify-between '>

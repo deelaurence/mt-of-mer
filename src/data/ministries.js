@@ -6,7 +6,7 @@ import landingFemmina from '../assets/landing-femmina.webp'
 import landingDexchange from '../assets/landing-dexchange.webp'
 import kiti from '../assets/kiti.webp'
 import teen from '../assets/teen2.webp'
-import prayingLady from '../assets/pray-lady.jpg'
+import prayingLady from '../assets/pray-lady.webp'
 
 let data = [
     {
@@ -22,7 +22,7 @@ let data = [
         image: `${prayingLady}`,
         details: 'We raise our hearts to God',
         year: 'Fridays',
-        link: '/mr',
+        link: '/prayer',
         style: "bg-lightShade flex  text-darkShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
 
     },
@@ -37,11 +37,11 @@ let data = [
     }
     ,
     {
-        name: 'Guild',
-        image: `${landingGuild}`,
-        details: 'A Web3 Community Platform.',
+        name: 'Door Holders',
+        image: `https://images.unsplash.com/photo-1637615739656-ca10c4285c88?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHdvcnNoaXB8ZW58MHx8MHx8fDA%3D`,
+        details: 'Leading people to christ through christ',
         year: '2022',
-        link: '/guild',
+        link: '/door-holders',
         style: "bg-green-200 flex  text-darkShade w-50% md:w-[50%] md:h-[300px] flex-wrap md:[&>*]:w-[50%] justify-center "
     }
 ]

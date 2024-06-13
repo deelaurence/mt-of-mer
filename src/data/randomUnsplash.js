@@ -12,6 +12,5 @@ const urls = [
 export const randomImgUrls = () => {
     const randomIndex = Math.floor(Math.random() * urls.length);
     const randomUrl = urls[randomIndex];
-    console.log(randomUrl);
     return randomUrl;
 };
