@@ -41,19 +41,19 @@ const UserList = () => {
           <BackButton/>  
         <h2 className="mb-6 px-4 py-6 text-6xl  font-semibold text-gray-600">Active Users.</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <ul className="space-y-4">
+        <div className="space-y-4">
           {users.map(user => (
-            <li key={user.id} className="flex items-center p-4  rounded-md ">
+            <div key={user.id} className="flex items-center p-4 border border-b-[rgba(0,0,0,0.1)] rounded-md ">
               <div className={`w-[40px] h-[40px] flex items-center justify-center rounded-full text-white font-bold text-lg ${generateRandomColor()}`}>
                 {user.name.charAt(0).toUpperCase()}
               </div>
-              <div className="ml-4">
+              <div className="ml-4 ">
                 <p className="text-xl font-medium text-gray-700">{user.name}</p>
                 <p className="text-gray-500 text-xs">{user.email}</p>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

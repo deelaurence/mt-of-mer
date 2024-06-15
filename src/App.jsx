@@ -13,6 +13,8 @@ import SinglePost from './components/SinglePost';
 import Paystack from './components/Paystack';
 import PaymentReceipt from './components/PaymentReceipt';
 
+
+
 import Navbar from './components/Navbar';
 import Preloader from './components/Preloader';
 import Footer from './components/Footer';
@@ -103,14 +105,16 @@ function App() {
             <Route path="/" element={<LANDING />} />
             <Route path="/messages" element={<PostAll postType='message' />} />
            
-            <Route path="/payment-tag" element={<CreatePaymentTag />} />
+            <Route path="/payment-tag" element={state.isAdminLoggedIn?<CreatePaymentTag />:<AdminLoginComponent/>} />
           
-            <Route path="/add-article" element={<PostFormComponent formType='article' />} />
-            <Route path="/add-message" element={<PostFormComponent formType='message' />} />
+            <Route path="/add-article" element={state.isAdminLoggedIn?<PostFormComponent formType='article' />:<AdminLoginComponent/>} />
+            <Route path="/add-message" element={state.isAdminLoggedIn?<PostFormComponent formType='message' />:<AdminLoginComponent/>} />
             <Route path="/admin-login" element={<AdminLoginComponent isIOS={state.isIOS} />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<UserList/>} />
-            <Route path="/payments" element={<PaymentList/>} />
+            <Route path="/users" element={state.isAdminLoggedIn?<UserList/> :<AdminLoginComponent/>} />
+            <Route path="/payments" element={state.isAdminLoggedIn?<PaymentList/>:<AdminLoginComponent/>} />
+
+
             <Route path="/login" element={<LoginComponent baseUrl={baseUrl} />} />
             <Route path="/forgot-password" element={<GoAndVerify email={state.unauthenticatedUserEmail} />} />
             <Route path="/verified" element={<EmailVerifiedPage />} />
@@ -123,6 +127,7 @@ function App() {
             <Route path="/receipt" element={<PaymentReceipt />} />
             <Route path="/messages/:id" element={<SinglePost postType='message' />} />
             <Route path="/articles/:id" element={<SinglePost postType='article' />} />
+                                    
             
             <Route path="/kids" element={<KidsMinistry />} />
             <Route path="/prayer" element={<PrayerMinistry />} />

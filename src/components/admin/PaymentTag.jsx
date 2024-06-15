@@ -93,8 +93,8 @@ const CreatePaymentTag = () => {
   };
 
   return (
-    <div className="px-6 bg-darkShade md:px-16 pt-24 pb-24">
-      <div className="mx-auto mt-8 p-8 bg-lightShade border shadow-md rounded-lg">
+    <div className="px-6  md:px-16 pt-24 pb-24">
+      <div className="mx-auto mt-8 p-8 bg-white border shadow-md rounded-lg">
         
         <BackButton/>
         <h2 className="mb-6 text-3xl font-semibold text-gray-600">Create Payment Tag</h2>
@@ -107,7 +107,7 @@ const CreatePaymentTag = () => {
               value={tag}
               onChange={(e) => { setTag(e.target.value); setMessage('Add Tag') }}
               placeholder="Enter tag name"
-              className="w-full outline-none border-none focus:border-none p-2 bg-white rounded-md focus:outline-none "
+              className="w-full outline-none bg-gray-100 border-none focus:border-none p-2 rounded-md focus:outline-none "
               required
             />
           </div>
@@ -117,7 +117,7 @@ const CreatePaymentTag = () => {
               value={description}
               onChange={(e) => { setDescription(e.target.value); setMessage('Add Tag') }}
               placeholder="Enter description"
-              className="w-full focus:border-none p-2 bg-white rounded-md"
+              className="w-full focus:border-none p-2 bg-gray-100 rounded-md"
               rows="4"
               required
             ></textarea>

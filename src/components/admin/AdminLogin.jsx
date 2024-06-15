@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
         onSubmit={handleSubmit}
       >
         {/* {popupMsg&&<Popup message={popupMsg} setPopupMsg={setPopupMsg}  link="/admin-login"/>} */}
-        <div className='bg-gray-700 shadow-sm absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-lightShade'>
+        <div className='bg-darkShade shadow-sm absolute h-24 w-[70%] -mt-2 mb-12 rounded-br-xl text-lightShade'>
             <h3 className='text-3xl font-semibold  my-12 text-center'>Admin Login.</h3>
         </div>
         <div className="mt-28 mb-4">
