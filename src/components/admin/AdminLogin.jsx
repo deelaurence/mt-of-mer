@@ -65,7 +65,21 @@ const handleSubmit = async (e) => {
     sessionStorage.setItem('device', "Android/Windows/linux Device");
     sessionStorage.setItem('admin_name',data.name)  
     sessionStorage.setItem('login_type', "Email");
+    
     dispatch({ type: 'SET_IS_ADMIN_LOGGED_IN', payload: true });
+    
+    if(data.superAdmin){
+      sessionStorage.setItem('super_admin', true);
+      dispatch({ type: 'SET_SUPER_ADMIN', payload: true });
+    }
+
+    if(!data.superAdmin){
+      sessionStorage.setItem('super_admin', false);
+      dispatch({ type: 'SET_SUPER_ADMIN', payload: false });
+    }
+    
+
+
     setIsLoading(false)
     
     //If user is ios

@@ -9,6 +9,8 @@ import { useGlobalState } from '../GlobalState'
 import { FaCross } from 'react-icons/fa'
 import Logo from './Logo'
 
+
+
 const Navbar = () => {
   const location = useLocation()
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -76,8 +78,16 @@ useEffect(()=>{
 
         {/* logged in user greeting */}
         
-        <div className={showGreeting?'flex items-center relative flex-col opacity-100 duration-[6s]':'opacity-0 flex items-center relative flex-col'}>
+        <div 
+        onClick={()=>{
+          if(state.superAdmin){
+            dispatch({ type: 'SET_PUBLISH_MODE', payload: !state.publishMode });
+          }
+          
+        }}
+        className={showGreeting?'flex items-center relative flex-col opacity-100 duration-[6s]':'opacity-0 flex items-center relative flex-col'}>
           <p className='text-lightShade text-sm font-semibold  relative opacity-90 duration-[1s] -z-10'>Hi &mdash; {greetName ?? (state.isAdminLoggedIn ? 'Admin' : 'Guest')}</p>
+          {state.publishMode&&<p className='text-green-300 text-xs'>publish_mode</p>}
           <HandDrawnUnderline />
         </div>
 

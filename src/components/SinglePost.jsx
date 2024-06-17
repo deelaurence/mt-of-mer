@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import {LuTimer} from 'react-icons/lu'
+import {LuShare, LuShare2, LuTimer} from 'react-icons/lu'
+import axios from 'axios';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import { FaWhatsapp, FaFacebookF } from 'react-icons/fa';
 import { RiShareForwardLine } from 'react-icons/ri';
@@ -13,6 +14,7 @@ import next from '../assets/next.png';
 import baseUrl from '../data/baseUrl';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import LoadingButtonUniversal from './LoadingButtonUniversal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,11 +25,14 @@ const SinglePost = ({postType}) => {
     const parentRef = useRef(null);
     const findingsRef = useRef(null);
 
+
     const [singlePost, setSinglePost] = useState({});
     const [imageOne, setImageOne] = useState(false);
     const [imageTwo, setImageTwo] = useState(false);
     const [socialIcon, setSocialIcon] = useState(false);
     const [PostIsArray, setPostIsArray] = useState(false);
+    const [publishMessage, setPublishMessage]=useState("Publish")
+    const [loading,setLoading]=useState(false)
     const [popupImg, setPopupImg] = useState('');
     const [pop, setPop] = useState(false);
     const [landscape, setLandscape] = useState(false);
@@ -182,14 +187,27 @@ const SinglePost = ({postType}) => {
                         </section>
                         <div ref={ref} className='flex justify-between items-center mt-20 mb-32'>
                             <div className='flex justify-center items-center gap-3'>
+                                <p className='flex items-center justify-center gap-2 opacity-80 underline'> <LuShare/> Share   </p>
                                 <FacebookShareButton className='border border-faded p-4 rounded-full' url={facebookLink}><FaFacebookF /></FacebookShareButton>
                                 <WhatsappShareButton className='border border-faded p-4 rounded-full' url={whatsappLink}><FaWhatsapp /></WhatsappShareButton>
-                                <RiShareForwardLine className='border border-faded p-4 rounded-full' />
                             </div>
                             <div className='opacity-50'>
                                 <img className='w-[40px] animate-next hover:rotate-180' src={next} alt="" />
                             </div>
                         </div>
+                        {state.publishMode&&!singlePost.publish&&
+                        <div 
+                        onClick={async()=>{
+                            setLoading(true)
+                            const response = await axios.put(`${state.baseUrl}/admin/publish/${singlePost._id}`);
+                            setLoading(false)
+                            setPublishMessage(response.data.message);              
+                        }}
+                        className='my-8 flex items-center justify-center p-2 text-center bg-darkShade text-lightShade'>
+                            <LoadingButtonUniversal
+                            text={publishMessage} 
+                            loading={loading}/>    
+                        </div>}
                     </main>
                 </div>
             )}         

@@ -435,11 +435,11 @@ const PostFormComponent = ({ formType }) => {
                 </div>
                 }
                 {isLoading_edit&& 
-                    <p className='flex items-center relative my-6 py-2 justify-center bg-orange-400'>
+                    <div className='flex items-center relative my-6 py-2 justify-center bg-orange-400'>
                         <LoadingButtonUniversal
                         text={`Fetching posts`} 
                         loading={true}/>
-                    </p>
+                    </div>
                 }
         
 

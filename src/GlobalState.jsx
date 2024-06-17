@@ -8,6 +8,8 @@ const initialState = {
     isLoggedIn: false,
     clientData:{},
     isAdminLoggedIn:false,
+    publishMode:false,
+    superAdmin:sessionStorage.getItem('super_admin'),
     baseUrl,
     allMessages: [],
     allArticles: [],
@@ -33,6 +35,10 @@ const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_IS_LOGGED_IN':
             return { ...state, isLoggedIn: action.payload };
+        case 'SET_PUBLISH_MODE':
+            return { ...state, publishMode: action.payload };
+        case 'SET_SUPER_ADMIN':
+            return { ...state, superAdmin: action.payload };        
         case 'SET_UNAUTHENTICATED_USER_EMAIL':
             return { ...state, unauthenticatedUserEmail: action.payload };
         case 'SET_IS_ADMIN_LOGGED_IN':

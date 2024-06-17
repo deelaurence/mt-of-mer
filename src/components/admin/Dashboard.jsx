@@ -13,8 +13,7 @@ import AdminLoginComponent from './AdminLogin';
 
 const Dashboard = () => {
   const adminName = sessionStorage.getItem('admin_name');
-  const { adminLogout } = useGlobalState();
-
+  const { adminLogout,state } = useGlobalState();
   const buttonData = [
     { to: '/users', icon: FiUsers, text: 'View All Users', color: '#007ea7' },
     { to: '/add-article', icon: TfiWrite, text: 'Create Article', color: '#586288' },

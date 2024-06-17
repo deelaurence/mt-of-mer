@@ -56,8 +56,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       //set from local if available storage while awaiting backend
-      const tempArticlesData= JSON.parse(localStorage.getItem('articlesData'))
-      const tempMessagesData= JSON.parse(localStorage.getItem('messagesData'))
+      const tempArticlesData = JSON.parse(localStorage.getItem('articlesData'))
+      const tempMessagesData = JSON.parse(localStorage.getItem('messagesData'))
+      
+      //set to state if list is a valid array
       if(Array.isArray(tempMessagesData)){
         dispatch({ type: 'SET_ALL_MESSAGES', payload: tempMessagesData });
       }
@@ -65,12 +67,22 @@ function App() {
         dispatch({ type: 'SET_ALL_ARTICLES', payload: tempArticlesData });
       }
       
-      const response = await fetch(`${baseUrl}/messages/all`);
-      const messagesData = await response.json();
-      const response2 = await fetch(`${baseUrl}/articles/all`);
-      const articlesData = await response2.json();
-      
 
+      //Make API request
+      const response = await fetch(`${baseUrl}/messages/all`);
+      let messagesData = await response.json();
+      const response2 = await fetch(`${baseUrl}/articles/all`);
+      let articlesData = await response2.json();
+      
+      
+      messagesData=messagesData.filter((post)=>{
+        return post.publish!==state.publishMode; 
+      })
+      articlesData=articlesData.filter((post)=>{
+        return post.publish!==state.publishMode; 
+      })
+      
+      //Insert a random image into posts without images
       const replaceEmptyImages = (list)=>{
         list.map((element)=>{
           if(!element.image[0]){
@@ -79,22 +91,23 @@ function App() {
         })
       }
 
+
       replaceEmptyImages(messagesData)
       replaceEmptyImages(articlesData)
       
       //set first 30 to localstorage
       //Check if data fetched is an array which signifies being successfull
       if(Array.isArray(messagesData)){
-        localStorage.setItem('messagesData',JSON.stringify(messagesData.slice(0,29)))
+        localStorage.setItem('messagesData',JSON.stringify(messagesData.slice(0,30)))
         dispatch({ type: 'SET_ALL_MESSAGES', payload: messagesData });
       }
       if(Array.isArray(articlesData)){
-        localStorage.setItem('articlesData', JSON.stringify(articlesData.slice(0,29)))
+        localStorage.setItem('articlesData', JSON.stringify(articlesData.slice(0,30)))
         dispatch({ type: 'SET_ALL_ARTICLES', payload: articlesData });
       }
     };
     fetchData();
-  }, [dispatch]);
+  }, [dispatch,state.publishMode]);
 
   return (
     <Router>
