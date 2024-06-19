@@ -15,6 +15,7 @@ import baseUrl from '../data/baseUrl';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingButtonUniversal from './LoadingButtonUniversal';
+import { BsWindowSidebar } from 'react-icons/bs';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,9 +37,13 @@ const SinglePost = ({postType}) => {
     const [popupImg, setPopupImg] = useState('');
     const [pop, setPop] = useState(false);
     const [landscape, setLandscape] = useState(false);
-    const whatsappLink = `whatsapp://send?text=${window.location.href}`;
-    const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(window.location.href)}`;
+    const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+    
 
+
+    // const whatsappLink=`whatsapp://send?text=${window.location.href}`
+    // const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
     useEffect(() => {
         const fetchData = async () => {
             let globalPostsArray;
@@ -87,13 +92,14 @@ const SinglePost = ({postType}) => {
       <>
             {true && (
                 <div>
-                    {/* <Helmet>
+                    <Helmet>
                         <meta property="og:url" content={window.location.href} />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:title" content={singlePost.title ? capitalizeFirst(singlePost.title) : ""} />
-                        <meta property="og:description" content="Description of my webpage" />
-                        <meta property="og:image" content={singlePost.image ? singlePost.image[0] : ''} />
-                    </Helmet> */}
+                        <meta property="og:type" content="article" />
+                        <meta property="og:title" content={singlePost.title ? capitalizeFirst(singlePost.title) : "Title"} />
+                        <meta property="og:description" content={singlePost.aboutAuthor || "Description of the post"} />
+                        <meta property="og:image" content={singlePost.image ? singlePost.image[0] : 'default-image-url'} />
+                        <meta property="og:image:alt" content={singlePost.title ? capitalizeFirst(singlePost.title) : "Image description"} />
+                    </Helmet>
                     <main ref={parentRef} className=" px-6 tracking-[0.4px] sm:px-16 pt-20 relative flex flex-col bg-lightShade text-darkShade dark:bg-darkShade dark:text-lightShade md:min-h-[90vh] md:pb-10">
                         {/* Popup */}
                         <div onClick={handleDecrease} className={pop ? "popup fixed bg-[rgba(0,0,0,.95)] top-0 left-0 z-10 h-screen w-screen" : "hidden"}>
@@ -101,19 +107,21 @@ const SinglePost = ({postType}) => {
                         </div>
                         <section className='mt-20 relative pb-10'>
                             <div>
-                                <h1 className="">
-                                    <span className='text-[3rem] leading-[3rem] font-[700]'>{singlePost.title ? capitalizeFirst(singlePost.title)+"." : <Waiting />}</span>
-                                    <p className='font-medium text-[1.1rem] capitalize mt-8 underline'>By {singlePost.writer||singlePost.author ? singlePost.writer||singlePost.author : <Waiting />}</p>
-                                    <p className='italic mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quibusdam dolorem placeat, culpa blanditiis dolore, iusto dolorum amet ipsum, laborum sit? Voluptatibus facere asperiores fugiat at iste! Recusandae, consequuntur harum!</p>
+                                <div className="">
+                                    <p className={`${singlePost.title?'text-[3rem] leading-[3rem] font-[700]':''}`}>{singlePost.title ? capitalizeFirst(singlePost.title)+"." : <Waiting />}</p>
+                                    <p className='font-medium text-[1.1rem] capitalize mt-8 underline'> {singlePost.writer||singlePost.minister?"By":""} {singlePost.writer||singlePost.minister ? singlePost.writer||singlePost.minister : <Waiting />}</p>
+                                    <p className='italic mt-2'>
+                                        {singlePost.aboutAuthor??<Waiting/>}
+                                    </p>
                                     
-                                </h1>
+                                </div>
                             </div>
                             <div className='text-[1.1rem] font-[500] text-darkShade dark:text-da1hade leading-8 mt-16'>
-                                <p className='mb-2'>Edited By:</p>
+                                {singlePost.author&&<p className='mb-2'>Edited By:</p>}
                                 <p className='font-[600] text-[1.1rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
                             </div>
                             <div className='gap-1 lowercase text-[1.1rem] text-darkShade dark:text-da1hade leading-8 mt-10 flex items-center'>
-                                <p className=''><LuTimer/>  </p>
+                                {singlePost.readMinutes&&<p className=''><LuTimer/>  </p>}
                                 <p className='font-[400] text-darkShade dark:text-lightShade italic text-[1.1rem]'>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
                             </div>
                             {imageOne && (
@@ -187,9 +195,9 @@ const SinglePost = ({postType}) => {
                         </section>
                         <div ref={ref} className='flex justify-between items-center mt-20 mb-32'>
                             <div className='flex justify-center items-center gap-3'>
-                                <p className='flex items-center justify-center gap-2 opacity-80 underline'> <LuShare/> Share   </p>
-                                <FacebookShareButton className='border border-faded p-4 rounded-full' url={facebookLink}><FaFacebookF /></FacebookShareButton>
-                                <WhatsappShareButton className='border border-faded p-4 rounded-full' url={whatsappLink}><FaWhatsapp /></WhatsappShareButton>
+                                <p className='flex  p-1 items-center justify-center gap-1 opacity-80 font-medium text-sm'>Share this.  </p>
+                                <FacebookShareButton className='border border-faded p-4 rounded-full' url={window.location.href}><FaFacebookF /></FacebookShareButton>
+                                <WhatsappShareButton className='border border-faded p-4 rounded-full' url={window.location.href}><FaWhatsapp /></WhatsappShareButton>
                             </div>
                             <div className='opacity-50'>
                                 <img className='w-[40px] animate-next hover:rotate-180' src={next} alt="" />

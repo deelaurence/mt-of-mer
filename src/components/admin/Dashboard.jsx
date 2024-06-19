@@ -10,6 +10,8 @@ import oldTypewriter from '../../assets/old_typewriter.png';
 import paperBg from '../../assets/paper-bg1.jpg';
 import { useGlobalState } from '../../GlobalState';
 import AdminLoginComponent from './AdminLogin';
+import { FaTag } from 'react-icons/fa';
+import { RiUser4Line } from "react-icons/ri";
 
 const Dashboard = () => {
   const adminName = sessionStorage.getItem('admin_name');
@@ -18,8 +20,9 @@ const Dashboard = () => {
     { to: '/users', icon: FiUsers, text: 'View All Users', color: '#007ea7' },
     { to: '/add-article', icon: TfiWrite, text: 'Create Article', color: '#586288' },
     { to: '/add-message', icon: MdOutlineLightbulb, text: 'Create Message', color: '#586288' },
-    { to: '/payment-tag', icon: MdOutlineLightbulb, text: 'Payments Tags', color: '#586288' },
+    { to: '/payment-tag', icon: FaTag, text: 'Payments Tags', color: '#586288' },
     { to: '/payments', icon: FaMoneyCheck, text: 'Get All Payments', color: '#586288' },
+    { to: '/authors', icon: RiUser4Line, text: 'Authors', color: '#586288' },
     { to: '/', icon: RiLogoutCircleFill, text: 'Go back home', color: '#586288' },
   ];
 
@@ -34,8 +37,8 @@ const Dashboard = () => {
             </h1>
           </div>
           <div 
-            style={{ backgroundImage: `url(${paperBg})` }}
-            className="mb-64 mt-14 shadow-xl rounded-lg p-6 md:p-16">
+            // style={{ backgroundImage: `url(${paperBg})` }}
+            className="mb-64 mt-14 rounded-lg p-6 md:p-16">
             <div className="flex justify-between items-center mb-6">
               <button onClick={adminLogout} className="flex items-center gap-2 p-2 text-red-500 shadow-md rounded-full hover:bg-red-600">
                 <RiLogoutCircleFill className="text-xl" />
@@ -47,14 +50,14 @@ const Dashboard = () => {
                 </p>
               </div>
             </div>
-            <div className="text-gray-700 flex mt-16 flex-col gap-6 flex-wrap items-center justify-center md:flex-row [&>*]:w-full md:[&>*]:w-64">
+            <div className="text-gray-700 flex mt-16 flex-col gap-6 flex-wrap  md:flex-row [&>*]:w-full ">
               {buttonData.map((button, index) => (
-                <Link key={index} to={button.to} className="w-full flex justify-center md:w-64">
+                <Link key={index} to={button.to} className="w-full  flex  ">
                   <button
-                    className="flex flex-col items-center justify-center shadow-xl bg-transparent md:w-[250px] md:h-[250px] w-[70vw] h-[70vw] p-4 rounded-full"
+                    className={`flex flex-col  bg-orange-200 p-4`}
                     style={{ color: button.color }}>
                     <button.icon className="text-4xl mb-2" />
-                    <span className='font-medium' >{button.text}</span>
+                    <span className='text-left border-b-2 border-b-darkShade text-[15vw]  md:text-[10vw]  leading-[12vw] md:leading-[7vw] -mb-6 md:mb-0 font-bold text-gray-600 ' >{button.text}</span>
                   </button>
                 </Link>
               ))}

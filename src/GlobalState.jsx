@@ -13,6 +13,7 @@ const initialState = {
     baseUrl,
     allMessages: [],
     allArticles: [],
+    allAuthors:[],
     unsplashArticleImages:[],
     unsplashMessageImages:[],
     unauthenticatedUserEmail:'',
@@ -47,6 +48,8 @@ const reducer = (state, action) => {
             return { ...state, clientData: action.payload };    
         case 'SET_ALL_MESSAGES':
             return { ...state, allMessages: action.payload };
+        case 'SET_ALL_AUTHORS':
+            return { ...state, allAuthors: action.payload };
         case 'SET_UNSPLASH_MESSAGE_IMAGES':
             return { ...state, unsplashMessageImages: action.payload };
         case 'SET_UNSPLASH_ARTICLES_IMAGES':

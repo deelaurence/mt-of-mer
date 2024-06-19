@@ -86,8 +86,7 @@ useEffect(()=>{
           
         }}
         className={showGreeting?'flex items-center relative flex-col opacity-100 duration-[6s]':'opacity-0 flex items-center relative flex-col'}>
-          <p className='text-lightShade text-sm font-semibold  relative opacity-90 duration-[1s] -z-10'>Hi &mdash; {greetName ?? (state.isAdminLoggedIn ? 'Admin' : 'Guest')}</p>
-          {state.publishMode&&<p className='text-green-300 text-xs'>publish_mode</p>}
+          <p className={`${state.publishMode?'text-green-200':'text-lightShade'} underline  text-sm font-semibold  relative opacity-90 duration-[1s] -z-10`}>Hi &mdash; {greetName ?? (state.isAdminLoggedIn ? 'Admin' : 'Guest')}</p>
           <HandDrawnUnderline />
         </div>
 

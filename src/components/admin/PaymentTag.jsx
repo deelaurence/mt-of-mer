@@ -124,7 +124,7 @@ const CreatePaymentTag = () => {
           </div>
           <button
             type="submit"
-            className={`w-full py-2 mt-6 flex justify-center bg-blue-500 text-white rounded-md shadow-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full py-2 mt-6 flex justify-center bg-darkShade text-white rounded-md shadow-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             disabled={isLoading}
           >
             <LoadingButtonUniversal

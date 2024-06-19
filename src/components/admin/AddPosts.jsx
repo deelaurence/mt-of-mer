@@ -12,6 +12,8 @@ import { MdOutlineAddCircle, MdOutlineUploadFile } from "react-icons/md";
 import { convertToBase64, adjustHeight } from '../../utils/snippets';
 import paperBg from '../../assets/paper-bg.jpg'
 import paperBg2 from '../../assets/paper-bg1.jpg'
+import paperBg3 from '../../assets/paper-bg2.jpg'
+import pencil from '../../assets/pencil.png'
 import { RiLogoutCircleFill } from 'react-icons/ri';
 import BackButton from './BackButton';
 import SinglePost from '../SinglePost';
@@ -111,10 +113,12 @@ const PostFormComponent = ({ formType }) => {
     //handle Input change when creating or editing
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        
         setFormData({
             ...formData,
             [name]: value
         });
+        
         if (textAreaRefs.current[name]) {
             adjustHeight(textAreaRefs.current[name]);
         }
@@ -225,16 +229,14 @@ const PostFormComponent = ({ formType }) => {
     };
 
     return (
-        <div className={`${singlePostEdit&&editingPost?'border-2 border-green-400':'border-none'} px-6 md:px-16 pt-44 pb-12`}>
+        <div 
+        
+        style={{ backgroundImage: `url(${paperBg3})` }}
+        className={`${singlePostEdit&&editingPost?'border-2 overflow-hidden border-green-400':'border-none'} px-6 md:px-16 pt-44 pb-12`}>
             <BackButton/>
             <div
-            style={{ backgroundImage: `url(${paperBg})` }}
-            className="mx-auto relative mt-8 p-6 bg-white  shadow-lg rounded-lg">
-                <div
-                className='absolute h-full z-[0] opacity-80 w-full top-0 left-0' 
-                style={{ backgroundImage: `url(${paperBg2})` }}>
-                </div>
-                
+            // style={{ backgroundImage: `url(${paperBg3})` }}
+            className="mx-auto relative mt-8 p-6 bg-transparent overflow-hidden rounded-lg">
                 <h2 className="relative z-[0] mb-12 mt-6 text-2xl itaic font-semibold text-gray-600">Add {formType.charAt(0).toUpperCase() + formType.slice(1)}.</h2>
                 {popupMsg && <Popup message={popupMsg} setPopupMsg={setPopupMsg} link={`/add-${formType}`} />}
                 <form onSubmit={handleSubmit} className="space-y-4 relative z-[0]">
@@ -256,20 +258,30 @@ const PostFormComponent = ({ formType }) => {
                     </div>
                     
                     
-                    {/*WRITER OF AUTHOR*/}
                     <div>
-                        <label className="block text-gray-700 font-semibold">{formType === 'article' ? 'Writer' : 'Minister'}</label>
-                        <input
-                            type="text"
-                            name="writerOrMinister"
-                            value={formData.writerOrMinister}
-                            onChange={handleInputChange}
-                            placeholder={`Enter the name of the ${formType === 'article' ? 'author' : 'minister'}`}
-                            className="w-full p-2 bg-[#FAFAFA20] border-gray-300 font-medium text-gray-700 rounded-md"
-                            required
-                        />
-                    </div>
-
+            {/* WRITER OR MINISTER */}
+            <div>
+                <label className="block text-gray-700 font-semibold">
+                    {formType === 'article' ? 'Writer' : 'Minister'}
+                </label>
+                <select
+                    name="writerOrMinister"
+                    value={formData.writerOrMinister}
+                    onChange={handleInputChange}
+                    className="w-full p-2 bg-[#FAFAFA20] border-gray-300 font-medium text-gray-700 rounded-md"
+                    required
+                >
+                    <option value="" disabled>
+                        {`Select the ${formType === 'article' ? 'author' : 'minister'}`}
+                    </option>
+                    {state.allAuthors?.map((author, index) => (
+                        <option key={index} value={author.name}>
+                            {author.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </div>
 
                     {/*hEADINGS 1,2,3*/}
                     {['One', 'Two', 'Three'].map((field, index) => (

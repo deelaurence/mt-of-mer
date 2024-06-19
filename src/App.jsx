@@ -4,6 +4,7 @@ import './App.css';
 import { useGlobalState } from './GlobalState';
 import UserList from './components/admin/AllUsers';
 import PaymentList from './components/admin/AllPayments';
+import ManageAuthors from './components/admin/Authors';
 // Import components
 import AdminLoginComponent from './components/admin/AdminLogin';
 import LANDING from './components/LANDING';
@@ -73,6 +74,8 @@ function App() {
       let messagesData = await response.json();
       const response2 = await fetch(`${baseUrl}/articles/all`);
       let articlesData = await response2.json();
+      const authorsResponse = await fetch(`${baseUrl}/author`);
+      let authors=await authorsResponse.json()
       
       
       messagesData=messagesData.filter((post)=>{
@@ -93,8 +96,7 @@ function App() {
 
 
       replaceEmptyImages(messagesData)
-      replaceEmptyImages(articlesData)
-      
+      replaceEmptyImages(articlesData)      
       //set first 30 to localstorage
       //Check if data fetched is an array which signifies being successfull
       if(Array.isArray(messagesData)){
@@ -105,6 +107,9 @@ function App() {
         localStorage.setItem('articlesData', JSON.stringify(articlesData.slice(0,30)))
         dispatch({ type: 'SET_ALL_ARTICLES', payload: articlesData });
       }
+      if(Array.isArray(authors)){
+        dispatch({ type: 'SET_ALL_AUTHORS', payload: authors });
+      }
     };
     fetchData();
   }, [dispatch,state.publishMode]);
@@ -112,7 +117,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-        <div className='dark:bg-darkShade absolute-parent'>
+        <div className={`${state.publishMode?'':''}dark:bg-darkShade absolute-parent`}>
           <Navbar />
           <Routes>
             <Route path="/" element={<LANDING />} />
@@ -126,6 +131,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={state.isAdminLoggedIn?<UserList/> :<AdminLoginComponent/>} />
             <Route path="/payments" element={state.isAdminLoggedIn?<PaymentList/>:<AdminLoginComponent/>} />
+            <Route path="/authors" element={state.isAdminLoggedIn?<ManageAuthors/>:<AdminLoginComponent/>} />
 
 
             <Route path="/login" element={<LoginComponent baseUrl={baseUrl} />} />
