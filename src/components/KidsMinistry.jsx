@@ -13,7 +13,7 @@ const KidsMinistry = () => {
           <meta name="description" content="A description of my amazing React app" />
         </Helmet>
       <main className='px-6 sm:px-16  -mb-1  text-lightShade py-24 bg-darkShade'>
-        <h1 className=' text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>YOUNGSTERS.EDIT</h1>
+        <h1 className=' text-5xl -mb-1 font-semibold text-lightShade py-24 bg-darkShade '>YOUNGSTERS</h1>
         <img src={kiti} alt="" />
         <p className=' pt-16 pb-16 -mb-1 font-[aboreto]  text-5xl text-faded bg-darkShade'>Teaching Christ's love and acceptance but, like a 2 years old would understand </p>
 

@@ -16,10 +16,16 @@ import Paystack from './Paystack';
 import { CiStreamOn } from "react-icons/ci";
 import { MdLocationPin } from "react-icons/md";
 import Give from './Give';
+import { Helmet } from 'react-helmet-async';
 import RoundButton from './RoundButton';
 const LANDING = () => {
   return (
     <>
+
+    <Helmet>
+          <title>My Amazing React App</title>
+          <meta name="description" content="A description of my amazing React app" />
+        </Helmet>
     <div className='mb-24'>
 
     
@@ -36,7 +42,7 @@ const LANDING = () => {
           </a>
         </div>
       </section>
-      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>welCOME.</p>
+      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>welCOME.EDIT</p>
       <p className='bg-lightShade px-6 pb-32 sm:px-16 pt-20  text-[1.rem]'>
         We are a community of unlikely
         friends following Jesus together. 
