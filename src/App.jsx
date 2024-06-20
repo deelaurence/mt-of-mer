@@ -57,6 +57,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
+      try {
       //set from local if available storage while awaiting backend
       const tempArticlesData = JSON.parse(localStorage.getItem('articlesData'))
       const tempMessagesData = JSON.parse(localStorage.getItem('messagesData'))
@@ -111,6 +112,10 @@ function App() {
       if(Array.isArray(authors)){
         dispatch({ type: 'SET_ALL_AUTHORS', payload: authors });
       }
+      } catch (error) {
+        console.log(error)     
+      }
+    
     };
     fetchData();
   }, [dispatch,state.publishMode]);

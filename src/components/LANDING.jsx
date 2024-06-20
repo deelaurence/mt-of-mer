@@ -19,23 +19,21 @@ import Give from './Give';
 import { Helmet } from 'react-helmet-async';
 import DocumentMeta from 'react-document-meta';
 import RoundButton from './RoundButton';
+import setMetaTags from '../utils/metaTags';
 const LANDING = () => {
-  const meta = {
-    title: 'Home Page - My Website',
-    description: 'This is the home page of my awesome website.',
-    canonical: 'https://www.mywebsite.com/home',
-    meta: {
-      charset: 'utf-8',
-      name: {
-        keywords: 'home, webpage, react'
-      }
-    }
-  };
-  
+  useEffect(() => {
+    const meta = {
+      title: 'Home Page - My Website',
+      description: 'This is the home page of my awesome website.',
+      canonical: 'https://www.mywebsite.com/home',
+      keywords: 'home, webpage, react'
+    };
+    setMetaTags(meta);
+  }, []);
   return (
     <>
-
-    <DocumentMeta {...meta}>
+  
+    
     <div className='mb-24'>
 
     
@@ -52,7 +50,7 @@ const LANDING = () => {
           </a>
         </div>
       </section>
-      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>welCOME</p>
+      <p className=' bg-lightShade pl-6 sm:px-16 pt-20 px-6  text-5xl font-semibold'>welCOME.</p>
       <p className='bg-lightShade px-6 pb-32 sm:px-16 pt-20  text-[1.rem]'>
         We are a community of unlikely
         friends following Jesus together. 
@@ -73,7 +71,7 @@ const LANDING = () => {
       <Messages />
       <Articles />
       </div>
-      </DocumentMeta>
+    
     </>
   )
 }

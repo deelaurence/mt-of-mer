@@ -20,7 +20,8 @@
     "react-icons": "^4.12.0",
     "react-intersection-observer": "^9.4.1",
     "react-router-dom": "^6.4.1",
-    "react-share": "^4.4.1"
+    "react-share": "^4.4.1",
+    "vite-plugin-ssr": "^0.4.142"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
