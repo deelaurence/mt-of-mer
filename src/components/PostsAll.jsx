@@ -17,7 +17,7 @@ const PostAll = ({ postType }) => {
 
   useEffect(() => {
     document.title = 'Posts page';
-    updateMeta('description', 'Welcome to Posts page mount of mercy');
+    updateMeta('og:title', 'Welcome to Posts page mount of mercy');
   }, []);
 
 
