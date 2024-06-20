@@ -80,9 +80,9 @@ return (
       <p className='pb-4   text-gray-500 relative z-[0]'>You can only select up to 2 images</p>
         {selectedImages[0]&&<p 
         onClick={setImageForApi}
-        className='sticky px-2 mb-4 flex-col text-white text-sm font-semibold top-32 z-[1] left-0  flex justify-center items-center h-10  cursor-pointer bg-green-700'> 
+        className={`${stillChoosing?'right-0 duration-1000':'duration-[5s] -right-64'} fixed right-0 px-2 mb-32 flex-col text-white text-sm font-semibold bottom-12 z-[1]   flex justify-center items-center h-10  cursor-pointer bg-gray-700`}> 
         {stillChoosing?<span>Use {selectedImages.length} {selectedImages.length>1?'images':'image'}</span>:    
-        <span className='flex items-center gap-2'>Selected <GiCheckMark/></span>}
+        <span className={` flex items-center gap-2`}>Selected <GiCheckMark/></span>}
         </p>
         }
       <form onSubmit={handleSearch} className="mb-4 relative z-[0]">

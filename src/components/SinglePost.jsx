@@ -121,9 +121,9 @@ const SinglePost = ({postType}) => {
                                 {singlePost.author&&<p className='mb-2'>Edited By:</p>}
                                 <p className='font-[600] text-[1.1rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
                             </div>
-                            <div className='gap-1 lowercase text-[1.1rem] text-darkShade dark:text-da1hade leading-8 mt-10 flex items-center'>
+                            <div className='gap-1 lowercase text-[.8rem] text-darkShade dark:text-da1hade leading-8 mt-10 flex items-center'>
                                 {singlePost.readMinutes&&<p className=''><LuTimer/>  </p>}
-                                <p className='font-[400] text-darkShade dark:text-lightShade italic text-[1.1rem]'>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
+                                <p className='font-[400] text-darkShade dark:text-lightShade italic '>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
                             </div>
                             {imageOne && (
                                 <div className='mt-12 overflow-hidden'>
@@ -201,7 +201,7 @@ const SinglePost = ({postType}) => {
                                 <WhatsappShareButton 
                                 className='border border-faded p-4 rounded-full' 
                                 url={window.location.href}
-                                title={singlePost.title}
+                                title={`*${singlePost.title}*`}
                                 seperator=" ">
                                 <FaWhatsapp /></WhatsappShareButton>
                             </div>

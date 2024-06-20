@@ -71,7 +71,14 @@ const PostFormComponent = ({ formType }) => {
         try {
             setIsLoading_edit(true)
             const response = await axios.get(`${baseUrl}/${formType}s/all`);
-            setEditingPost(response.data);
+            const adminName = sessionStorage.getItem('admin_name')
+            
+            const filterEditorPosts=response.data.filter((post)=>{
+                return post.author===adminName
+            })
+            setEditingPost(filterEditorPosts);
+            
+
             setIsLoading_edit(false)
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -419,7 +426,7 @@ const PostFormComponent = ({ formType }) => {
                     }}
                     disabled={false}
                     type="submit" 
-                    className={`w-full relative py-2 mt-6 flex justify-center bg-green-600 rounded-md shadow-md ${false ? "opacity-90" : ""}`}>
+                    className={`w-full relative py-2 mt-6 flex justify-center bg-gray-500 rounded-md shadow-md ${false ? "opacity-90" : ""}`}>
                         <LoadingButtonUniversal
                         text={`Edit your ${formType}s`} 
                         loading={false}/>
@@ -427,8 +434,8 @@ const PostFormComponent = ({ formType }) => {
 
                 {/*LIST OF POSTS TO PICK POTENTIAL EDIT FROM*/}
                 {editingPost&&
-                <div className="mt-12 relative p-6 border border-dashed border-gray-500">
-                    <h2 className="text-lg mb-12 italic font-semibold text-gray-600 capitalize">Select the {formType} to be edited</h2>
+                <div className="mt-12 relative bg-opacity-40  border-gray-500">
+                    <h2 className="text-lg mb-12 font-semibold text-gray-600 capitalize">Select the {formType} you want to edit</h2>
                     <div>
                         {editingPost.map((post) => (
                             <div key={post.id}
@@ -437,8 +444,9 @@ const PostFormComponent = ({ formType }) => {
                                 <div className='max-w-full'>
                                     <h3 
                             
-                                    className="text-xl max-w-full font-medium overflow-scroll">{post.title}</h3>
-                                    <p className="text-gray-600 overflow-hidden">{post.writer || post.minister}</p>
+                                    className="text-3xl max-w-full text-gray-700 font-semibold ">{post.title}.</h3>
+                                    <p className="text-gray-600 text-sm overflow-hidden">{post.writer || post.minister}</p>
+                                    <p className='text-xs italic text-gray-500 mt-2'>{post.paragraphOne.slice(0,200)}...</p>
                                 </div>
                                 
                             </div>
