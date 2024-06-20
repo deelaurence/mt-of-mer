@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { Link, useLocation } from 'react-router-dom';
 import { useGlobalState } from '../GlobalState';
 import { randomImgUrls } from '../data/randomUnsplash';
+import { updateMeta } from '../utils/dynamicTag';
 gsap.registerPlugin(ScrollTrigger);
 
 const PostAll = ({ postType }) => {
@@ -13,6 +14,12 @@ const PostAll = ({ postType }) => {
   const [allPosts, setAllPosts] = useState([]);
   const [sliced, setSliced] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    document.title = 'Posts page';
+    updateMeta('description', 'Welcome to Posts page mount of mercy');
+  }, []);
+
 
   useEffect(() => {
     if (postType === 'article') {
