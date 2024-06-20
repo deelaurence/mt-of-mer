@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import { useGlobalState } from './GlobalState';
 import UserList from './components/admin/AllUsers';
@@ -115,6 +116,8 @@ function App() {
   }, [dispatch,state.publishMode]);
 
   return (
+  <HelmetProvider>
+
     <Router>
       <ScrollToTop />
         <div className={`${state.publishMode?'':''}dark:bg-darkShade absolute-parent`}>
@@ -158,6 +161,7 @@ function App() {
           <Footer />
         </div>
     </Router>
+  </HelmetProvider>  
   );
 }
 

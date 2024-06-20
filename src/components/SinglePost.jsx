@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import {LuShare, LuShare2, LuTimer} from 'react-icons/lu'
 import axios from 'axios';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
@@ -100,6 +100,7 @@ const SinglePost = ({postType}) => {
                         <meta property="og:image" content={singlePost.image ? singlePost.image[0] : 'default-image-url'} />
                         <meta property="og:image:alt" content={singlePost.title ? capitalizeFirst(singlePost.title) : "Image description"} />
                     </Helmet>
+                    
                     <main ref={parentRef} className=" px-6 tracking-[0.4px] sm:px-16 pt-20 relative flex flex-col bg-lightShade text-darkShade dark:bg-darkShade dark:text-lightShade md:min-h-[90vh] md:pb-10">
                         {/* Popup */}
                         <div onClick={handleDecrease} className={pop ? "popup fixed bg-[rgba(0,0,0,.95)] top-0 left-0 z-10 h-screen w-screen" : "hidden"}>
