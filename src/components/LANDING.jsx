@@ -20,15 +20,20 @@ import { Helmet } from 'react-helmet-async';
 import DocumentMeta from 'react-document-meta';
 import RoundButton from './RoundButton';
 import setMetaTags from '../utils/metaTags';
+import { updateMeta } from '../utils/dynamicTag';
 const LANDING = () => {
+  // useEffect(() => {
+  //   const meta = {
+  //     title: 'Home Page - My Website',
+  //     description: 'This is the home page of my awesome website.',
+  //     canonical: 'https://www.mywebsite.com/home',
+  //     keywords: 'home, webpage, react'
+  //   };
+  //   setMetaTags(meta);
+  // }, []);
   useEffect(() => {
-    const meta = {
-      title: 'Home Page - My Website',
-      description: 'This is the home page of my awesome website.',
-      canonical: 'https://www.mywebsite.com/home',
-      keywords: 'home, webpage, react'
-    };
-    setMetaTags(meta);
+    document.title = 'Welcome to Mount of Mercy| Oke aanu';
+    updateMeta('description', 'Welcome to United apostolic church of christ mount of mercy');
   }, []);
   return (
     <>
