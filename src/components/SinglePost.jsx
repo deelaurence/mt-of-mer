@@ -198,7 +198,12 @@ const SinglePost = ({postType}) => {
                             <div className='flex justify-center items-center gap-3'>
                                 <p className='flex  p-1 items-center justify-center gap-1 opacity-80 font-medium text-sm'>Share this.  </p>
                                 <FacebookShareButton className='border border-faded p-4 rounded-full' url={window.location.href}><FaFacebookF /></FacebookShareButton>
-                                <WhatsappShareButton className='border border-faded p-4 rounded-full' url={window.location.href}><FaWhatsapp /></WhatsappShareButton>
+                                <WhatsappShareButton 
+                                className='border border-faded p-4 rounded-full' 
+                                url={window.location.href}
+                                title={singlePost.title}
+                                seperator=" ">
+                                <FaWhatsapp /></WhatsappShareButton>
                             </div>
                             <div className='opacity-50'>
                                 <img className='w-[40px] animate-next hover:rotate-180' src={next} alt="" />

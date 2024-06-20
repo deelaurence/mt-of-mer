@@ -121,7 +121,7 @@ function App() {
   }, [dispatch,state.publishMode]);
 
   return (
-  <HelmetProvider>
+  
 
     <Router>
       <ScrollToTop />
@@ -130,6 +130,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LANDING />} />
             <Route path="/messages" element={<PostAll postType='message' />} />
+            
+
            
             <Route path="/payment-tag" element={state.isAdminLoggedIn?<CreatePaymentTag />:<AdminLoginComponent/>} />
           
@@ -165,8 +167,7 @@ function App() {
           </Routes>
           <Footer />
         </div>
-    </Router>
-  </HelmetProvider>  
+    </Router> 
   );
 }
 
