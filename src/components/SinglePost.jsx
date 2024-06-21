@@ -227,7 +227,7 @@ const SinglePost = ({postType}) => {
                                     <WhatsappShareButton 
                                     className='border border-faded rounded-full' 
                                     url={window.location.href}
-                                    title={`*${singlePost.title.toUpperCase()}*`}
+                                    title={`*${singlePost.title?.toUpperCase()}*`}
                                     seperator=" ">
                                     <FaWhatsapp /></WhatsappShareButton>
                                 </div>
