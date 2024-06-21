@@ -133,7 +133,7 @@ const SinglePost = ({postType}) => {
                                 <p className='font-[600] text-[.9rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
                             </div>
                             <div className='gap-1 text-[.7rem] items-center  text-darkShade  leading-8 mt-10 flex'>
-                                {singlePost.day&&<p className='flex items-center gap-2'>Published {formatDate(singlePost.day)}  <span className='font-medium text-xl border-r-[1.5px] border-r-gray-700 inline-block h-5 pb-2'> </span></p>}
+                                {singlePost.day&&<p className='flex items-center gap-2'>Published on {formatDate(singlePost.day)}  <span className='font-medium text-xl border-r-[1.5px] border-r-gray-700 inline-block h-5 pb-2'> </span></p>}
                                 {singlePost.readMinutes&& <p className='text-[1.1rem] pb-[4px]'>  <LuTimer/>  </p>}
                                 <p className='font-[400]  text-darkShade dark:text-lightShade  '>  {singlePost.readMinutes?? <Waiting />}</p>
                             </div>
@@ -204,7 +204,7 @@ const SinglePost = ({postType}) => {
                                         )}
 
                                         <section>
-                                            <h2 className='text-3xl text-darkShade mb-8 font-semibold'>Key<span className='text-gray-600'>Takeaways</span> </h2>
+                                            <h2 className='text-3xl text-darkShade mb-8 font-semibold'>Key<span className='text-gray-500'>Takeaways</span> </h2>
                                         {
                                             points&& points.map((point,index)=>{
                                                     return(
