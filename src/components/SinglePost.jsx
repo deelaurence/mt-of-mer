@@ -16,6 +16,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingButtonUniversal from './LoadingButtonUniversal';
 import { BsWindowSidebar } from 'react-icons/bs';
+import formatDate from '../utils/formatDate';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -130,8 +132,8 @@ const SinglePost = ({postType}) => {
                                 {singlePost.author&&<p className='text-xs font-[400]'>Edited by*</p>}
                                 <p className='font-[600] text-[.9rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
                             </div>
-                            <div className='gap-1 text-[.8rem] items-center  text-darkShade  leading-8 mt-10 flex'>
-                                {singlePost.day&&<p className='flex items-center gap-2'>Published, {singlePost.day}  <span className='font-medium text-xl border-r-[1.5px] border-r-gray-700 inline-block h-5 pb-2'> </span></p>}
+                            <div className='gap-1 text-[.7rem] items-center  text-darkShade  leading-8 mt-10 flex'>
+                                {singlePost.day&&<p className='flex items-center gap-2'>Published {formatDate(singlePost.day)}  <span className='font-medium text-xl border-r-[1.5px] border-r-gray-700 inline-block h-5 pb-2'> </span></p>}
                                 {singlePost.readMinutes&& <p className='text-[1.1rem] pb-[4px]'>  <LuTimer/>  </p>}
                                 <p className='font-[400]  text-darkShade dark:text-lightShade  '>  {singlePost.readMinutes?? <Waiting />}</p>
                             </div>
