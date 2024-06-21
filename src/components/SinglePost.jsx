@@ -39,11 +39,13 @@ const SinglePost = ({postType}) => {
     const [landscape, setLandscape] = useState(false);
     const whatsappLink = `https://wa.me/?text=${encodeURIComponent(window.location.href)}`;
     const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-    
-
+    const dummy = "You are reading this because this author hasn't completed the bio part of thier profile which would not be allowed when the application fully launches"
+    const [points,setPoints] = useState([])
 
     // const whatsappLink=`whatsapp://send?text=${window.location.href}`
     // const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
+
+    
     useEffect(() => {
         const fetchData = async () => {
             let globalPostsArray;
@@ -78,6 +80,13 @@ const SinglePost = ({postType}) => {
             setImageTwo(jsonData.image && jsonData.image[1] ? true : false);
             
             setSinglePost(jsonData);
+            //make the key points into an array and filter out the empty ones
+            const keyPoints = Object.keys(jsonData)
+                .filter(key=>key.startsWith('point'))
+                .map(key=>jsonData[key])
+                .filter(key=>key!=="")
+
+            setPoints(keyPoints)
 
             
         };
@@ -110,20 +119,21 @@ const SinglePost = ({postType}) => {
                             <div>
                                 <div className="">
                                     <p className={`${singlePost.title?'text-[3rem] leading-[3rem] font-[700]':''}`}>{singlePost.title ? capitalizeFirst(singlePost.title)+"." : <Waiting />}</p>
-                                    <p className='font-medium text-[1.1rem] capitalize mt-8 underline'> {singlePost.writer||singlePost.minister?"By":""} {singlePost.writer||singlePost.minister ? singlePost.writer||singlePost.minister : <Waiting />}</p>
+                                    <p className='font-medium text-[.9rem] capitalize mt-8 '> {singlePost.writer||singlePost.minister?"By":""} <span className='underline'>{singlePost.writer||singlePost.minister ? singlePost.writer||singlePost.minister : <Waiting />}</span></p>
                                     <p className='italic mt-2'>
-                                        {singlePost.aboutAuthor??<Waiting/>}
+                                        {singlePost.aboutAuthor||dummy||<Waiting/>}
                                     </p>
                                     
                                 </div>
                             </div>
-                            <div className='text-[1.1rem] font-[500] text-darkShade dark:text-da1hade leading-8 mt-16'>
-                                {singlePost.author&&<p className='mb-2'>Edited By:</p>}
-                                <p className='font-[600] text-[1.1rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
+                            <div className='text-[1.1rem] font-[500] text-darkShade dark:text-da1hade leading-8 mt-10'>
+                                {singlePost.author&&<p className='text-xs font-[400]'>Edited by*</p>}
+                                <p className='font-[600] text-[.9rem] capitalize text-darkShade'>{singlePost.author ? singlePost.author : <Waiting />}</p>
                             </div>
-                            <div className='gap-1 lowercase text-[.8rem] text-darkShade dark:text-da1hade leading-8 mt-10 flex items-center'>
-                                {singlePost.readMinutes&&<p className=''><LuTimer/>  </p>}
-                                <p className='font-[400] text-darkShade dark:text-lightShade italic '>{singlePost.readMinutes ? "| "+singlePost.readMinutes : <Waiting />}</p>
+                            <div className='gap-1 text-[.8rem] items-center  text-darkShade  leading-8 mt-10 flex'>
+                                <p className=''>Published, {singlePost.day} <span className='font-bold italic text-xl'>|</span></p>
+                                {singlePost.readMinutes&& <p className='text-[1.1rem] pb-[4px]'>  <LuTimer/>  </p>}
+                                <p className='font-[400]  text-darkShade dark:text-lightShade  '>  {singlePost.readMinutes?? <Waiting />}</p>
                             </div>
                             {imageOne && (
                                 <div className='mt-12 overflow-hidden'>
@@ -142,8 +152,8 @@ const SinglePost = ({postType}) => {
                             </div>
                             {singlePost.quoteOne && (
                                 <div className='my-16 text-[1.5rem] font-[600] mt-6'>
-                                    <article className='pl-2 text-[1.1rem] text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
-                                        <span className='quotes opacity-50 '></span>{singlePost.quoteOne}
+                                    <article className='pl-2 text-[1.2rem]  border-l-0 underline underline-offset-[1px] decoration-red-300 decoration-4  border-l-gray-500 leading-8  mr-12 sm:mr-16 italic dark:text-lightShade'>
+                                        <span className='quotes opacity-50  text-5xl'>"</span>{singlePost.quoteOne}
                                     </article>
                                 </div>
                             )}
@@ -162,8 +172,8 @@ const SinglePost = ({postType}) => {
                             )}
                             {singlePost.quoteTwo && (
                                 <div className='my-16 text-[1.5rem] font-[600] mt-6'>
-                                    <article className='pl-2 text-[1.1rem] text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
-                                        <span className='quotes opacity-50 '></span>{singlePost.quoteTwo}
+                                    <article className='pl-2 text-[1.2rem]  border-l-0 underline underline-offset-[1px] decoration-red-300 decoration-4  border-l-gray-500 leading-8  mr-12 sm:mr-16 italic dark:text-lightShade'>
+                                        <span className='quotes opacity-50  text-5xl'>"</span>{singlePost.quoteTwo}
                                     </article>
                                 </div>
                             )}
@@ -172,10 +182,10 @@ const SinglePost = ({postType}) => {
                                     <img className='mt-14' src={singlePost.image[1]} alt="" />
                                 </div>
                             )}
-                            <div ref={findingsRef} className='text-[1.5rem] font-[600] mt-6'>
+                            <div ref={findingsRef} className='text-[1.5rem]  mt-6'>
                                 {singlePost.paragraphThree && (
                                     <div>
-                                        <h3 className='mb-5'>
+                                        <h3 className='mt-16 font-semibold mb-4'>
                                             {singlePost.headingThree && capitalizeFirst(singlePost.headingThree || "null")}
                                         </h3>
                                         <article className='text-[1rem] leading-8 font-[400] dark:text-lightShade text-darkShade'>
@@ -184,26 +194,43 @@ const SinglePost = ({postType}) => {
                                             )) : <Waiting />}
                                         </article>
                                         {singlePost.quoteThree && (
-                                            <div className='text-[1.5rem] font-[600] mt-6'>
-                                                <article className='pl-2 text-[1.1rem] text-faded border-l-4 border-l-purple-300 leading-8 font-[400] ml-8 mr-12 sm:mr-16 italic dark:text-lightShade'>
-                                                    <span className='quotes opacity-50 '></span>{singlePost.quoteThree}
+                                            <div className='my-16 text-[1.5rem] font-[600] mt-6'>
+                                                <article className='pl-2 text-[1.2rem]  border-l-0 underline underline-offset-[1px] decoration-red-300 decoration-4  border-l-gray-500 leading-8  mr-12 sm:mr-16 italic dark:text-lightShade'>
+                                                    <span className='quotes opacity-50  text-5xl'>"</span>{singlePost.quoteThree}
                                                 </article>
                                             </div>
                                         )}
+
+                                        <section>
+                                            <h2 className='text-3xl text-darkShade mb-8 font-semibold'>Key<span className='text-gray-600'>Takeaways</span> </h2>
+                                        {
+                                            points&& points.map((point,index)=>{
+                                                    return(
+                                                        <div className='my-3 flex items-baseline gap-2 '>
+                                                            <p className='font-bold text-darkShade text-sm'>{index==9?"":"0"}{index+1}.</p>
+                                                            <p className='text-base font-medium' key={index}> {capitalizeFirst(point)}</p>
+                                                        </div>
+                                                    )
+                                                })    
+                                            }
+                                        </section>
                                     </div>
+
                                 )}
                             </div>
                         </section>
                         <div ref={ref} className='flex justify-between items-center mt-20 mb-32'>
-                            <div className='flex justify-center items-center gap-3'>
+                            <div className='flex flex-col justify-center items-center gap-3'>
                                 <p className='flex  p-1 items-center justify-center gap-1 opacity-80 font-medium text-sm'>Share this.  </p>
-                                <FacebookShareButton className='border border-faded p-4 rounded-full' url={window.location.href}><FaFacebookF /></FacebookShareButton>
-                                <WhatsappShareButton 
-                                className='border border-faded p-4 rounded-full' 
-                                url={window.location.href}
-                                title={`*${singlePost.title}*`}
-                                seperator=" ">
-                                <FaWhatsapp /></WhatsappShareButton>
+                                <div className='self-start flex gap-3 text-lg '>
+                                    <FacebookShareButton className='border border-faded rounded-full' url={window.location.href}><FaFacebookF /></FacebookShareButton>
+                                    <WhatsappShareButton 
+                                    className='border border-faded rounded-full' 
+                                    url={window.location.href}
+                                    title={`*${singlePost.title.toUpperCase()}*`}
+                                    seperator=" ">
+                                    <FaWhatsapp /></WhatsappShareButton>
+                                </div>
                             </div>
                             <div className='opacity-50'>
                                 <img className='w-[40px] animate-next hover:rotate-180' src={next} alt="" />

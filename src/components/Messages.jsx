@@ -69,12 +69,14 @@ const Messages = () => {
                 <aside ref={(element) => refs2.current[index] = element} className=' flex flex-col mt-3'>
                 </aside>
                 <section className='post-tag flex flex-col  w-2/3 p-4 text-[.9rem] font-semibold  bg-[rgba(56,56,66,.8)] absolute left-6 bottom-24'>
-                <div className='flex justify-between'>
+                <div className='flex justify-between items-center'>
                     <h3 className='font-semibold font-[aboreto] text-[12px] max-w-[70%] mt-2 text-white'>{datum.title.toUpperCase()}</h3>
-                    <p className='text-[12px] text-faded font-semibold mt-2 '>{formatDate(datum.day)}</p>
-                  </div>
-                    <p className='h-5 w-5 border-2 self-end justify-self-end border-b-6 border-t-0 border-r-0 text-white rounded-full rounded-r-full rounded-tl-full border-yellow-900  flex  justify-center items-center'>
+                    <div className='flex items-center flex-col text-white'>
+                      <p className='text-[12px] text-faded font-semibold  '>{formatDate(datum.day)}</p>
                       <MdDateRange/>
+                    </div>
+                  </div>
+                    <p className='h-5 w-5  self-end justify-self-end border-b-6 border-t-0 border-r-0 text-white rounded-full rounded-r-full  flex  justify-center items-center'>
                     </p>
                     <p className='text-[11px] text-lightShade font-medium mt-2 sm:text-sm'>{capitalizeAll(datum.minister)}</p>
                 </section>
