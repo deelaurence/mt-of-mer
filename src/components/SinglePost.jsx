@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import {LuShare, LuShare2, LuTimer} from 'react-icons/lu'
 import axios from 'axios';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
@@ -121,7 +122,14 @@ const SinglePost = ({postType}) => {
                             <div>
                                 <div className="">
                                     <p className={`${singlePost.title?'text-[3rem] leading-[3rem] font-[700]':''}`}>{singlePost.title ? capitalizeFirst(singlePost.title)+"." : <Waiting />}</p>
-                                    <p className='font-medium text-[.9rem] capitalize mt-8 '> {singlePost.writer||singlePost.minister?"By":""} <span className='underline'>{singlePost.writer||singlePost.minister ? singlePost.writer||singlePost.minister : <Waiting />}</span></p>
+                                    
+                                    <p className='font-medium text-[.9rem] capitalize mt-8 '> {singlePost.writer||singlePost.minister?"By":""} 
+                                        
+                                        <Link to={`/author/${singlePost.writer||singlePost.minister}`}>
+                                            <span className='underline'> {singlePost.writer||singlePost.minister ? singlePost.writer||singlePost.minister : <Waiting />}</span>
+                                        </Link> 
+                                     </p>
+                                    
                                     <p className='italic mt-2'>
                                         {singlePost.aboutAuthor||dummy||<Waiting/>}
                                     </p>
@@ -234,9 +242,7 @@ const SinglePost = ({postType}) => {
                                     <FaWhatsapp /></WhatsappShareButton>
                                 </div>
                             </div>
-                            <div className='opacity-50'>
-                                <img className='w-[40px] animate-next hover:rotate-180' src={next} alt="" />
-                            </div>
+                            
                         </div>
                         {state.publishMode&&!singlePost.publish&&
                         <div 

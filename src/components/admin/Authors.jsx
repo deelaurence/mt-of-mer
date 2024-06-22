@@ -4,6 +4,8 @@ import LoadingButtonUniversal from '../LoadingButtonUniversal';
 import { RiDeleteBin5Line, RiEdit2Line, RiInformationLine } from 'react-icons/ri';
 import BackButton from './BackButton';
 import { useGlobalState } from '../../GlobalState';
+import { MdOutlineAddCircle, MdOutlineUploadFile } from 'react-icons/md';
+import { convertToBase64 } from '../../utils/snippets';
 
 const ManageAuthors = () => {
   const { state } = useGlobalState();
@@ -19,6 +21,11 @@ const ManageAuthors = () => {
   const [authorToDelete, setAuthorToDelete] = useState(null);
   const [confirmAuthorName, setConfirmAuthorName] = useState('');
   const [showHintModal, setShowHintModal] = useState(false);
+  
+  const [formData, setFormData] = useState({});
+  //hold uploaded image files
+  const [pictureFiles, setPictureFiles] = useState([]);
+  const [base64State, setBase64State]=useState(null)
 
   const sampleDescriptions = [
     "Rev. Matthew Asuquo is a dedicated minister of God, known for his passionate sermons and community service. He is happily married and enjoys traveling by road to explore new places and cultures. His commitment to faith and family is unwavering.",
@@ -50,6 +57,29 @@ const ManageAuthors = () => {
     }
   };
 
+
+    //handle picture upload
+    const handleFileChange = (e) => {
+      const files = Array.from(e.target.files);
+      if (files.length > 2) {
+          Alert("You cannot select more than two images");
+          return;
+      }
+      
+      const pictures = files.map(file => ({
+          title: file.name,
+          src: URL.createObjectURL(file)
+      }));
+      setFormData({
+          ...formData,
+          pictures
+      });
+      setPictureFiles(files);
+  };
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -62,22 +92,47 @@ const ManageAuthors = () => {
       return;
     }
 
+
+    let base64pictures = await Promise.all(pictureFiles.map(async (file) => {
+      const base64 = await convertToBase64(file);
+      return {
+          title: file.name,
+          src: base64
+      };
+    }));
+    setBase64State(base64pictures)
+    
     try {
       if (authorToEdit) {
-        await axios.put(`${state.baseUrl}/author/${authorToEdit._id}`, {
-          name: authorToEdit.name, // Keep the existing name
-          description
-        }, {
-          headers
+        // await axios.put(`${state.baseUrl}/author/${authorToEdit._id}`, formData, {
+          const response = await axios({
+            method:'put',
+            url: `${state.baseUrl}/author/${authorToEdit._id}`,
+            data: {
+                ...formData,
+                name,
+                description,
+                images:base64pictures
+            },
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
         setMessage('Author updated!');
       } else {
-        await axios.post(`${state.baseUrl}/author`, {
-          name,
-          description
-        }, {
-          headers
-        });
+        const response = await axios({
+          method:'post',
+          url: `${state.baseUrl}/author`,
+          data: {
+              ...formData,
+              name,
+              description,
+              images:base64pictures
+          },
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      });
         setMessage('Author created!');
       }
 
@@ -87,6 +142,9 @@ const ManageAuthors = () => {
       fetchAuthors(); // Refresh the list after adding/updating an author
     } catch (error) {
       setMessage(error.response ? error.response.data.message : error.message);
+      if(!message){
+        setMessage("Something went wrong")
+      }
     } finally {
       setIsLoading(false);
     }
@@ -109,6 +167,10 @@ const ManageAuthors = () => {
     setAuthorToEdit(author);
     setName(author.name);
     setDescription(author.description);
+    setFormData({
+      ...formData,
+      pictures:author.image
+  });
   };
 
   const openDeleteModal = (author) => {
@@ -198,6 +260,42 @@ const ManageAuthors = () => {
               <RiInformationLine className="mr-1" /> Show Sample Descriptions
             </button>
           </div>
+          
+          
+          
+          {/*IF UPLOADING FROM DEVICE, SHOW COMPONENT*/}
+          {true &&
+          <>
+          <label
+              
+              htmlFor='file-upload'
+              className='flex gap-1 text-green-700 cursor-pointer underline items-center'>
+                Upload Image <MdOutlineUploadFile />
+          </label>
+          <input
+              type='file'
+              id='file-upload'
+              name='pictures'
+              accept='image/*'
+              onChange={handleFileChange}
+              multiple
+              className='hidden'
+          />
+        </>}
+
+             
+                {formData.pictures&&<div className='flex gap-2 mt-4'>
+                            {formData.pictures.map((pic, index) => (
+                                <div key={index} className='relative'>            
+                                    <img src={pic.src||pic} alt={`Selected pic ${index + 1}`} className='w-32 h-32 object-cover rounded-md' />
+                                </div>
+                            ))}
+                </div>}
+                    
+
+          
+          
+          
           <button
             type="submit"
             className={`w-full py-2 mt-6 flex justify-center bg-darkShade text-white rounded-md shadow-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
@@ -216,20 +314,32 @@ const ManageAuthors = () => {
           <div className="space-y-4 pl-0">
             {authors.map(author => (
               <div key={author._id} className="ml-0 flex items-center p-4 pt-6 bg-white rounded-md shadow-md relative">
-                <div className="flex-grow">
-                  <p className="text-xl font-medium text-gray-700">{author.name}</p>
+                <div className="flex-grow relative">
+                  {author.image.length&&
+                    <div className='h-32 overflow-hidden absolute w-full '>
+                      <img className='object-cover h-full w-full' src={author.image[0]} alt={author.name}/>
+                    </div>}
+                  <p className="text-xl mt-44 font-medium text-gray-700">{author.name}</p>
                   <p className="text-gray-500 text-xs">{author.description}</p>
+                  
                 </div>
                 <button
-                  onClick={() => openEditModal(author)}
-                  className="text-blue-500 border-b-[0px] rounded-full bg-white p-4 shadow-md border-b-blue-700 absolute top-2 right-14"
+                  onClick={() => {
+                    openEditModal(author)
+                    window.scrollTo({
+                      top:0,
+                      behavior:'smooth'
+
+                    })
+                  }}
+                  className="text-gray-700 border-b-[0px] rounded-full bg-yellow-200 p-2 shadow-md  absolute top-2 right-12"
                 >
                   <RiEdit2Line />
                 </button>
                 {state.superAdmin && (
                   <button
                     onClick={() => openDeleteModal(author)}
-                    className="text-red-500 border-b-[0px] rounded-full bg-white p-4 shadow-md border-b-red-700 absolute top-2 right-2"
+                    className="text-gray-700 border-b-[0px] rounded-full bg-red-200 p-2 shadow-md  absolute top-2 right-2"
                   >
                     <RiDeleteBin5Line />
                   </button>

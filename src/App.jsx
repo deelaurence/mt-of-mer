@@ -41,6 +41,7 @@ import AboutUs from './components/Us';
 import ChurchLeadership from './components/Leadership';
 import { randomImgUrls } from './data/randomUnsplash';
 import CreatePaymentTag from './components/admin/PaymentTag';
+import AuthorProfile from './components/AuthorProfile';
 
 function App() {
   const { state,loginGlobally,dispatch } = useGlobalState();
@@ -130,9 +131,9 @@ function App() {
           <Routes>
             <Route path="/" element={<LANDING />} />
             <Route path="/messages" element={<PostAll postType='message' />} />
-            
 
-           
+
+            <Route path="/author/:name" element={<AuthorProfile/>}/>
             <Route path="/payment-tag" element={state.isAdminLoggedIn?<CreatePaymentTag />:<AdminLoginComponent/>} />
           
             <Route path="/add-article" element={state.isAdminLoggedIn?<PostFormComponent formType='article' />:<AdminLoginComponent/>} />

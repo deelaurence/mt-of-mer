@@ -18,8 +18,8 @@ const Dashboard = () => {
   const { adminLogout,state } = useGlobalState();
   const buttonData = [
     { to: '/users', icon: FiUsers, text: 'View All Users', color: '#007ea7' },
-    { to: '/add-article', icon: TfiWrite, text: 'Create Article', color: '#586288' },
-    { to: '/add-message', icon: MdOutlineLightbulb, text: 'Create Message', color: '#586288' },
+    { to: '/add-article', icon: TfiWrite, text: 'Manage Articles', color: '#586288' },
+    { to: '/add-message', icon: MdOutlineLightbulb, text: 'Messages', color: '#586288' },
     { to: '/payment-tag', icon: FaTag, text: 'Payments Tags', color: '#586288' },
     { to: '/payments', icon: FaMoneyCheck, text: 'Get All Payments', color: '#586288' },
     { to: '/authors', icon: RiUser4Line, text: 'Authors', color: '#586288' },
