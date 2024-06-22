@@ -75,11 +75,11 @@ const PostAll = ({ postType, posts, theme }) => {
                         <h3 className={`font-semibold max-w-[70%] text-[17px] md:text-base mt-2 ${textClass}`}>
                           {datum.title.toUpperCase()}
                         </h3>
-                        <p className={`text-[11px] max-w-[25%] font-medium mt-2 md:text-sm ${textClass}`}>
+                        <p className={`opacity-50 text-[11px] max-w-[25%] font-medium mt-2 md:text-sm ${textClass}`}>
                           {datum.writer}
                         </p>
                       </div>
-                      <p className={`text-[14px] max-w-full font-semibold mt-4 md:mb-8 md:text-sm ${textClass}`}>
+                      <p className={`text-[14px] opacity-70 max-w-full font-semibold mt-4 md:mb-8 md:text-sm ${textClass}`}>
                         {formatDate(datum.day)}
                       </p>
                     </aside>
