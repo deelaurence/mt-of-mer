@@ -88,7 +88,7 @@ const PostAll = ({ postType, posts, theme }) => {
               ))}
             </div>
           </section>
-          <section className="flex gap-4 mb-10 [&>*]:cursor-pointer [&>*]:p-[1px]">
+          <section className={`${textClass} flex gap-4 mb-10 [&>*]:cursor-pointer [&>*]:p-[1px] `}>
             {Array.from({ length: Math.ceil(allPosts.length / 10) }, (_, i) => i + 1).map((page) => (
               <div
                 key={page}

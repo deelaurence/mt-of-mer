@@ -7,7 +7,7 @@ const AuthorProfile = () => {
   const { state } = useGlobalState();
 
   const { name } = useParams(); // Get the 'name' parameter from the URL
-  const author = state.allAuthors.find(author => author.name === name); // Find the author with the matching name
+  const author = state.allAuthors.find(author => author.name.trim() === name.trim()); // Find the author with the matching name
   const allAuthorPosts = state.allMessages.filter((message)=>{
     return message.minister===name
   })
@@ -15,11 +15,11 @@ const AuthorProfile = () => {
     return article.writer===name
   }))
   const length = allAuthorPosts.length
-
+  console.log(state.allAuthors)
 
 
   if (!author) {
-    return <div className='pt-12 bg-darkShade text-3xl px-6 md:px-16 text-lightShade'>Author not found</div>;
+    return <div className='py-64 text-center bg-darkShade text-3xl px-6 md:px-16 text-lightShade'>Author not found </div>;
   }
   return (
     <div className='bg-darkShade'>
@@ -37,8 +37,12 @@ const AuthorProfile = () => {
       <div className='p-6 mt-6 md:p-16'>
         <p className='text-lightShade'>{author.description}</p>
       </div>
-      <h1 className='px-6 md:px-16 text-lightShade my-12 mb-12 font-medium'>Check out {length} other post{`${length>1?"s":""}`} by {name.split(" ")[0]}</h1>
-      <PostAll postType="author" theme="night" posts={allAuthorPosts} />
+
+      {length&&<>
+        <h1 className='px-6 md:px-16 text-lightShade my-12 mb-12 font-medium'>Check out {length} other post{`${length>1?"s":""}`} by {name.split(" ")[0]}</h1>
+        <PostAll postType="author" theme="night" posts={allAuthorPosts} />
+      </>
+      }
     </div>
   );
 };
